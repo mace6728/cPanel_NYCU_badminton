@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="國立交通大學羽球隊 · 交大羽球隊 · NCTU Badminton · 註冊頁面">
+    <meta name="author" content="國立交通大學羽球隊 交大羽球隊 NCTU Badminton">
+
+    <title>註冊 | 國立陽明交通大學羽球隊 NYCU Badminton</title>
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/reg.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+</head>
+    
+<body>
+
+    <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="https://badminton.club.nycu.edu.tw">陽明交大羽球隊</a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="https://badminton.club.nycu.edu.tw">最新消息</a>
+                    </li>
+                    <!--.nav>li-->
+                    <li>
+                        <a role="button">關於球隊<span class="caret"></span></a>
+                        <!--.nav>li>ul-->
+                        <ul>
+                            <li><a href="intro_team.html">球隊簡介<span class="upCaret"></span></a></li>
+                            <li><a href="coach_liao.html" class="coach">廖威彰教練<span class="upCaret"></span></a></li>
+                            <li><a href="coach_wang.html" class="coach">王志全教練<span class="upCaret"></span></a></li>
+                            <!--.nav>li>ul>li-->
+                            <li>
+                              <a role="button">隊長介紹<span class="rightCaret"></span></a>
+                              <!--.nav>li>ul>li>ul-->
+                              <ul class="nav collapse">
+                                <!--.nav>li>ul>li>ul>li-->
+                                <li><a href="maleLeader.html">男隊長<span class="leftCaret"></span></a></li>
+                                <li><a href="femaleLeader.html">女隊長<span class="leftCaret"></span></a></li>
+                              </ul>
+                            </li>
+                            <li><a href="intro_member.html">球員介紹<span class="upCaret"></span></a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a role="button">比賽戰績<span class="caret"></span></a>
+                        <ul>
+                            <li><a href="competition.html">公開組<span class="upCaret"></span></a></li>
+                            <li><a href="normalCompetition.html">一般組<span class="upCaret"></span></a></li>
+                        </ul>
+                    </li>
+                    <li>
+                      <a role="button">勁竹盃<span class="caret"></span></a>
+                      <ul>
+                        <li><a href="JinZhu.html">簡介<span class="upCaret"></span></a></li>
+                        <li><a href="JinZhuRecord.html">歷年成績<span class="upCaret"></span></a></li>
+                      </ul>
+                    </li>
+                    <li>
+                      <a role="button">風城盃<span class="caret"></span></a>
+                      <ul>
+                        <li><a href="wind.html">簡介<span class="upCaret"></span></a></li>
+                        <li><a href="windRecord.html">歷年成績<span class="upCaret"></span></a></li>
+                      </ul>
+                    </li>
+                    <li>
+                        <a href="extraordinary.html">名人堂</a>
+                    </li>
+                    <li>
+                        <a role="button">校友會<span class="caret"></span></a>
+                        <ul>
+                            <li><a href="al_announcement.html">公告<span class="upCaret"></span></a></li>
+                            <li><a href="al_architecture.html">組織架構<span class="upCaret"></span></a></li>
+                            <li><a href="al_President.html">歷屆會長<span class="upCaret"></span></a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="gallery.html">活動照片</a>
+                    </li>
+                    <li>
+                        <a href="contact.html">聯絡資訊</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="intro-header" style="background-image: url('img/index.jpg')">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <div class="page-heading">
+                        <h1>註冊</h1>
+                        <hr class="small">
+                        <span class="subheading">NYCU Badminton</span>
+                        <span id="userDisplay"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <h3>若有問題可以點選右上方的聯絡資訊，聯絡到網站管理員</h3>
+                <p>請填寫基本資料，聯絡之用，請安心填寫</p>
+                <form action="register.php" method="post" name="sentMessage" id="registerForm" novalidate>
+                    <div class="row control-group">
+                        <div class="form-group col-xs-12 floating-label-form-group controls">
+                            <label>姓名</label>
+                            <input type="text" class="form-control" placeholder="姓名" id="name" required data-validation-required-message="請輸入姓名" name="name">
+                            <p class="help-block text-danger"></p>
+                        </div>
+                    </div>
+                    <div class="row control-group">
+                        <div class="form-group col-xs-12 floating-label-form-group controls">
+                            <label>西元年/月份/日期 , 如:1999/01/01</label>
+                            <input type="text" class="form-control" placeholder="生日,西元/月份/日期,如1999/01/01" id="birth" required data-validation-required-message="請輸入生日" name="birth">
+                            <p class="help-block text-danger"></p>
+                        </div>
+                    </div>
+                    <div class="row control-group">
+                        <div class="form-group col-xs-12 floating-label-form-group controls">
+                            <label>住址</label>
+                            <input type="text" class="form-control" placeholder="住址" id="address" required data-validation-required-message="請輸入住址" name="address">
+                            <p class="help-block text-danger"></p>
+                        </div>
+                    </div>
+                    <div class="row control-group">
+                        <div class="form-group col-xs-12 floating-label-form-group controls">
+                            <label>Email</label>
+                            <input type="email" class="form-control" placeholder="Email(請注意正確性)" id="email" required data-validation-required-message="請輸入Email" name="email">
+                            <p class="help-block text-danger"></p>
+                        </div>
+                    </div>
+                    <div class="row control-group">
+                        <div class="form-group col-xs-12 floating-label-form-group controls">
+                            <label>再次輸入Email</label>
+                            <input type="email" class="form-control" placeholder="再次輸入Email" id="emailAgain" required data-validation-required-message="請輸入Email" name="mailAgain">
+                            <p class="help-block text-danger"></p>
+                        </div>
+                    </div>
+                    <div class="row control-group">
+                        <div class="form-group col-xs-12 floating-label-form-group controls">
+                            <label>聯絡電話</label>
+                            <input type="tel" class="form-control" placeholder="聯絡電話" id="phone" required data-validation-required-message="請輸入聯絡電話" name="phone">
+                            <p class="help-block text-danger"></p>
+                        </div>
+                    </div>
+                    <p id="moreInfo">請填寫帳號、密碼，用於登入</p>
+                    <div class="row control-group">
+                        <div class="form-group col-xs-12 floating-label-form-group controls">
+                            <label>帳號</label>
+                            <input type="tel" class="form-control" placeholder="帳號" id="account" required data-validation-required-message="請輸入帳號" name="account">
+                            <p class="help-block text-danger"></p>
+                        </div>
+                        <div id="existed"></div>
+                    </div>
+                    <div class="row control-group">
+                        <div class="form-group col-xs-12 floating-label-form-group controls">
+                            <label>密碼</label>
+                            <input type="password" class="form-control" placeholder="密碼" id="password" required data-validation-required-message="請輸入密碼" name="password">
+                            <p class="help-block text-danger"></p>
+                        </div>
+                    </div>
+                    <div class="row control-group">
+                        <div class="form-group col-xs-12 floating-label-form-group controls">
+                            <label>再次輸入密碼</label>
+                            <input type="password" class="form-control" placeholder="再次輸入密碼" id="passAgain" required data-validation-required-message="請輸入密碼" name="passAgain">
+                            <p class="help-block text-danger"></p>
+                        </div>
+                    </div>
+                    <br>
+                    <div id="success"></div>
+                    <div class="row">
+                        <div class="form-group col-xs-12">
+                            <button type="submit" class="btn btn-default">送出</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <ul class="list-inline text-center">
+                       <li>
+                            <a href="https://www.facebook.com/p/%E4%BA%A4%E9%80%9A%E5%A4%A7%E5%AD%B8%E7%BE%BD%E7%90%83%E9%9A%8A-NCTU_Badminton-100054456520532/?locale=zh_TW">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                    <p class="copyright text-muted">NYCU Badminton 2022</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/register.min.js"></script>
+
+</body>
+
+</html>

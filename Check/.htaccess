@@ -1,0 +1,4 @@
+AuthName "Check"
+AuthUserFile "/home/badadmin/.htpasswds/public_html/Check/passwd"
+AuthType Basic
+require valid-user

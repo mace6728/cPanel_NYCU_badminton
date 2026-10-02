@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="zh-tw" class="mdl-js">
+
+<head>
+
+    <meta charset="utf-8">
+    <title>test!</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="css/material.min.css">
+    <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' >
+    <script src="https://storage.googleapis.com/code.getmdl.io/1.0.4/material.min.js"></script>
+    <link rel="stylesheet" href="css/check.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .mdl-layout__drawer>.mdl-layout__title, .mdl-layout__drawer>.mdl-layout-title{
+            box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
+        }
+        .mdl-layout__drawer{
+            .border-right:0px;
+        }
+        .mdl-layout__title, .mdl-layout-title{
+            width: 402px;
+        }
+        .mdl-navigation>div{
+            text-align: center;
+        }
+        img{
+            height:64px;
+        }
+        #admin{
+            margin:16px 0px;
+            color:#6C7177;
+        }
+        .material-icons{
+            margin: 0px 10px;
+        }
+        #post{
+          display:none;
+        }
+        #successArticle{
+          color: #1976D2;
+          background-color: #BBDEFB;
+          border-color: #90CAF9;
+        }
+        #failArticle{
+          color: #a94442;
+          background-color: #BBDEFB;
+          border-color: #90CAF9;
+        }
+        #successArticle,#failArticle{
+          display:none;
+          font-size:16px;
+          padding: 15px;
+          margin-bottom: 20px;
+          border: 1px solid transparent;
+          border-radius: 4px;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- Accent-colored raised button with ripple -->
+<!-- Always shows a header, even in smaller screens. -->
+<div class="mdl-layout__container">
+<div class="mdl-layout mdl-layout--fixed-header mdl-layout--fixed-drawer"  id="content">
+  <header class="mdl-layout__header">
+    <div class="mdl-layout__header-row">
+      <!-- Title -->
+      <span class="mdl-layout-title">Title</span>
+      <!-- Add spacer, to align navigation to the right -->
+      <div class="mdl-layout-spacer"></div>
+      <!-- Navigation. We hide it in small screens. 
+      <nav class="mdl-navigation mdl-layout--large-screen-only">
+        <a class="mdl-navigation__link" href="">Link</a>
+        <a class="mdl-navigation__link" href="">Link</a>
+        <a class="mdl-navigation__link" href="">Link</a>
+        <a class="mdl-navigation__link" href="">Link</a>
+      </nav>
+      -->
+    </div>
+  </header>
+  <div class="mdl-layout__drawer  mdl-color--white" id="drawer">
+    <span class="mdl-layout-title" style="background-color:#1976D2;color:white;">Drawer</span>
+    <nav class="mdl-navigation">
+      <div>
+        <a href="#"><img src="test.svg"/></a>
+        <div id="admin">管理員</div>
+      </div>
+      <a class="mdl-navigation__link" onclick="checkDisplay()" href="#"><div class="material-icons">check</div>審核</a>
+      <a class="mdl-navigation__link" onclick="postDisplay()" href="#"><div class="material-icons">create</div>發文</a>
+    </nav>
+  </div>
+  <main class="mdl-layout__content mdl-color--grey-100">
+    <div class="mdl-grid page-content">
+        <div id="check" class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
+          <table class="mdl-cell mdl-cell--12-col"><tbody><tr><th>姓名</th><th>電話</th><th>電子郵件</th><th>住址</th><th>確認校友身份</th></tr><tr id="1"><td>簡維志</td><td>+1 9144262</td><td>wcjian@gmail.com</td><td>1870 Baldwin Rd., Unit 6, York</td><td><button onclick="doIt(1)">是</button><button onclick="denyIt(1)">否</button></td><td class="no">1981/10/18</td><td class="no">wcjian@gmail.com</td><td class="no">wayne0812</td></tr></tbody></table>
+        </div>
+
+        <div id="post" class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
+          <h4 style="margin-bottom:5px;">類別</h4>
+          <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="newest">
+            <input type="radio" id="newest" class="mdl-radio__button" name="options" checked />
+            <span class="mdl-radio__label">最新消息</span>
+          </label>
+          <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="end">
+            <input type="radio" id="end" class="mdl-radio__button" name="options"/>
+            <span class="mdl-radio__label">比賽成果</span>
+          </label>
+          <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="competition">
+            <input type="radio" id="competition" class="mdl-radio__button" name="options"/>
+            <span class="mdl-radio__label">競賽資訊</span>
+          </label>
+          <h4 style="margin-bottom:5px;">標題</h4>
+          <input type="text" id="heading" value="heyhey">
+          <h4 style="margin-bottom:5px;">內文</h4>
+          <textarea></textarea>
+          <button class="mdl-cell mdl-cell--10-offset mdl-cell--2-col" style="background-color:#1976D2;color:white;border-radius: 4px;padding:5px 3px;margin-top: 16px;font-size: 16px;" onclick="newArticle()">發表</button>
+          <div id="successArticle"><strong>發表成功！</strong></div>
+          <div id="failArticle"><strong>發表失敗！</strong></div>
+        </div>
+    </div>
+  </main>
+</div>
+</div>
+<script async src="tinymce/js/tinymce/tinymce.min.js"></script>
+<script src="js/jquery.js"></script>
+<script>
+    function postDisplay(){
+        document.getElementById("check").style.display = "none";
+        document.getElementById("post").style.display = "block";
+        document.getElementById("drawer").className = "mdl-layout__drawer  mdl-color--white";
+    }
+    function checkDisplay(){
+        document.getElementById("check").style.display = "block";
+        document.getElementById("post").style.display = "none";
+        document.getElementById("drawer").className = "mdl-layout__drawer  mdl-color--white";
+    }
+    function newArticle(){
+        var heading = document.getElementById("heading").value;
+        var allParagraph = tinyMCE.activeEditor.getContent().toString();
+        var radioInput = document.getElementsByTagName("INPUT");
+        var category = "";
+        var i;
+        for(i = 0;i<radioInput.length;i++){
+          if(radioInput[i].checked){
+            category = categoryDecider(i);
+          }
+        }
+        $.post("articleToDB.php",
+        {
+          'category': category,
+          'heading' : heading,
+          'content' : allParagraph
+        }, function(data, status){
+            if(data=="success"){
+              document.getElementById("successArticle").style.display="block";
+              setTimeout("document.getElementById(\"successArticle\").style.display=\"none\"",3000);
+            }else{
+              document.getElementById("failArticle").style.display="block";
+              setTimeout("document.getElementById(\"failArticle\").style.display=\"none\"",3000);
+            }
+          }
+        );
+    }
+    function categoryDecider(numbering){
+      switch(numbering){
+        case 0:
+          return "最新消息";
+        case 1:
+          return "比賽成果";
+        case 2:
+          return "競賽資訊";
+      }
+    }
+
+</script>
+</body>
+
+</html>

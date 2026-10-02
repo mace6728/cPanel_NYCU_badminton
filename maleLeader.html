@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="國立交通大學羽球隊 · 交大羽球隊 · NCTU Badminton · 男羽隊長介紹">
+    <meta name="author" content="國立交通大學羽球隊 交大羽球隊 NCTU Badminton">
+
+    <title>男羽隊長介紹 | 國立陽明交通大學羽球隊 NYCU Badminton</title>
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/leader.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="https://badminton.club.nycu.edu.tw/">陽明交大羽球隊</a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="https://badminton.club.nycu.edu.tw">最新消息</a>
+                    </li>
+                    <!--.nav>li-->
+                    <li>
+                        <a role="button">關於球隊<span class="caret"></span></a>
+                        <!--.nav>li>ul-->
+                        <ul>
+                            <li><a href="intro_team.html">球隊簡介<span class="upCaret"></span></a></li>
+                            <li><a href="coach_liao.html" class="coach">廖威彰教練<span class="upCaret"></span></a></li>
+                            <li><a href="coach_wang.html" class="coach">王志全教練<span class="upCaret"></span></a></li>
+                            <!--.nav>li>ul>li-->
+                            <li>
+                              <a role="button">隊長介紹<span class="rightCaret"></span></a>
+                              <!--.nav>li>ul>li>ul-->
+                              <ul class="nav collapse">
+                                <!--.nav>li>ul>li>ul>li-->
+                                <li><a href="#">男隊長<span class="leftCaret"></span></a></li>
+                                <li><a href="femaleLeader.html">女隊長<span class="leftCaret"></span></a></li>
+                              </ul>
+                            </li>
+                            <li><a href="intro_member.html">球員介紹<span class="upCaret"></span></a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a role="button">比賽戰績<span class="caret"></span></a>
+                        <ul>
+                            <li><a href="competition.html">公開組<span class="upCaret"></span></a></li>
+                            <li><a href="normalCompetition.html">一般組<span class="upCaret"></span></a></li>
+                        </ul>
+                    </li>
+                    <li>
+                      <a role="button">勁竹盃<span class="caret"></span></a>
+                      <ul>
+                        <li><a href="JinZhu.html">簡介<span class="upCaret"></span></a></li>
+                        <li><a href="JinZhuRecord.html">歷年成績<span class="upCaret"></span></a></li>
+                      </ul>
+                    </li>
+                    <li>
+                      <a role="button">風城盃<span class="caret"></span></a>
+                      <ul>
+                        <li><a href="wind.html">簡介<span class="upCaret"></span></a></li>
+                        <li><a href="windRecord.html">歷年成績<span class="upCaret"></span></a></li>
+                      </ul>
+                    </li>
+                    <li>
+                        <a href="extraordinary.html">名人堂</a>
+                    </li>
+                    <li>
+                        <a role="button">校友會<span class="caret"></span></a>
+                        <ul>
+                            <li><a href="al_announcement.html">公告<span class="upCaret"></span></a></li>
+                            <li><a href="al_architecture.html">組織架構<span class="upCaret"></span></a></li>
+                            <li><a href="al_President.html">歷屆會長<span class="upCaret"></span></a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="gallery.html">活動照片</a>
+                    </li>
+                    <li>
+                        <a href="contact.html">聯絡資訊</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="intro-header" style="background-image: url('img/players.jpg')">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <div class="page-heading">
+                        <h1>男羽隊長</h1>
+                        <hr class="small">
+                        <span class="subheading">NYCU Badminton</span>
+                        <span id="userDisplay"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container" oncontextmenu="return false;">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="text-align:center;margin-bottom:15px;">
+                <h1>歷年隊長</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-3 col-md-4 col-sm-4 col-xs-6">
+                <div class="wholeData">
+                    <div class="avatar" id="y84">
+                        <img src="img/男羽歷屆隊長照片/86關華凌.jpg">
+                    </div>
+                    <div class="intro">
+                    84學年度<br>電信<br>關華凌
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-4 col-xs-6">
+                <div class="wholeData">
+                    <div class="avatar" id="y85">
+                        <img class="people" src="img/男羽歷屆隊長照片/people.png">
+                    </div>
+                    <div class="intro">
+                    85學年度<br>材料<br>陳志壕
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-4 col-xs-6">
+                <div class="wholeData">
+                    <div class="avatar" id="y86">
+                        <img class="people" src="img/男羽歷屆隊長照片/people.png">
+                    </div>
+                    <div class="intro">
+                    86學年度<br>土木<br>陳維勇
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-4 col-xs-6">
+                <div class="wholeData">
+                    <div class="avatar" id="y87">
+                        <img src="img/男羽歷屆隊長照片/89許智瑋.jpg">
+                    </div>
+                    <div class="intro">
+                    87學年度<br>管科<br>許志瑋
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-3 col-md-4 col-sm-4 col-xs-6">
+                <div class="wholeData">
+                    <div class="avatar" id="y88">
+                        <img class="people" src="img/男羽歷屆隊長照片/people.png">
+                    </div>
+                    <div class="intro">
+                    88學年度<br>材料<br>何克彬
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-4 col-xs-6">
+                <div class="wholeData">
+                    <div class="avatar" id="y89">
+                        <img class="people" src="img/男羽歷屆隊長照片/people.png">
+                    </div>
+                    <div class="intro">
+                    89學年度<br>管科<br>曾鼎翔
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-4 col-xs-6">
+                <div class="wholeData">
+                    <div class="avatar" id="y90">
+                        <img src="img/男羽歷屆隊長照片/92陳威碩.jpg">
+                    </div>
+                    <div class="intro">
+                    90學年度<br>資工<br>陳威碩
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-4 col-xs-6">
+                <div class="wholeData">
+                    <div class="avatar" id="y91">
+                        <img src="img/男羽歷屆隊長照片/93黃勁霖.jpg">
+                    </div>
+                    <div class="intro">
+                    91學年度<br>資工<br>黃勁霖
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-3 col-md-4 col-sm-4 col-xs-6">
+                <div class="wholeData">
+                    <div class="avatar" id="y92">
+                        <img class="people" src="img/男羽歷屆隊長照片/people.png">
+                    </div>
+                    <div class="intro">
+                    92學年度<br>電信<br>黃為崧
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-4 col-xs-6">
+                <div class="wholeData">
+                    <div class="avatar" id="y93">
+                        <img src="img/男羽歷屆隊長照片/95謝一弘.jpg">
+                    </div>
+                    <div class="intro">
+                    93學年度<br>電控<br>謝一弘
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-4 col-xs-6">
+                <div class="wholeData">
+                    <div class="avatar" id="y94">
+                        <img src="img/男羽歷屆隊長照片/96陳奕全.jpg">
+                    </div>
+                    <div class="intro">
+                    94學年度<br>管科<br>陳奕全
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-4 col-xs-6">
+                <div class="wholeData">
+                    <div class="avatar" id="y95">
+                        <img src="img/男羽歷屆隊長照片/97李柏毅.jpg">
+                    </div>
+                    <div class="intro">
+                    95學年度<br>機械<br>李柏毅
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-3 col-md-4 col-sm-4 col-xs-6">
+                <div class="wholeData">
+                    <div class="avatar" id="y96">
+                        <img src="img/男羽歷屆隊長照片/people.png">
+                    </div>
+                    <div class="intro">
+                    96學年度<br><br>葉哲維
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-4 col-xs-6">
+                <div class="wholeData">
+                    <div class="avatar" id="y97">
+                        <img src="img/男羽歷屆隊長照片/99蘇致豪.jpg">
+                    </div>
+                    <div class="intro">
+                    97學年度<br>機械<br>蘇致豪
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-4 col-xs-6">
+                <div class="wholeData">
+                    <div class="avatar" id="y98">
+                        <img src="img/男羽歷屆隊長照片/98廖鍵文.jpg">
+                    </div>
+                    <div class="intro">
+                    98學年度<br>工工<br>廖鍵文
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-4 col-xs-6">
+                <div class="wholeData">
+                    <div class="avatar" id="y99">
+                        <img src="img/男羽歷屆隊長照片/99蘇致豪.jpg">
+                    </div>
+                    <div class="intro">
+                    99學年度<br>機械<br>蘇致豪
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-3 col-md-4 col-sm-4 col-xs-6">
+                <div class="wholeData">
+                    <div class="avatar" id="y100">
+                        <img src="img/男羽歷屆隊長照片/100廖晨宏.jpg">
+                    </div>
+                    <div class="intro">
+                    100學年度<br>材料<br>廖晨宏
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-4 col-xs-6">
+                <div class="wholeData">
+                    <div class="avatar" id="y101">
+                        <img src="img/男羽歷屆隊長照片/101陳立遠.jpg">
+                    </div>
+                    <div class="intro">
+                    101學年度<br>電機<br>陳立遠
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix hidden-lg"></div>
+            <div class="col-lg-3 col-md-4 col-sm-4 col-xs-6">
+                <div class="wholeData">
+                    <div class="avatar" id="y102">
+                        <img src="img/男羽歷屆隊長照片/102高源懋.jpg">
+                    </div>
+                    <div class="intro">
+                    102學年度<br>工工<br>高源懋
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-4 col-xs-6">
+                <div class="wholeData">
+                    <div class="avatar" id="y103">
+                        <img src="img/男羽歷屆隊長照片/103鐘松翰.jpg">
+                    </div>
+                    <div class="intro">
+                    103學年度<br>工工<br>鍾松翰
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-3 col-md-4 col-sm-4 col-xs-6">
+                <div class="wholeData">
+                    <div class="avatar" id="y104">
+                        <img src="img/男羽歷屆隊長照片/104郭彧辰.jpg">
+                    </div>
+                    <div class="intro">
+                    104學年度<br>機械<br>郭彧辰
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-4 col-xs-6">
+                <div class="wholeData">
+                    <div class="avatar" id="y106">
+                        <img src="img/男羽歷屆隊長照片/106m.jpg">
+                    </div>
+                    <div class="intro">
+                    106學年度<br>土木<br>林又
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-4 col-xs-6">
+                <div class="wholeData">
+                    <div class="avatar" id="y107">
+                        <img src="img/男羽歷屆隊長照片/107吳竹銘.png">
+                    </div>
+                    <div class="intro">
+                    107學年度<br>土木<br>吳竹銘
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-4 col-xs-6">
+                <div class="wholeData">
+                    <div class="avatar" id="y108">
+                        <img src="img/男羽歷屆隊長照片/108林乙宙.png">
+                    </div>
+                    <div class="intro">
+                    108學年度<br>運管<br>林乙宙
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-3 col-md-4 col-sm-4 col-xs-6">
+                <div class="wholeData">
+                    <div class="avatar" id="y109">
+                        <img src="img/男羽歷屆隊長照片/109孫晨淯.jpg">
+                    </div>
+                    <div class="intro">
+                    109學年度<br>資財<br>孫晨淯
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-4 col-xs-6">
+                <div class="wholeData">
+                    <div class="avatar" id="y110">
+                        <img src="img/男羽歷屆隊長照片/109陳均佳.jpg">
+                    </div>
+                    <div class="intro">
+                    109學年度<br>光電<br>陳均佳
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-4 col-xs-6">
+                <div class="wholeData">
+                    <div class="avatar" id="y111">
+                        <img src="img/男羽歷屆隊長照片/110高忻緯.jpg">
+                    </div>
+                    <div class="intro">
+                    110學年度<br>應數<br>高忻緯
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-4 col-xs-6">
+                <div class="wholeData">
+                    <div class="avatar" id="y112">
+                        <img src="img/男羽歷屆隊長照片/111梁又壬.jpg">
+                    </div>
+                    <div class="intro">
+                    111學年度<br>電機碩<br>梁又壬
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-3 col-md-4 col-sm-4 col-xs-6">
+                <div class="wholeData">
+                    <div class="avatar" id="y113">
+                        <img src="img/男羽歷屆隊長照片/112張軒齊.jpg">
+                    </div>
+                    <div class="intro">
+                    112/113學年度<br>工工<br>張軒齊
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-4 col-xs-6">
+                <div class="wholeData">
+                    <div class="avatar" id="y114">
+                        <img src="img/男羽歷屆隊長照片/114林昊翰.jpg">
+                    </div>
+                    <div class="intro">
+                    114學年度<br>電物<br>林昊翰
+                    </div>
+                </div>
+            </div>
+            
+            
+        </div>
+    </div>
+    <hr>
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <ul class="list-inline text-center">
+                        <li>
+                            <a href="https://www.facebook.com/p/%E4%BA%A4%E9%80%9A%E5%A4%A7%E5%AD%B8%E7%BE%BD%E7%90%83%E9%9A%8A-NCTU_Badminton-100054456520532/?locale=zh_TW">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                    <p class="copyright text-muted">NYCU Badminton 2022</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/blog.min.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="國立交通大學羽球隊 · 交大羽球隊 · NCTU Badminton · 風城盃羽球賽">
+    <meta name="author" content="國立交通大學羽球隊 交大羽球隊 NCTU Badminton">
+
+    <title>風城盃歷年成績 | 國立陽明交通大學羽球隊 NYCU Badminton</title>
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/wind.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+</head>
+
+<body>
+
+    <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="https://badminton.club.nycu.edu.tw">陽明交大羽球隊</a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="https://badminton.club.nycu.edu.tw">最新消息</a>
+                    </li>
+                    <!--.nav>li-->
+                    <li>
+                        <a role="button">關於球隊<span class="caret"></span></a>
+                        <!--.nav>li>ul-->
+                        <ul>
+                            <li><a href="intro_team.html">球隊簡介<span class="upCaret"></span></a></li>
+                            <li><a href="coach_liao.html" class="coach">廖威彰教練<span class="upCaret"></span></a></li>
+                            <li><a href="coach_wang.html" class="coach">王志全教練<span class="upCaret"></span></a></li>
+                            <!--.nav>li>ul>li-->
+                            <li>
+                              <a role="button">隊長介紹<span class="rightCaret"></span></a>
+                              <!--.nav>li>ul>li>ul-->
+                              <ul class="nav collapse">
+                                <!--.nav>li>ul>li>ul>li-->
+                                <li><a href="maleLeader.html">男隊長<span class="leftCaret"></span></a></li>
+                                <li><a href="femaleLeader.html">女隊長<span class="leftCaret"></span></a></li>
+                              </ul>
+                            </li>
+                            <li><a href="intro_member.html">球員介紹<span class="upCaret"></span></a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a role="button">比賽戰績<span class="caret"></span></a>
+                        <ul>
+                            <li><a href="competition.html">公開組<span class="upCaret"></span></a></li>
+                            <li><a href="normalCompetition.html">一般組<span class="upCaret"></span></a></li>
+                        </ul>
+                    </li>
+                    <li>
+                      <a role="button">勁竹盃<span class="caret"></span></a>
+                      <ul>
+                        <li><a href="JinZhu.html">簡介<span class="upCaret"></span></a></li>
+                        <li><a href="JinZhuRecord.html">歷年成績<span class="upCaret"></span></a></li>
+                      </ul>
+                    </li>
+                    <li>
+                      <a role="button">風城盃<span class="caret"></span></a>
+                      <ul>
+                        <li><a href="wind.html">簡介<span class="upCaret"></span></a></li>
+                        <li><a href="#">歷年成績<span class="upCaret"></span></a></li>
+                      </ul>
+                    </li>
+                    <li>
+                        <a href="extraordinary.html">名人堂</a>
+                    </li>
+                    <li>
+                        <a role="button">校友會<span class="caret"></span></a>
+                        <ul>
+                            <li><a href="al_announcement.html">公告<span class="upCaret"></span></a></li>
+                            <li><a href="al_architecture.html">組織架構<span class="upCaret"></span></a></li>
+                            <li><a href="al_President.html">歷屆會長<span class="upCaret"></span></a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="gallery.html">活動照片</a>
+                    </li>
+                    <li>
+                        <a href="contact.html">聯絡資訊</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="intro-header" style="background-image: url('img/index.jpg')">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <div class="site-heading">
+                        <h1>風城盃歷年成績</h1>
+                        <hr class="small">
+                        <span class="subheading">NYCU Badminton</span>
+                        <span id="userDisplay"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <article>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <h1 class="intro-heading text-center">競技組</h1>
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                          <tr class="warning">
+                            <th>組別或年份</th>
+                            <th>冠軍</th>
+                            <th>亞軍</th>
+                            <th>季軍</th>
+                            <th>殿軍</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <th>2016</th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                          </tr>
+                          <tr>
+                            <td>男單</td>
+                            <td>台大 吳宗儒</td>
+                            <td>交大 陳昀澔</td>
+                            <td>清大 戴子為</td>
+                            <td>交大 葉承宗</td>
+                          </tr>
+                          <tr>
+                            <td>男雙</td>
+                            <td>交大 陳儀澧、<br>交大 王偉銓</td>
+                            <td>交大 丁冠中、<br>交大 陳俊凱</td>
+                            <td>交大 林智隆、<br>台大 林存甫</td>
+                            <td>交大 楊哲涵、<br>交大 黃上豪</td>
+                          </tr>
+                          <tr>
+                            <td>女單</td>
+                            <td>彰師 林潔茹</td>
+                            <td>逢甲 黃瀞瑩</td>
+                            <td>交大 楊惠筑</td>
+                            <td>交大 黃嘉寶</td>
+                          </tr>
+                          <tr>
+                            <td>女雙</td>
+                            <td>彰師 林潔茹、<br>逢甲 黃瀞瑩</td>
+                            <td>交大 許玟琪、<br>交大 蔡彣昕</td>
+                            <td>交大 蘇育瑩、<br>交大 楊惠筑</td>
+                            <td>交大 劉莉敏<br>交大 方美瑜</td>
+                          </tr>
+                          <tr>
+                            <th>2015</th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                          </tr>
+                          <tr>
+                            <td>男單</td>
+                            <td>交大 陳昀澔</td>
+                            <td>僑光 李威丞</td>
+                            <td>淡江 張郡哲</td>
+                            <td>師大 黃冠叡</td>
+                          </tr>
+                          <tr>
+                            <td>男雙</td>
+                            <td>國體 陳雨桐、<br>北商 陳儀安</td>
+                            <td>僑光 陳傑民、<br>中華 陳梓芃</td>
+                            <td>淡江 范朋驊、<br>中原 彭昱豪</td>
+                            <td>僑光 李威丞、<br>聯合 陳彥維</td>
+                          </tr>
+                          <tr>
+                            <td>女單</td>
+                            <td>交大 楊惠筑</td>
+                            <td>交大 何家沂</td>
+                            <td>國體 黃宣柔</td>
+                            <td>交大 林軒筠</td>
+                          </tr>
+                          <tr>
+                            <td>女雙</td>
+                            <td>彰師 林潔茹、<br>逢甲 黃瀞瑩</td>
+                            <td>交大 蘇致萱、<br>交大 盧沛樺</td>
+                            <td>淡江 徐嘉  、<br>淡江 陳品穎</td>
+                            <td>交大 蘇育瑩、<br>交大 林玉婷</td>
+                          </tr>
+                          <tr>
+                            <th>2014</th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                          </tr>
+                          <tr>
+                            <td>男單</td>
+                            <td>謝宗霖</td>
+                            <td>徐綱駿</td>
+                            <td>陳威碩</td>
+                            <td>無</td>
+                          </tr>
+                          <tr>
+                            <td>男雙</td>
+                            <td>鍾松翰、董育呈</td>
+                            <td>黃彥超、蔡松育</td>
+                            <td>武伯原、戴國倫</td>
+                            <td>無</td>
+                          </tr>
+                          <tr>
+                            <td>女雙</td>
+                            <td>江美儀、李妍儀</td>
+                            <td>姜藍茵、鄭巧翎</td>
+                            <td>黃郁淳、盧沛樺</td>
+                            <td>無</td>
+                          </tr>
+                          <tr>
+                            <td>混雙</td>
+                            <td>戴國倫、陳祐如</td>
+                            <td>羅傑、彭婉婷</td>
+                            <td>陳昀澔、蘇致萱</td>
+                            <td>無</td>
+                          </tr>
+                          <tr>
+                            <th>2013</th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                          </tr>
+                          <tr>
+                            <td>男單</td>
+                            <td>王楷賀</td>
+                            <td>王建智</td>
+                            <td>馮世綸</td>
+                            <td>無</td>
+                          </tr>
+                          <tr>
+                            <td>男雙</td>
+                            <td>鍾松翰、林又</td>
+                            <td>王建智、王楷賀</td>
+                            <td>黃彥超、王迪彥</td>
+                            <td>無</td>
+                          </tr>
+                          <tr>
+                            <td>女單</td>
+                            <td>陳萱芸</td>
+                            <td>羅箴</td>
+                            <td>余亞芸</td>
+                            <td>無</td>
+                          </tr>
+                          <tr>
+                            <td>女雙</td>
+                            <td>賴竺均、楊惠筑</td>
+                            <td>羅箴、謝欣霓</td>
+                            <td>李明璇、黃韵如</td>
+                            <td>無</td>
+                          </tr>
+                          <tr>
+                            <td>混雙</td>
+                            <td>陳昀澔、蘇致萱</td>
+                            <td>李柏毅、江美儀</td>
+                            <td>蔡松育、李妍儀</td>
+                            <td>無</td>
+                          </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <h1 class="intro-heading text-center">進階組</h1>
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                          <tr class="info">
+                            <th>組別或年份</th>
+                            <th>冠軍</th>
+                            <th>亞軍</th>
+                            <th>季軍</th>
+                            <th>殿軍</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <th>2016</th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                          </tr>
+                          <tr>
+                            <td>男單</td>
+                            <td>林詮東</td>
+                            <td>黃元軒</td>
+                            <td>侯安遠</td>
+                            <td>張典</td>
+                          </tr>
+                          <tr>
+                            <td>男雙</td>
+                            <td>林詮東、黃元軒</td>
+                            <td>陳威諺、林枋萭</td>
+                            <td>王致翔、鄧舜仁</td>
+                            <td>萬雨芯、張典</td>
+                          </tr>
+                          <tr>
+                            <td>女單</td>
+                            <td>蔡彣昕</td>
+                            <td>曹郡欣</td>
+                            <td>呂昕臻</td>
+                            <td>黃歆茹</td>
+                          </tr>
+                          <tr>
+                            <td>女雙</td>
+                            <td>蔡彣昕、楊儀芳</td>
+                            <td>聶廷羽、陳姿穎</td>
+                            <td>呂昕臻、黃靖惠</td>
+                            <td>周曉、肖圣圣</td>
+                          </tr>
+                          <tr>
+                            <th>2015</th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                          </tr>
+                          <tr>
+                            <td>男單</td>
+                            <td>黃昱翔</td>
+                            <td>黃啟發</td>
+                            <td>張家偉</td>
+                            <td>黃宗理</td>
+                          </tr>
+                          <tr>
+                            <td>男雙</td>
+                            <td>劉易東、林忠勳</td>
+                            <td>柳方軒、林昱澤</td>
+                            <td>簡宏羽、吳益安</td>
+                            <td>陳健新、邱敬捷</td>
+                          </tr>
+                          <tr>
+                            <td>女單</td>
+                            <td>呂昕臻</td>
+                            <td>楊懿</td>
+                            <td>趙怡</td>
+                            <td>戴瑋彤</td>
+                          </tr>
+                          <tr>
+                            <td>女雙</td>
+                            <td>呂昕臻、黃靖惠</td>
+                            <td>陳慈茵、趙怡</td>
+                            <td>王沂芊、孫若芙</td>
+                            <td>馬晴薇、黃歆如</td>
+                          </tr>
+                          <tr>
+                            <th>2014</th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                          </tr>
+                          <tr>
+                            <td>男單</td>
+                            <td>陳柏豪</td>
+                            <td>陳冠廷</td>
+                            <td>張家偉</td>
+                            <td>無</td>
+                          </tr>
+                          <tr>
+                            <td>男雙</td>
+                            <td>柳方軒、黃靖宇</td>
+                            <td>陳柏豪、林昱澤</td>
+                            <td>蔡忠憲、李子宜</td>
+                            <td>無</td>
+                          </tr>
+                          <tr>
+                            <td>女單</td>
+                            <td>趙怡</td>
+                            <td>許瑋婷</td>
+                            <td>呂昕臻</td>
+                            <td>無</td>
+                          </tr>
+                          <tr>
+                            <th>2013</th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                          </tr>
+                          <tr>
+                            <td>男單</td>
+                            <td>陳柏豪</td>
+                            <td>陳映誠</td>
+                            <td>楊宗燁</td>
+                            <td>無</td>
+                          </tr>
+                          <tr>
+                            <td>男雙</td>
+                            <td>陳鍵熙、楊宗燁</td>
+                            <td>陳柏豪、林昱澤</td>
+                            <td>黃柏清、許鴻昌</td>
+                            <td>無</td>
+                          </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <h1 class="intro-heading text-center">初學組</h1>
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                          <tr class="success">
+                            <th>組別或年份</th>
+                            <th>冠軍</th>
+                            <th>亞軍</th>
+                            <th>季軍</th>
+                            <th>殿軍</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <th>2016</th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                          </tr>
+                          <tr>
+                            <td>男單</td>
+                            <td>黃仲甫</td>
+                            <td>洪凱恩</td>
+                            <td>施宗緯</td>
+                            <td>陳政圯</td>
+                          </tr>
+                          <tr>
+                            <td>男雙</td>
+                            <td>黃仲甫、孫宏奇</td>
+                            <td>施宗緯、翁德銘</td>
+                            <td>劉致廷、洪凱恩</td>
+                            <td>王子賢、潘友明</td>
+                          </tr>
+                          <tr>
+                            <th>2015</th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                          </tr>
+                          <tr>
+                            <td>男單</td>
+                            <td>林建旭</td>
+                            <td>陳俊彥</td>
+                            <td>王致翔</td>
+                            <td>陳德信</td>
+                          </tr>
+                          <tr>
+                            <th>2014</th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                          </tr>
+                          <tr>
+                            <td>男單</td>
+                            <td>柳智偉</td>
+                            <td>林大為</td>
+                            <td>劉宇宸</td>
+                            <td>無</td>
+                          </tr>
+                          <tr>
+                            <td>男雙</td>
+                            <td>柳智偉、黃哲育</td>
+                            <td>劉宇宸、鄧舜仁</td>
+                            <td>蔡子豪、張正奇</td>
+                            <td>無</td>
+                          </tr>
+                          <tr>
+                            <td>女單</td>
+                            <td>黃歆茹</td>
+                            <td>馬晴薇</td>
+                            <td>蕭心妤</td>
+                            <td>無</td>
+                          </tr>
+                          <tr>
+                            <td>女雙</td>
+                            <td>呂昕臻、黃靖惠</td>
+                            <td>蔡淳如、趙怡</td>
+                            <td>陳怡婷、蕭心妤</td>
+                            <td>無</td>
+                          </tr>
+                          <tr>
+                            <th>2013</th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                          </tr>
+                          <tr>
+                            <td>男單</td>
+                            <td>吳柏翰</td>
+                            <td>黃啟發</td>
+                            <td>張家偉</td>
+                            <td>無</td>
+                          </tr>
+                          <tr>
+                            <td>男雙</td>
+                            <td>李孟駿、黃啟發</td>
+                            <td>張智翔、莊明諺</td>
+                            <td>許博維、詹堯仲</td>
+                            <td>無</td>
+                          </tr>
+                          <tr>
+                            <td>女單</td>
+                            <td>林惠鈴</td>
+                            <td>林軒筠</td>
+                            <td>林旂卉</td>
+                            <td>無</td>
+                          </tr>
+                          <tr>
+                            <td>女雙</td>
+                            <td>張雅琪、廖晏慈</td>
+                            <td>林惠鈴、陳柔綾</td>
+                            <td>陳怡霖、王沂芊</td>
+                            <td>無</td>
+                          </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </article>
+
+    <hr>
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <ul class="list-inline text-center">
+                        <li>
+                            <a href="https://www.facebook.com/p/%E4%BA%A4%E9%80%9A%E5%A4%A7%E5%AD%B8%E7%BE%BD%E7%90%83%E9%9A%8A-NCTU_Badminton-100054456520532/?locale=zh_TW">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                    <p class="copyright text-muted">NYCU Badminton 2022</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/blog.min.js"></script>
+
+</body>
+
+</html>

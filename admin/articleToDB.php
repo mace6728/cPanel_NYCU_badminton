@@ -36,7 +36,7 @@ try {
     
     // 解碼（將 %3C 轉回 <）
     $content = base64_decode($content);
-    $time     = $_POST['time']     ?? date("Y-m-d H:i:s");
+    $time     = !empty($_POST['time']) ? $_POST['time'] : date("Y-m-d H:i:s");
 
     // 5. 生成唯一的 timer ID
     // 舊系統習慣用 14 位數時間戳記，例如 20260410203015

@@ -8,7 +8,7 @@ td,th{padding:15px;font-family:"Noto Sans TC",sans-serif}
 img{height:64px}
 #admin{margin:16px 0;color:#6C7177}
 .material-icons{margin:0 10px}
-#delete,#post,#edit,.no{display:none;}
+#delete,#edit,.no{display:none;}
 #sthEmpty,#e_sthEmpty{color:#8a6d3b;background-color:#fcf8e3}
 #successArticle,#e_successArticle{color:#1976D2;background-color:#BBDEFB}
 #failArticle,#e_failArticle{color:#a94442;background-color:#BBDEFB}

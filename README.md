@@ -12,7 +12,7 @@ This project is a traditional PHP website deployed via cPanel. The project root 
 - `404/`: assets and scripts for the custom error page.
 - `tests/legacy/`: old test and demo pages not referenced by the live site; this directory is blocked from web access by `.htaccess`.
 - `tinymce/`: TinyMCE editor files bundled with the project.
-- `Check/`, `cgi-bin/`, `less/`, `mail/`: existing special-purpose or tooling directories.
+- `cgi-bin/`, `less/`, `mail/`: existing special-purpose or tooling directories.
 
 ## Deployment Notes
 

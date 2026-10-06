@@ -82,36 +82,24 @@
     </script>
 
   <script>
-    function chk(){
-        document.getElementById("check").style.display="block";
-        document.getElementById("post").style.display="none";
-        document.getElementById("edit").style.display="none";
-        document.getElementById("delete").style.display="none";
-
-    }
     function pst(){
-        document.getElementById("check").style.display="none";
         document.getElementById("post").style.display="block";
         document.getElementById("edit").style.display="none";
         document.getElementById("delete").style.display="none";
 
     }
     function edt(){
-        document.getElementById("check").style.display="none";
         document.getElementById("post").style.display="none";
         document.getElementById("edit").style.display="block";
         document.getElementById("delete").style.display="none";
 
     }
     function del(){
-        document.getElementById("check").style.display="none";
         document.getElementById("post").style.display="none";
         document.getElementById("edit").style.display="none";
         document.getElementById("delete").style.display="block";
 
     }
-    function doIt(e){var t=e.children[0].innerHTML,n=e.children[1].innerHTML,l=e.children[2].innerHTML,c=e.children[3].innerHTML,i=e.children[5].innerHTML,d=e.children[6].innerHTML,o=e.children[7].innerHTML;$.post("register2.php",{name:t,email:l,phone:n,address:c,birth:i,account:d,password:o},function(t){console.log(t),"success"==t?e.children[4].innerHTML="確認成功":"fail"==t?e.children[4].innerHTML="重整頁面再試一次！":e.children[4].innerHTML="重整頁面再試一次！"}),$.post("check2one.php",{account:d},function(t){console.log(t),"success"==t?e.children[4].innerHTML="確認成功":"fail"==t?e.children[4].innerHTML="重整頁面再試一次！":(t="not exist")&&(e.children[4].innerHTML="重整頁面再試一次！")})}
-    function denyIt(e){var t=e.children[6].innerHTML;$.post("check2one.php",{account:t},function(t){console.log(t),"success"==t?e.children[4].innerHTML="確認成功":"fail"==t?e.children[4].innerHTML="重整頁面再試一次！":(t="not exist")&&(e.children[4].innerHTML="重整頁面再試一次！")})}
     // --- 修改後的發表新文章函數 ---
     function newArticle() {
         var e = document.getElementById("heading").value,
@@ -243,7 +231,6 @@
         <a href="#"><img src="../img/test.svg"/></a>
         <div id="admin">管理員</div>
       </div>
-      <a class="mdl-navigation__link" href="#check" onclick="chk();" ><div class="material-icons">check</div>審核會員</a>
       <a class="mdl-navigation__link" href="#post" onclick="pst();" ><div class="material-icons">create</div>發表文章</a>
       <a class="mdl-navigation__link" href="#edit" onclick="edt();"><div class="material-icons">edit</div>編輯文章</a>
       <a class="mdl-navigation__link" href="#delete" onclick="del();" ><div class="material-icons">delete</div>刪除文章</a>
@@ -252,39 +239,6 @@
 
   <main class="mdl-layout__content mdl-color--grey-100" ";>
     <div class="mdl-grid page-content">
-        <div id="check" class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
-          <!--<table class="mdl-cell mdl-cell--12-col"><tbody><tr><th>姓名</th><th>電話</th><th>電子郵件</th><th>住址</th><th>確認校友身份</th></tr><tr id="1"><td>簡維志</td><td>+1 9144262</td><td>wcjian@gmail.com</td><td>1870 Baldwin Rd., Unit 6, York</td><td><button onclick="doIt(1)">是</button><button onclick="denyIt(1)">否</button></td><td class="no">1981/10/18</td><td class="no">wcjian@gmail.com</td><td class="no">wayne0812</td></tr></tbody></table>-->
-          <?php
-            mb_internal_encoding('UTF-8');
-
-            $db_server = "localhost";
-            $db_name = "badadmin_users";
-            $db_user = "badadmin_admin";
-            $db_password = "qpwoeiru51013";
-
-            $dsn= "mysql:host=$db_server;dbname=$db_name;charset=utf8mb4";
-            $db= new PDO($dsn, $db_user, $db_password);
-
-            $sql = "SELECT * FROM `users` WHERE`checked`=0";
-            $sth = $db->prepare($sql);
-            $sth->execute();
-            $counter = 1;
-            while($row = $sth->fetch()){
-                if(empty($tmp)){
-                    echo '<table class="mdl-cell mdl-cell--12-col my"><tr><th>姓名</th><th>電話</th><th>電子郵件</th><th>住址</th><th>確認校友身份</th>';
-                }
-                $tmp = $row;
-                echo '<tr id="d'.$counter.'"><td>'.$row[1].'</td><td>'.$row[2].'</td><td>'.$row[3].'</td><td>'.$row[4].'</td><td><button onclick="doIt(d'.$counter.')">是</button><button onclick="denyIt(d'.$counter.')">否</button></td><td class="no">'.$row[5].'</td><td class="no">'.$row[6].'</td><td class="no">'.$row[7].'</td></tr>';
-                $counter = $counter+1;
-            }
-            if(isset($tmp)){
-                echo '</table>';
-            }else{
-                echo '<h2>皆已確認完畢</h2>';
-            }
-          ?>
-          
-        </div>
         <div id="post" class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
             <h4 class="mdl-cell mdl-cell--12-col">類別</h4>
             <label class="mdl-cell mdl-cell--2-col mdl-radio mdl-js-radio mdl-js-ripple-effect" for="newest">

@@ -1,19 +1,19 @@
 # NYCU Badminton Website
 
-此專案是以 cPanel 部署的傳統 PHP 網站。網站根目錄同時是公開文件根目錄，許多頁面與資源以根目錄相對路徑互相連結，因此公開入口暫時保留在根目錄，避免舊網址失效。
+This project is a traditional PHP website deployed via cPanel. The project root doubles as the public document root, and many pages and assets link to each other using root-relative paths, so the public entry points stay at the root for now to avoid breaking existing URLs.
 
-## 目錄配置
+## Directory Layout
 
-- 根目錄：公開頁面、PHP 入口、404 頁面、sitemap 與搜尋引擎驗證檔。這些檔案的根路徑可能是既有公開網址，移動前需先規劃 URL rewrite 或相容轉址。
-- `admin/`：網站管理功能。
-- `api/`：API 與資料庫連線程式。
-- `css/`、`js/`、`fonts/`：前端樣式、JavaScript 與字型。
-- `img/`、`gallery/`：網站圖片與相簿內容。
-- `404/`：自訂錯誤頁的樣式與腳本。
-- `tests/legacy/`：未由正式網站引用的舊測試與示範頁；此目錄由 `.htaccess` 禁止網頁存取。
-- `tinymce/`：隨專案提供的 TinyMCE 編輯器檔案。
-- `Check/`、`cgi-bin/`、`less/`、`mail/`：既有專用功能或工具目錄。
+- Root: public pages, PHP entry points, the 404 page, sitemap, and search-engine verification files. These files' root paths may be existing public URLs, so plan a URL rewrite or compatible redirect before moving them.
+- `admin/`: site administration features.
+- `api/`: API and database connection code.
+- `css/`, `js/`, `fonts/`: frontend styles, JavaScript, and fonts.
+- `img/`, `gallery/`: site images and gallery content.
+- `404/`: assets and scripts for the custom error page.
+- `tests/legacy/`: old test and demo pages not referenced by the live site; this directory is blocked from web access by `.htaccess`.
+- `tinymce/`: TinyMCE editor files bundled with the project.
+- `Check/`, `cgi-bin/`, `less/`, `mail/`: existing special-purpose or tooling directories.
 
-## 部署注意事項
+## Deployment Notes
 
-`.cpanel.yml` 會遞迴複製專案內容至 cPanel 網站目錄。新增私人或開發用檔案時，應放在有存取限制的目錄，並確認部署後的網頁存取規則仍有效。正式頁面與使用中的下載文件留在原路徑，以維持現有連結。
+`.cpanel.yml` recursively copies the project contents to the cPanel site directory. When adding private or development-only files, put them in a directory with restricted access, and confirm the web access rules still hold after deployment. Live pages and in-use downloadable files stay at their original paths to preserve existing links.

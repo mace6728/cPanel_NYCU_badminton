@@ -1,6 +1,6 @@
-# 建議目錄結構
+# Suggested Directory Structure
 
-若移除使用者管理、登入與權限驗證，第一版可以只保留網站頁面、文章功能和共用基礎程式：
+If user management, login, and permission checks are removed, the first version only needs to keep the site pages, article features, and shared base code:
 
 ```text
 project/
@@ -43,32 +43,32 @@ project/
 └── README.md
 ```
 
-`vendor/` 由 Composer 安裝相依套件時產生，不必手動建立或提交至版本控制。
+`vendor/` is generated when Composer installs dependencies; it doesn't need to be created manually or committed to version control.
 
-## 調整原則
+## Adjustment Principles
 
-### 移除使用者與驗證功能
+### Removing User and Auth Features
 
-- 不建立 `UserService.php`、`AuthService.php` 或 `Auth.php`。
-- 若確定不再提供帳號功能，再移除登入、註冊、登出頁面，以及只服務於帳號審核的端點與模板。
-- 不需要為了保留原有分層而建立空的 Service；保留仍有實際用途的文章與共用功能即可。
+- Don't create `UserService.php`, `AuthService.php`, or `Auth.php`.
+- Only remove the login, registration, and logout pages — and any endpoints/templates that exist solely to serve account review — once account features are confirmed to be permanently gone.
+- Don't create empty Services just to preserve the original layering; keep only the article and shared functionality that's still actually used.
 
-### 保留文章與資料庫職責
+### Keeping Article and Database Responsibilities
 
-- `config/db.php` 集中讀取資料庫設定；敏感值放在環境變數，不要寫入程式碼或提交 `.env`。
-- `src/Database.php` 負責建立 PDO 連線。
-- `src/Services/ArticleService.php` 集中處理文章讀取、建立、更新與刪除。
-- `src/Helpers/` 放跨頁面共用的輸入處理與回應工具，不放特定頁面的業務流程。
+- `config/db.php` centralizes database configuration; keep sensitive values in environment variables, not in code or a committed `.env`.
+- `src/Database.php` is responsible for creating the PDO connection.
+- `src/Services/ArticleService.php` centralizes reading, creating, updating, and deleting articles.
+- `src/Helpers/` holds input handling and response utilities shared across pages, not page-specific business logic.
 
-### 管理端安全
+### Admin-Side Security
 
-移除網站登入驗證後，`public/admin/` 下的管理頁面與寫入端點可能變成任何人都能呼叫。若仍要保留文章管理功能，部署前必須先用 cPanel／Apache 設定 IP allowlist、HTTP Basic Authentication 等存取限制；否則應停用或移除管理端寫入功能。不能只因登入頁已停用，就假設管理端已受到保護。
+After removing site login authentication, the admin pages and write endpoints under `public/admin/` could become callable by anyone. If article management features are still needed, access restrictions (IP allowlist, HTTP Basic Authentication, etc.) must be set up via cPanel/Apache before deployment; otherwise the admin write features should be disabled or removed. Don't assume the admin side is protected just because the login page has been disabled.
 
-## cPanel 漸進式搬移
+## Incremental cPanel Migration
 
-目前網站以專案根目錄作為公開根目錄，既有網址也依賴檔案原路徑。因此上面的 `public/` 是整理後的目標，不建議一次搬動所有頁面與資源。先整理資料庫連線和文章邏輯，再透過 cPanel 文件根目錄或 URL rewrite 規劃相容性，逐批搬移並確認舊網址仍可用。
+The site currently uses the project root as its public root, and existing URLs depend on the original file paths. So the `public/` layout above is the cleanup target, not something to move all pages and assets into at once. First clean up the database connection and article logic, then plan compatibility through the cPanel document root or URL rewrites, and migrate in batches while confirming old URLs still work.
 
-第一階段可先採用以下邏輯分層，不必立即改變公開路徑：
+The first phase can adopt the following logical layering without immediately changing the public paths:
 
 ```text
 config/
@@ -76,4 +76,4 @@ src/
 templates/
 ```
 
-頁面共用的 header、footer 與 navbar 可逐步抽到 `templates/partials/`；確認 URL rewrite、資源路徑與部署流程後，再考慮將公開入口移至 `public/`。
+The header, footer, and navbar shared across pages can be gradually extracted into `templates/partials/`; only after confirming URL rewrites, asset paths, and the deployment process should moving the public entry point to `public/` be considered.

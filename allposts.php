@@ -141,7 +141,7 @@
                         <h1>陽明交通大學羽球隊</h1>
                         <hr class="small">
                         <span class="subheading">NYCU Badminton</span>
-                        <span id="userDisplay"></span>
+                        
                     </div>
                 </div>
             </div>

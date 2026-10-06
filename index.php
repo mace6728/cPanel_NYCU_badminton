@@ -108,7 +108,7 @@
                         <h1>陽明交通大學羽球隊</h1>
                         <hr class="small">
                         <span class="subheading">NYCU Badminton</span>
-                        <span id="userDisplay"></span>
+                        
                     </div>
                 </div>
             </div>
@@ -178,28 +178,9 @@
                         <img src="img/nctu.png">
                     </div>
                     <hr>
-                    <div class="form">
-                        <div id="success"></div>
-                        <form action="login.php" method="post" name="sentMessage" id="loginForm" novalidate="">
-                            <div class="control-group">
-                                <div class="form-group floating-label-form-group controls">
-                                    <label>帳號</label>
-                                    <input type="tel" class="form-control" placeholder="帳號" id="account" required="" data-validation-required-message="請輸入帳號" name="account" aria-invalid="false">
-                                    <p class="help-block text-danger"></p>
-                                </div>
-                            </div>
-                            <div class="control-group">
-                                <div class="form-group floating-label-form-group controls">
-                                    <label>密碼</label>
-                                    <input type="password" class="form-control" placeholder="密碼" id="password" required="" data-validation-required-message="請輸入密碼" name="password" aria-invalid="false">
-                                    <p class="help-block text-danger"></p>
-                                </div>
-                            </div>
-                            <button id="sendOut" type="submit" class="btn btn-login">送出</button>
-                            <div class="login-link">
-                                <a href="register.html">尚未註冊</a><a href="contact.html">忘記密碼</a>
-                            </div>
-                        </form>
+                    <div class="alert alert-warning" style="margin: 0;">
+                        <strong>登入功能已停用</strong>
+                        <p class="mb-0">為了網站安全，暫不提供帳號登入與註冊。</p>
                     </div>
                 </div>
             </div>
@@ -229,7 +210,6 @@
 
     <script src="js/jquery.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <script src="js/login.min.js"></script>
     <script>
     $(document).ready(function(){
         $(".click").click(function(){

@@ -273,15 +273,8 @@
             <h4 class="mdl-cell mdl-cell--12-col">選擇要修改的文章標題</h4>
             <div>
                 <?php
+                    require_once __DIR__ . '/../config/db.php';
 
-                    $dbServer = "localhost";
-                    $dbName = "badadmin_users";
-                    $dbUser = "badadmin_admin";
-                    $dbPass = "qpwoeiru51013";
-                    
-                    $dsn= "mysql:host=$dbServer;dbname=$dbName;charset=utf8mb4";
-                    $db= new PDO($dsn, $dbUser, $dbPass);
-                    
                     $sql="SELECT * FROM `article` ORDER BY `date` DESC";
                     $sth = $db->prepare($sql);
                     $sth->execute();
@@ -336,15 +329,7 @@
             </thead>
             <tbody>
               <?php
-                mb_internal_encoding('UTF-8');
-
-                $db_server = "localhost";
-                $db_name = "badadmin_users";
-                $db_user = "badadmin_admin";
-                $db_password = "qpwoeiru51013";
-
-                $dsn= "mysql:host=$db_server;dbname=$db_name;charset=utf8mb4";
-                $db= new PDO($dsn, $db_user, $db_password);
+                require_once __DIR__ . '/../config/db.php';
 
                 $sql = "SELECT * FROM `article` ORDER BY `timer` DESC";
                 $sth = $db->prepare($sql);

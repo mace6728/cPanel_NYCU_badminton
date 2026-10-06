@@ -122,14 +122,7 @@
                 <h3 id="goRegister"><a href="al_announcement.html" style="color:#FBC02D">點選瀏覽細節</a></h3>
                 <div class="links">
                     <?php
-                        mb_internal_encoding('UTF-8');
-                        $db_server = "localhost";
-                        $db_name = "badadmin_users";
-                        $db_user = "badadmin_admin";
-                        $db_password = "qpwoeiru51013";
-
-                        $dsn= "mysql:host=$db_server;dbname=$db_name;charset=utf8mb4";
-                        $db= new PDO($dsn, $db_user, $db_password);
+                        require_once __DIR__ . '/config/db.php';
                         $sql = "SELECT * FROM `article` ORDER BY `date` DESC LIMIT 5";
                         $sth = $db->prepare($sql);
                         $sth->execute();

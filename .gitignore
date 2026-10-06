@@ -1,1 +1,2 @@
 error_log
+config/db.local.php

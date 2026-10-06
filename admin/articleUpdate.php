@@ -3,23 +3,9 @@
     error_reporting(E_ALL);
     ini_set('display_errors', 1);
 
-    mb_internal_encoding('UTF-8');
-
-    // 2. 設定資料庫資訊 (建議抽離到 config.php)
-    $db_server = "localhost";
-    $db_name = "badadmin_users";
-    $db_user = "badadmin_admin";
-    $db_password = "qpwoeiru51013";
-
     try {
-        $dsn = "mysql:host=$db_server;dbname=$db_name;charset=utf8mb4";
-        // 增加屬性：設定錯誤模式為 Exception，並關閉模擬預編譯
-        $options = [
-            PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
-            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-            PDO::ATTR_EMULATE_PREPARES   => false,
-        ];
-        $db = new PDO($dsn, $db_user, $db_password, $options);
+        // 2. 建立 PDO 連線
+        require_once __DIR__ . '/../config/db.php';
 
         // 3. 接收資料並進行基礎安全處理
         // 如果你採用了 URL Encoding 策略，這裡要加 urldecode()

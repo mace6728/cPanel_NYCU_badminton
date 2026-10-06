@@ -8,24 +8,9 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-mb_internal_encoding('UTF-8');
-
-// 2. 資料庫連線參數
-$db_server   = "localhost";
-$db_name     = "badadmin_users";
-$db_user     = "badadmin_admin";
-$db_password = "qpwoeiru51013";
-
 try {
-    // 3. 建立 PDO 連線
-    $dsn = "mysql:host=$db_server;dbname=$db_name;charset=utf8mb4";
-    $options = [
-        PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION, // 開啟例外錯誤模式
-        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,       // 預設以關聯陣列回傳
-        PDO::ATTR_EMULATE_PREPARES   => false,                 // 使用真實預編譯，增加安全性
-    ];
-    
-    $db = new PDO($dsn, $db_user, $db_password, $options);
+    // 2. 建立 PDO 連線
+    require_once __DIR__ . '/../config/db.php';
 
     // 4. 接收 POST 資料
     // 使用 Null Coalescing Operator 設定預設值

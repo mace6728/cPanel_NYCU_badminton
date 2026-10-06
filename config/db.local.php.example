@@ -1,0 +1,9 @@
+<?php
+// Copy this file to db.local.php (gitignored, never commit it) and
+// fill in the real, rotated credentials. Only needed on hosts where
+// DB_SERVER / DB_NAME / DB_USER / DB_PASSWORD can't be set as real
+// environment variables.
+$dbServer   = 'localhost';
+$dbName     = 'badadmin_users';
+$dbUser     = 'badadmin_admin';
+$dbPassword = 'replace-with-rotated-password';

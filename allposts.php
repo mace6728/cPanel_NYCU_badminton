@@ -179,14 +179,7 @@
                 <div  class="links">
                   <div  id="link">
                     <?php
-                        mb_internal_encoding('UTF-8');
-                        $db_server = "localhost";
-                        $db_name = "badadmin_users";
-                        $db_user = "badadmin_admin";
-                        $db_password = "qpwoeiru51013";
-
-                        $dsn= "mysql:host=$db_server;dbname=$db_name;charset=utf8mb4";
-                        $db= new PDO($dsn, $db_user, $db_password);
+                        require_once __DIR__ . '/config/db.php';
                         $sql = "SELECT * FROM `article` ORDER BY `date` DESC";
                         $sth = $db->prepare($sql);
                         $sth->execute();
@@ -225,14 +218,6 @@
                   </div>
                   <div id="news" >
                     <?php
-                        mb_internal_encoding('UTF-8');
-                        $db_server = "localhost";
-                        $db_name = "badadmin_users";
-                        $db_user = "badadmin_admin";
-                        $db_password = "qpwoeiru51013";
-
-                        $dsn= "mysql:host=$db_server;dbname=$db_name;charset=utf8mb4";
-                        $db= new PDO($dsn, $db_user, $db_password);
                         $sql = "SELECT * FROM `article` ORDER BY `date` DESC";
                         $sth = $db->prepare($sql);
                         $sth->execute();
@@ -253,14 +238,6 @@
                   </div>
                   <div id="end">
                     <?php
-                        mb_internal_encoding('UTF-8');
-                        $db_server = "localhost";
-                        $db_name = "badadmin_users";
-                        $db_user = "badadmin_admin";
-                        $db_password = "qpwoeiru51013";
-
-                        $dsn= "mysql:host=$db_server;dbname=$db_name;charset=utf8mb4";
-                        $db= new PDO($dsn, $db_user, $db_password);
                         $sql = "SELECT * FROM `article` ORDER BY `date` DESC";
                         $sth = $db->prepare($sql);
                         $sth->execute();
@@ -278,14 +255,6 @@
                   </div>
                   <div id="competition">
                     <?php
-                        mb_internal_encoding('UTF-8');
-                        $db_server = "localhost";
-                        $db_name = "badadmin_users";
-                        $db_user = "badadmin_admin";
-                        $db_password = "qpwoeiru51013";
-
-                        $dsn= "mysql:host=$db_server;dbname=$db_name;charset=utf8mb4";
-                        $db= new PDO($dsn, $db_user, $db_password);
                         $sql = "SELECT * FROM `article` ORDER BY `date` DESC";
                         $sth = $db->prepare($sql);
                         $sth->execute();
@@ -303,14 +272,6 @@
                   </div>
                   <div id="activity">
                     <?php
-                        mb_internal_encoding('UTF-8');
-                        $db_server = "localhost";
-                        $db_name = "badadmin_users";
-                        $db_user = "badadmin_admin";
-                        $db_password = "qpwoeiru51013";
-
-                        $dsn= "mysql:host=$db_server;dbname=$db_name;charset=utf8mb4";
-                        $db= new PDO($dsn, $db_user, $db_password);
                         $sql = "SELECT * FROM `article` ORDER BY `date` DESC";
                         $sth = $db->prepare($sql);
                         $sth->execute();

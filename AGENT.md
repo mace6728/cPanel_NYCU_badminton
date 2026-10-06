@@ -1,18 +1,3 @@
-建議目錄結構
-project/
-├─ config/
-│ ├─ app.php
-│ ├─ db.php
-│ └─ constants.php
-│
-├─ src/
-│ ├─ Database.php
-│ ├─ Auth.php
-│ ├─ Services/
-│ │ ├─ UserService.php
-│ │ ├─ ArticleService.php
-│ │ └─ AuthService.php
-│ └─ Helpers/
 # 建議目錄結構
 
 若移除使用者管理、登入與權限驗證，第一版可以只保留網站頁面、文章功能和共用基礎程式：

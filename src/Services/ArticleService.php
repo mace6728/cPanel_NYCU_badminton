@@ -18,7 +18,8 @@ class ArticleService
 
     public function getLatest(int $limit): array
     {
-        $sth = $this->db->prepare('SELECT * FROM `article` ORDER BY `date` DESC LIMIT ' . $limit);
+        $sth = $this->db->prepare('SELECT * FROM `article` ORDER BY `date` DESC LIMIT ?');
+        $sth->bindValue(1, $limit, PDO::PARAM_INT);
         $sth->execute();
 
         return $sth->fetchAll();

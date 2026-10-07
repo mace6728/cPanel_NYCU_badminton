@@ -223,3 +223,41 @@ exactly what AGENT.md says to defer until URL rewrites are confirmed.
 Verified every touched file with `php -l`, and ran `ArticleService`
 through a smoke test against an in-memory SQLite database (same PDO
 interface, no real MySQL needed) exercising every method — all passed.
+
+(Note: `getLatest()`'s `LIMIT` was subsequently hardened from a cast
+int interpolated into the SQL string to a real bound parameter —
+`LIMIT ?` with `bindValue(..., PDO::PARAM_INT)` — a cleaner way to
+avoid string-building SQL at all, even though the interpolated version
+was already injection-safe since the parameter is type-hinted `int`.)
+
+## 2026-10-07 — Outage: rsync broke .htaccess permissions
+
+The 2026-10-07 `.cpanel.yml` fix (switching `cp -R` to `rsync -a
+--delete`) caused a live outage shortly after: the whole site started
+returning "Forbidden ... Server unable to read htaccess file, denying
+access to be safe."
+
+**Root cause:** `rsync -a` includes `-p` (preserve permissions), which
+copies the exact file mode from the *source* — the git checkout
+`.cpanel.yml`'s deployment task runs from on the server — instead of
+applying sane defaults. That checkout's permissions depend on whatever
+umask the cPanel deploy process used, not on anything tracked in git
+(git only records the executable bit, not the full mode). Once that
+checkout's `.htaccess` lost its world-readable bit, `rsync -a` carried
+that restrictive permission straight into the live `public_html/`, and
+Apache's main process — which must read `.htaccess` directly,
+independent of suexec/PHP-user — could no longer open it at all.
+
+**Immediate fix:** manually `chmod 644` the live `.htaccess` (and the
+other `.htaccess` files under `public_html/`) to restore the site.
+
+**Permanent fix:** changed the rsync flags from `-a` to `-rt
+--chmod=Du=rwx,Dg=rx,Do=rx,Fu=rw,Fg=r,Fo=r` — this drops permission/
+owner/group preservation entirely and instead forces every directory
+to `755` and every file to `644` on every deploy, regardless of
+whatever mode the source checkout happens to have. Confirmed there are
+no symlinks or scripts anywhere in the repo that actually need an
+executable bit (the few files git shows as `100755`, all in `fonts/`
+and `img/`, are just incidental from whoever first added them — images
+and fonts don't need to be executable), so forcing everything to
+`644`/`755` is safe.

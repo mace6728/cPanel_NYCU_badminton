@@ -1,5 +1,4 @@
----
 deployment:
   tasks:
     - export DEPLOYPATH=/home/badadmin/public_html/
-    - /bin/cp -R * $DEPLOYPATH
+    - /usr/bin/rsync -a --delete --exclude='.well-known' --exclude='config/db.local.php' ./ $DEPLOYPATH

@@ -2,12 +2,28 @@
 // Central database connection. Every page that needs the DB should
 // `require` this file instead of hardcoding credentials.
 //
-// Credentials come from real environment variables when the host
-// supports them (DB_SERVER / DB_NAME / DB_USER / DB_PASSWORD), or from
-// a local, gitignored config/db.local.php on hosts that don't.
+// Credentials come from, in order of priority: real environment
+// variables set by the host, a gitignored .env file (see .env.example)
+// for hosts that don't support setting real env vars, or a gitignored
+// config/db.local.php as a last resort.
 require_once __DIR__ . '/../src/Database.php';
 
 mb_internal_encoding('UTF-8');
+
+$envFile = __DIR__ . '/../.env';
+if (is_file($envFile)) {
+    foreach (file($envFile, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES) as $line) {
+        $line = trim($line);
+        if ($line === '' || $line[0] === '#' || !str_contains($line, '=')) {
+            continue;
+        }
+        [$key, $value] = explode('=', $line, 2);
+        $key = trim($key);
+        if ($key !== '' && getenv($key) === false) {
+            putenv($key . '=' . trim($value));
+        }
+    }
+}
 
 $dbServer   = getenv('DB_SERVER')   ?: 'localhost';
 $dbName     = getenv('DB_NAME')     ?: 'badadmin_users';

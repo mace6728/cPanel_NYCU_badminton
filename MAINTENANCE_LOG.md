@@ -261,3 +261,51 @@ executable bit (the few files git shows as `100755`, all in `fonts/`
 and `img/`, are just incidental from whoever first added them — images
 and fonts don't need to be executable), so forcing everything to
 `644`/`755` is safe.
+
+### Follow-up: the outage persisted — `public_html` itself was `0700`
+
+The `.cpanel.yml` fix above didn't immediately restore the site because
+it only takes effect the next time the deployment tasks actually *run*
+— pushing to GitHub doesn't trigger that by itself; cPanel's Git
+Version Control deploys on a manual pull/deploy from its UI (or a
+webhook, if one's configured), so the broken permissions from the
+original `rsync -a` run were still sitting on the server untouched.
+
+`namei -l` on the live `.htaccess` path showed the real extent of the
+damage: `public_html` itself was `0700` (owner-only — no access for
+group or others at all), not just `.htaccess`. That's a more
+fundamental break than any single file's mode: at `700`, Apache can't
+even traverse into the directory to look for `.htaccess`, regardless of
+that file's own permission. This happened because `rsync -a src/ dest/`
+also applies the source's top-level directory permissions onto `dest/`
+itself (here, whatever the server-side git checkout's root directory
+happened to be — again, dependent on that checkout's umask, not
+anything git tracks).
+
+**Fix:** `chmod 755 /home/badadmin/public_html` manually, plus
+triggering a proper deploy of the latest commit from cPanel's UI so the
+corrected `rsync --chmod` command actually runs and self-heals
+permissions on `public_html` and everything under it going forward.
+
+## 2026-10-07 — Added .env support
+
+`config/db.php` already read `DB_SERVER`/`DB_NAME`/`DB_USER`/
+`DB_PASSWORD` via `getenv()`, but PHP's `getenv()` only sees real
+process environment variables — it doesn't parse a `.env` file on its
+own, so `.env` wasn't actually usable before this without a loader.
+
+- `config/db.php` now reads a gitignored `.env` at the repo root first
+  (a small inline parser — `putenv()` for each `KEY=value` line, only
+  if that key isn't already set by a real environment variable), before
+  falling back to `config/db.local.php` as before. Priority order is
+  now: real env vars → `.env` → `config/db.local.php`.
+- Added `.env` (gitignored, real credentials — same values as the
+  existing `config/db.local.php`) and `.env.example` (tracked template,
+  matching the pattern already used for `db.local.php.example`).
+- `config/db.local.php` stays in place as a further fallback; it's
+  dormant now that `.env` supplies the same values first, but harmless
+  to keep for hosts/setups that don't use `.env`.
+
+Verified the parser against the real `.env` file directly (not just
+`php -l`) — confirms the password's special characters (`%`, `!`)
+round-trip correctly through `putenv()`/`getenv()`.

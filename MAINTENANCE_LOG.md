@@ -128,23 +128,46 @@ missed because the earlier cleanup only checked the root:
 - Removed 9 tracked `.DS_Store` files (macOS Finder metadata, pure
   noise) and added `.DS_Store` to `.gitignore`.
 
-### Open item found, not yet resolved
+### Open item found: two diverging contact-form handlers
 
-`contact.html`'s contact form has **two different, diverging handlers**
-both still live:
+`contact.html`'s contact form had **two different, diverging handlers**
+both live at once:
 - The plain HTML `<form action="mail/contact_me.php">` (fires if JS
   doesn't intercept the submit).
 - `js/contact_me.min.js`'s AJAX handler, which on successful client-side
   validation calls `preventDefault()` and posts to `../contact_me.php`
   (the root one) instead.
 
-The two backend scripts send to different recipients with different
+The two backend scripts sent to different recipients with different
 wording (`mail/contact_me.php` → one address with a generic sender;
 root `contact_me.php` → two addresses, `nctubadadm@gmail.com` and
 `deed515@msn.com`, using the real sender address). Which one actually
-fires depends on whether JavaScript loads and validates successfully —
-meaning contact form submissions may be silently going to different
-inboxes depending on the visitor's browser/JS state. This needs a
-decision (which recipients should get messages, and which script should
-be treated as canonical) before fixing — not something to resolve
-unilaterally.
+fired depended on whether JavaScript loaded and validated successfully —
+meaning contact form submissions were silently going to different
+inboxes depending on the visitor's browser/JS state.
+
+**Resolved 2026-10-07** — see below.
+
+## 2026-10-07 — Removed the contact form entirely
+
+Decided a self-hosted `mail()`-based PHP form wasn't worth maintaining
+for this site's volume: poor email deliverability compared to a real
+SMTP/transactional service, public-facing attack surface (header
+injection risk via unsanitized fields in `mail()` headers), and it had
+been silently sending to inconsistent recipients (see above) without
+anyone noticing. Replaced it with a plain `mailto:` link, the lowest-
+maintenance option — no backend, nothing to go stale.
+
+- `contact.html`: removed the `<form id="contactForm">` block and the
+  `<script src="js/contact_me.min.js">` tag; replaced the form with the
+  existing "contact us" sentence, now linking `nctubadadm@gmail.com` as
+  a `mailto:` link. Kept the rest of the page (nav, header, footer,
+  `css/reg.min.css` — confirmed that stylesheet is the whole Clean Blog
+  theme's base styles, not form-specific, so it stays).
+- Deleted `contact_me.php`, `mail/contact_me.php`, and
+  `js/contact_me.min.js`. Confirmed no other page references any of the
+  three (some unrelated bundled vendor JS — `js/gallery.min.js`,
+  `js/clean-blog.js` — contains an inert copy of the same theme's
+  default contact-form snippet, but no other page has the matching
+  `#contactForm`/`#name`/`#email` elements for it to bind to, so it's
+  dead weight already baked into those bundles and out of scope here).

@@ -171,3 +171,55 @@ maintenance option — no backend, nothing to go stale.
   default contact-form snippet, but no other page has the matching
   `#contactForm`/`#name`/`#email` elements for it to bind to, so it's
   dead weight already baked into those bundles and out of scope here).
+
+## 2026-10-07 — Started the AGENT.md restructuring: src/Database.php + ArticleService
+
+Per AGENT.md's own phasing ("logical layering first — config/, src/,
+templates/ — without touching public paths"), started on `src/`. Scope
+for this pass: the database layer and the article CRUD logic. Left
+`templates/partials/` and the `public/` move for a separate pass, since
+those touch the site's mostly-static `.html` pages and their URLs —
+exactly what AGENT.md says to defer until URL rewrites are confirmed.
+
+- Added `src/Database.php`: a tiny `Database::connect()` that builds the
+  PDO connection (moved out of `config/db.php`, which now just resolves
+  credentials and calls it).
+- Added `src/Services/ArticleService.php`: centralizes every article
+  query (`getAll`, `getLatest`, `getByCategory`, `getByTimer`,
+  `getAllOrderedByTimer`, `create`, `update`, `delete`). Rewired all ~13
+  call sites that used to run their own `SELECT`/`INSERT`/`UPDATE`/
+  `DELETE` against the `article` table: `index.php`, `allposts.php` (its
+  5 near-identical blocks), `admin/administrator.php` (×2),
+  `admin/articleToDB.php`, `articleUpdate.php`, `deleteArticle.php`,
+  `edit_date/heading/text.php` (×3), and `api/event.php`.
+- Didn't add `src/Helpers/sanitize.php`/`response.php` from AGENT.md's
+  suggested layout — found no concrete duplicated logic worth
+  extracting yet (each endpoint's input handling differs enough that a
+  shared helper would be speculative, not a real consolidation).
+
+### Found and fixed along the way
+
+1. **A live regression from the 2026-10-06 credentials-centralization
+   commit.** `config/db.php` sets `PDO::ATTR_DEFAULT_FETCH_MODE =>
+   PDO::FETCH_ASSOC`. Three call sites — `index.php`, `allposts.php`,
+   and the delete-table listing in `admin/administrator.php` — read
+   article rows positionally (`$row[0]`, `$row[1]`, …), which only
+   worked under the *old* per-file connections' default fetch mode
+   (`PDO::FETCH_BOTH`, since none of them passed an options array).
+   After centralizing onto the shared `FETCH_ASSOC`-only connection,
+   these three pages were silently rendering blank article
+   text/dates/categories in production (a PHP warning in the error log,
+   not a fatal error, so nothing crashed — just empty output). Fixed by
+   switching every call site to the service's associative-array rows.
+2. The same empty-string date bug fixed in `admin/articleToDB.php` on
+   2026-10-06 (`$_POST['time'] ?? date(...)` not catching an empty
+   string) was also present, unfixed, in `admin/articleUpdate.php` —
+   fixed there too.
+3. The admin delete-table listing orders by `timer DESC` while every
+   other article listing orders by `date DESC` — preserved as a
+   distinct `getAllOrderedByTimer()` method rather than silently
+   unifying the two and changing that page's sort order.
+
+Verified every touched file with `php -l`, and ran `ArticleService`
+through a smoke test against an in-memory SQLite database (same PDO
+interface, no real MySQL needed) exercising every method — all passed.

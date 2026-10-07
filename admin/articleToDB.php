@@ -11,6 +11,8 @@ ini_set('display_errors', 1);
 try {
     // 2. 建立 PDO 連線
     require_once __DIR__ . '/../config/db.php';
+    require_once __DIR__ . '/../src/Services/ArticleService.php';
+    $articleService = new ArticleService($db);
 
     // 4. 接收 POST 資料
     // 使用 Null Coalescing Operator 設定預設值
@@ -29,10 +31,7 @@ try {
     $new_timer = date("YmdHis");
 
     // 6. 執行 INSERT 指令 (新增文章)
-    $sql = "INSERT INTO `article` (`category`, `heading`, `content`, `date`, `timer`) VALUES (?, ?, ?, ?, ?)";
-    $stmt = $db->prepare($sql);
-    
-    if ($stmt->execute([$category, $heading, $content, $time, $new_timer])) {
+    if ($articleService->create($category, $heading, $content, $time, $new_timer)) {
         // 回傳 success 字串供前端 JavaScript 判斷
         echo "success";
     } else {

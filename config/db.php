@@ -5,6 +5,8 @@
 // Credentials come from real environment variables when the host
 // supports them (DB_SERVER / DB_NAME / DB_USER / DB_PASSWORD), or from
 // a local, gitignored config/db.local.php on hosts that don't.
+require_once __DIR__ . '/../src/Database.php';
+
 mb_internal_encoding('UTF-8');
 
 $dbServer   = getenv('DB_SERVER')   ?: 'localhost';
@@ -22,10 +24,4 @@ if (empty($dbPassword)) {
     exit('Database configuration missing: set DB_PASSWORD (and optionally DB_SERVER/DB_NAME/DB_USER) as environment variables, or copy config/db.local.php.example to config/db.local.php.');
 }
 
-$dsn = "mysql:host=$dbServer;dbname=$dbName;charset=utf8mb4";
-$options = [
-    PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
-    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-    PDO::ATTR_EMULATE_PREPARES   => false,
-];
-$db = new PDO($dsn, $dbUser, $dbPassword, $options);
+$db = Database::connect($dbServer, $dbName, $dbUser, $dbPassword);

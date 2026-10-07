@@ -5,12 +5,11 @@
     if($select_op != ""){
 
         require_once __DIR__ . '/../config/db.php';
+        require_once __DIR__ . '/../src/Services/ArticleService.php';
+        $articleService = new ArticleService($db);
 
-        $sql = "SELECT * FROM `article` WHERE `timer` = ?";
-        $sth = $db->prepare($sql);
-        $sth->execute([$select_op]);
-        $row_result = $sth->fetch();
+        $row_result = $articleService->getByTimer($select_op);
 
-        echo $row_result['content'];
+        echo $row_result ? $row_result['content'] : '';
     }
 ?>

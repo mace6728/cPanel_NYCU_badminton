@@ -274,13 +274,12 @@
             <div>
                 <?php
                     require_once __DIR__ . '/../config/db.php';
+                    require_once __DIR__ . '/../src/Services/ArticleService.php';
+                    $articleService = new ArticleService($db);
 
-                    $sql="SELECT * FROM `article` ORDER BY `date` DESC";
-                    $sth = $db->prepare($sql);
-                    $sth->execute();
                     echo '<select id = "edit_s" onChange="updateArticleHtml(this)";>';
-                    while($row = $sth->fetch()){
-                         echo "<option value = ".$row['timer'].">";
+                    foreach ($articleService->getAll() as $row) {
+                        echo "<option value = ".$row['timer'].">";
                         echo $row['heading'];
                         echo "</option>";
                     }
@@ -330,12 +329,11 @@
             <tbody>
               <?php
                 require_once __DIR__ . '/../config/db.php';
+                require_once __DIR__ . '/../src/Services/ArticleService.php';
+                $articleService = new ArticleService($db);
 
-                $sql = "SELECT * FROM `article` ORDER BY `timer` DESC";
-                $sth = $db->prepare($sql);
-                $sth->execute();
-                while($row = $sth->fetch()){
-                    echo '<tr id="'.$row[4].'"><td class="mdl-data-table__cell--non-numeric">'.$row[0].'</td><td class="mdl-data-table__cell--non-numeric">'.$row[1].'</td><td class="mdl-data-table__cell--non-numeric">'.$row[3].'</td></tr>';
+                foreach ($articleService->getAllOrderedByTimer() as $row) {
+                    echo '<tr id="'.$row['timer'].'"><td class="mdl-data-table__cell--non-numeric">'.$row['category'].'</td><td class="mdl-data-table__cell--non-numeric">'.$row['heading'].'</td><td class="mdl-data-table__cell--non-numeric">'.$row['date'].'</td></tr>';
                 }
               ?>
             </tbody>

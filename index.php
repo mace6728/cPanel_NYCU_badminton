@@ -123,37 +123,36 @@
                 <div class="links">
                     <?php
                         require_once __DIR__ . '/config/db.php';
-                        $sql = "SELECT * FROM `article` ORDER BY `date` DESC LIMIT 5";
-                        $sth = $db->prepare($sql);
-                        $sth->execute();
-                        while($row = $sth->fetch()){
-                            if ($row[0]=="一般消息"){
+                        require_once __DIR__ . '/src/Services/ArticleService.php';
+                        $articleService = new ArticleService($db);
+                        foreach ($articleService->getLatest(5) as $row) {
+                            if ($row['category']=="一般消息"){
                                 echo '<div class="link">
                                         <div class="click">
-                                            <div class="first"><span class="category_newest">'.$row[0].'</span><span class="date">'.$row[3].'</span></div>'.$row[1].'<i class="fa fa-chevron-down"></i>
+                                            <div class="first"><span class="category_newest">'.$row['category'].'</span><span class="date">'.$row['date'].'</span></div>'.$row['heading'].'<i class="fa fa-chevron-down"></i>
                                         </div>
-                                        <div class="menu">'.$row[2].'</div>
+                                        <div class="menu">'.$row['content'].'</div>
                                       </div>';
-                            }else if($row[0]=="比賽成果"){
+                            }else if($row['category']=="比賽成果"){
                                 echo '<div class="link">
                                         <div class="click">
-                                            <div class="first"><span class="category_gameResult">'.$row[0].'</span><span class="date">'.$row[3].'</span></div>'.$row[1].'<i class="fa fa-chevron-down"></i>
+                                            <div class="first"><span class="category_gameResult">'.$row['category'].'</span><span class="date">'.$row['date'].'</span></div>'.$row['heading'].'<i class="fa fa-chevron-down"></i>
                                         </div>
-                                        <div class="menu">'.$row[2].'</div>
+                                        <div class="menu">'.$row['content'].'</div>
                                       </div>';
-                            }else if($row[0]=="競賽資訊"){
+                            }else if($row['category']=="競賽資訊"){
                                 echo '<div class="link">
                                         <div class="click">
-                                            <div class="first"><span class="category_competition">'.$row[0].'</span><span class="date">'.$row[3].'</span></div>'.$row[1].'<i class="fa fa-chevron-down"></i>
+                                            <div class="first"><span class="category_competition">'.$row['category'].'</span><span class="date">'.$row['date'].'</span></div>'.$row['heading'].'<i class="fa fa-chevron-down"></i>
                                         </div>
-                                        <div class="menu">'.$row[2].'</div>
+                                        <div class="menu">'.$row['content'].'</div>
                                       </div>';
                             }else{//team activity
                                 echo '<div class="link">
                                         <div class="click">
-                                            <div class="first"><span class="category_activity">'.$row[0].'</span><span class="date">'.$row[3].'</span></div>'.$row[1].'<i class="fa fa-chevron-down"></i>
+                                            <div class="first"><span class="category_activity">'.$row['category'].'</span><span class="date">'.$row['date'].'</span></div>'.$row['heading'].'<i class="fa fa-chevron-down"></i>
                                         </div>
-                                        <div class="menu">'.$row[2].'</div>
+                                        <div class="menu">'.$row['content'].'</div>
                                       </div>';
                             }
                         }

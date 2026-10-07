@@ -6,6 +6,8 @@
     try {
         // 2. 建立 PDO 連線
         require_once __DIR__ . '/../config/db.php';
+        require_once __DIR__ . '/../src/Services/ArticleService.php';
+        $articleService = new ArticleService($db);
 
         // 3. 接收資料並進行基礎安全處理
         // 如果你採用了 URL Encoding 策略，這裡要加 urldecode()
@@ -13,7 +15,7 @@
         $heading  = $_POST['heading'] ?? '';
         $content  = $_POST['content'] ?? ''; // 如果有編碼，改用 urldecode($_POST['content'])
         $content = base64_decode($content);
-        $time     = $_POST['time'] ?? date("Y-m-d H:i:s");
+        $time     = !empty($_POST['time']) ? $_POST['time'] : date("Y-m-d H:i:s");
         $timer    = $_POST['timer'] ?? '';
 
         if (empty($timer)) {
@@ -21,11 +23,7 @@
         }
 
         // 4. 執行更新
-        $sql = "UPDATE `article` SET `category` = ?, `heading` = ?, `content` = ?, `date` = ? WHERE `timer` = ?";
-        $stmt = $db->prepare($sql);
-        
-        // 直接傳入陣列，PDO 會自動處理跳脫 (Escaping)
-        if ($stmt->execute([$category, $heading, $content, $time, $timer])) {
+        if ($articleService->update($timer, $category, $heading, $content, $time)) {
             echo "success";
         } else {
             echo "fail";

@@ -534,3 +534,68 @@ instead of 404ing. Playwright screenshots at mobile (375px) and
 desktop (1280px) widths on one listing page and one detail page
 confirm the nav, header image, and image grid/lightbox all render
 correctly.
+
+## 2026-10-08 — Deploy pipeline audit: `.env` deletion risk + dead gallery image refs
+
+Continuing AGENT.md's remaining deferred item — confirming asset paths
+and the deployment process end to end before considering the `public/`
+move. Scanned every local `src=`/`href=` across all root, admin, and
+gallery pages against the filesystem (~8,700 references): no broken
+CSS/JS paths anywhere, including through the gallery migration above.
+
+Two real risks turned up in `.cpanel.yml` itself, both from the same
+mechanism: deploy mirrors the repo via `rsync --delete` (added
+2026-10-07 specifically to auto-remove anything untracked from
+`public_html`), with deliberate excludes for things that must persist
+on the server without being in git.
+
+- **`.env` was missing from that exclude list.** `config/db.php` needs
+  `.env` to sit at `public_html/.env` to supply live DB credentials —
+  the same requirement `config/db.local.php` has, which is why
+  `db.local.php` was excluded in the first place. The exclude list was
+  never updated when `.env` support was added, so if production's
+  `.env` only lives in `public_html` (not in the server-side git
+  checkout rsync copies *from*), the next deploy would silently delete
+  it. **Fix:** added `--exclude='.env'` to `.cpanel.yml`, matching the
+  `db.local.php` precedent.
+- **167 `<a href>`/`<img src>` attributes (84 distinct gallery photos)
+  pointed at image files not present anywhere in the repo** — spread
+  across `cmu/2013cmu.php`, `university/2014preliminary.php`,
+  `university/2015final.php` (54 of the 84), `university/
+  2015preliminary2.php`, `wind/2018wind.php`, `DrPro/2014DrPro.php`,
+  `jinzhu/2018jinzhu.php`, and `friendly/2023DaTong.php`. Confirmed
+  with the user these are gone from the live server too, not just this
+  checkout — not a side effect of the head/nav/footer migration above,
+  which never touched body image lists.
+
+  Before removing anything, checked each missing reference for a
+  same-name file under a different extension, since `rsync --delete`
+  mirroring makes "untracked" and "actually gone" look identical from
+  inside the repo alone:
+  - `jinzhu/2018jinzhu.php`: `2018-76.jpgG` (stray trailing "G") →
+    fixed to `2018-76.jpg`, which exists; thumbnail reference was
+    already correct.
+  - `friendly/2023DaTong.php`: pointed at `IMG_3041.HEIC`, but only
+    `IMG_3041.jpg` was ever saved (no `thumbnails/` subdir for this
+    one-photo event at all). This was the page's *only* photo, so
+    fixing it instead of deleting it kept the page from becoming an
+    empty gallery shell. Rewrote both `href` and `img src` to the one
+    real `.jpg` file directly, matching how the listing page
+    (`gallery/friendly.php`) already references the same file as its
+    cover image.
+  - The remaining 63 live (uncommented) references were genuinely
+    gone — removed their `<a href="…"><img src="…"></a>` lines outright
+    from `university/2015final.php` (54), `wind/2018wind.php` (8), and
+    `university/2015preliminary2.php` (1).
+  - 21 more matched the same missing-file pattern but were already
+    inside pre-existing HTML comments (`cmu/2013cmu.php`: 17 across
+    several multi-line comment blocks; `DrPro/2014DrPro.php` and
+    `university/2014preliminary.php`: 1 each) — already inert on the
+    live page, left untouched. Verified the comment open/close count
+    in every touched file is unchanged, so no comment block was
+    accidentally left unterminated by a deletion landing on a line
+    that doubled as a block's closing `-->`.
+
+Verified with `php -l` on all touched files and a repo-wide rescan
+confirming zero remaining broken local asset references outside of
+the untouched, already-commented-out ones.

@@ -122,12 +122,6 @@ require __DIR__ . '/../../templates/partials/navbar.php';
             <a href="../../img/cmu/2013/20131215_0101-min.jpg"><img src="../../img/cmu/2013/thumbnails/tn_20131215_0101-min.jpg"></a>
             <a href="../../img/cmu/2013/20131215_0102-min.jpg"><img src="../../img/cmu/2013/thumbnails/tn_20131215_0102-min.jpg"></a>
             <!--<a href="../../img/cmu/2013/20131215_0103-min.jpg"><img src="../../img/cmu/2013/thumbnails/tn_20131215_0103-min.jpg"></a>
-            <a href="../../img/cmu/2013/20131215_0104-min.jpg"><img src="../../img/cmu/2013/thumbnails/tn_20131215_0104-min.jpg"></a>
-            <a href="../../img/cmu/2013/20131215_0105-min.jpg"><img src="../../img/cmu/2013/thumbnails/tn_20131215_0105-min.jpg"></a>
-            <a href="../../img/cmu/2013/20131215_0106-min.jpg"><img src="../../img/cmu/2013/thumbnails/tn_20131215_0106-min.jpg"></a>
-            <a href="../../img/cmu/2013/20131215_0107-min.jpg"><img src="../../img/cmu/2013/thumbnails/tn_20131215_0107-min.jpg"></a>
-            <a href="../../img/cmu/2013/20131215_0108-min.jpg"><img src="../../img/cmu/2013/thumbnails/tn_20131215_0108-min.jpg"></a>
-            <a href="../../img/cmu/2013/20131215_0109-min.jpg"><img src="../../img/cmu/2013/thumbnails/tn_20131215_0109-min.jpg"></a>
             <a href="../../img/cmu/2013/20131215_0110-min.jpg"><img src="../../img/cmu/2013/thumbnails/tn_20131215_0110-min.jpg"></a>-->
             <a href="../../img/cmu/2013/20131215_0111-min.jpg"><img src="../../img/cmu/2013/thumbnails/tn_20131215_0111-min.jpg"></a>
             <a href="../../img/cmu/2013/20131215_0112-min.jpg"><img src="../../img/cmu/2013/thumbnails/tn_20131215_0112-min.jpg"></a>
@@ -149,9 +143,6 @@ require __DIR__ . '/../../templates/partials/navbar.php';
             <a href="../../img/cmu/2013/20131215_0128-min.jpg"><img src="../../img/cmu/2013/thumbnails/tn_20131215_0128-min.jpg"></a>
             <a href="../../img/cmu/2013/20131215_0129-min.jpg"><img src="../../img/cmu/2013/thumbnails/tn_20131215_0129-min.jpg"></a>
             <!--<a href="../../img/cmu/2013/20131215_0130-min.jpg"><img src="../../img/cmu/2013/thumbnails/tn_20131215_0130-min.jpg"></a>
-            <a href="../../img/cmu/2013/20131215_0131-min.jpg"><img src="../../img/cmu/2013/thumbnails/tn_20131215_0131-min.jpg"></a>
-            <a href="../../img/cmu/2013/20131215_0132-min.jpg"><img src="../../img/cmu/2013/thumbnails/tn_20131215_0132-min.jpg"></a>
-            <a href="../../img/cmu/2013/20131215_0133-min.jpg"><img src="../../img/cmu/2013/thumbnails/tn_20131215_0133-min.jpg"></a>
             <a href="../../img/cmu/2013/20131215_0134-min.jpg"><img src="../../img/cmu/2013/thumbnails/tn_20131215_0134-min.jpg"></a>-->
             <a href="../../img/cmu/2013/20131215_0135-min.jpg"><img src="../../img/cmu/2013/thumbnails/tn_20131215_0135-min.jpg"></a>
             <a href="../../img/cmu/2013/20131215_0136-min.jpg"><img src="../../img/cmu/2013/thumbnails/tn_20131215_0136-min.jpg"></a>

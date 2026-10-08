@@ -257,60 +257,6 @@ require __DIR__ . '/../../templates/partials/navbar.php';
             <a href="../../img/university_cup/2015final/20150505_0229-min.jpg"><img src="../../img/university_cup/2015final/thumbnails/tn_20150505_0229-min.jpg"></a>
             <a href="../../img/university_cup/2015final/20150505_0230-min.jpg"><img src="../../img/university_cup/2015final/thumbnails/tn_20150505_0230-min.jpg"></a>
             <a href="../../img/university_cup/2015final/20150505_0231-min.jpg"><img src="../../img/university_cup/2015final/thumbnails/tn_20150505_0231-min.jpg"></a>
-            <a href="../../img/university_cup/2015final/20150505_0232-min.jpg"><img src="../../img/university_cup/2015final/thumbnails/tn_20150505_0232-min.jpg"></a>
-            <a href="../../img/university_cup/2015final/20150505_0233-min.jpg"><img src="../../img/university_cup/2015final/thumbnails/tn_20150505_0233-min.jpg"></a>
-            <a href="../../img/university_cup/2015final/20150505_0234-min.jpg"><img src="../../img/university_cup/2015final/thumbnails/tn_20150505_0234-min.jpg"></a>
-            <a href="../../img/university_cup/2015final/20150505_0235-min.jpg"><img src="../../img/university_cup/2015final/thumbnails/tn_20150505_0235-min.jpg"></a>
-            <a href="../../img/university_cup/2015final/20150505_0236-min.jpg"><img src="../../img/university_cup/2015final/thumbnails/tn_20150505_0236-min.jpg"></a>
-            <a href="../../img/university_cup/2015final/20150505_0237-min.jpg"><img src="../../img/university_cup/2015final/thumbnails/tn_20150505_0237-min.jpg"></a>
-            <a href="../../img/university_cup/2015final/20150505_0238-min.jpg"><img src="../../img/university_cup/2015final/thumbnails/tn_20150505_0238-min.jpg"></a>
-            <a href="../../img/university_cup/2015final/20150505_0239-min.jpg"><img src="../../img/university_cup/2015final/thumbnails/tn_20150505_0239-min.jpg"></a>
-            <a href="../../img/university_cup/2015final/20150505_0240-min.jpg"><img src="../../img/university_cup/2015final/thumbnails/tn_20150505_0240-min.jpg"></a>
-            <a href="../../img/university_cup/2015final/20150505_0241-min.jpg"><img src="../../img/university_cup/2015final/thumbnails/tn_20150505_0241-min.jpg"></a>
-            <a href="../../img/university_cup/2015final/20150505_0242-min.jpg"><img src="../../img/university_cup/2015final/thumbnails/tn_20150505_0242-min.jpg"></a>
-            <a href="../../img/university_cup/2015final/20150505_0243-min.jpg"><img src="../../img/university_cup/2015final/thumbnails/tn_20150505_0243-min.jpg"></a>
-            <a href="../../img/university_cup/2015final/20150505_0244-min.jpg"><img src="../../img/university_cup/2015final/thumbnails/tn_20150505_0244-min.jpg"></a>
-            <a href="../../img/university_cup/2015final/20150505_0245-min.jpg"><img src="../../img/university_cup/2015final/thumbnails/tn_20150505_0245-min.jpg"></a>
-            <a href="../../img/university_cup/2015final/20150505_0246-min.jpg"><img src="../../img/university_cup/2015final/thumbnails/tn_20150505_0246-min.jpg"></a>
-            <a href="../../img/university_cup/2015final/20150505_0247-min.jpg"><img src="../../img/university_cup/2015final/thumbnails/tn_20150505_0247-min.jpg"></a>
-            <a href="../../img/university_cup/2015final/20150505_0248-min.jpg"><img src="../../img/university_cup/2015final/thumbnails/tn_20150505_0248-min.jpg"></a>
-            <a href="../../img/university_cup/2015final/20150505_0249-min.jpg"><img src="../../img/university_cup/2015final/thumbnails/tn_20150505_0249-min.jpg"></a>
-            <a href="../../img/university_cup/2015final/20150505_0250-min.jpg"><img src="../../img/university_cup/2015final/thumbnails/tn_20150505_0250-min.jpg"></a>
-            <a href="../../img/university_cup/2015final/20150505_0251-min.jpg"><img src="../../img/university_cup/2015final/thumbnails/tn_20150505_0251-min.jpg"></a>
-            <a href="../../img/university_cup/2015final/20150505_0252-min.jpg"><img src="../../img/university_cup/2015final/thumbnails/tn_20150505_0252-min.jpg"></a>
-            <a href="../../img/university_cup/2015final/20150505_0253-min.jpg"><img src="../../img/university_cup/2015final/thumbnails/tn_20150505_0253-min.jpg"></a>
-            <a href="../../img/university_cup/2015final/20150505_0254-min.jpg"><img src="../../img/university_cup/2015final/thumbnails/tn_20150505_0254-min.jpg"></a>
-            <a href="../../img/university_cup/2015final/20150505_0255-min.jpg"><img src="../../img/university_cup/2015final/thumbnails/tn_20150505_0255-min.jpg"></a>
-            <a href="../../img/university_cup/2015final/20150505_0256-min.jpg"><img src="../../img/university_cup/2015final/thumbnails/tn_20150505_0256-min.jpg"></a>
-            <a href="../../img/university_cup/2015final/20150505_0257-min.jpg"><img src="../../img/university_cup/2015final/thumbnails/tn_20150505_0257-min.jpg"></a>
-            <a href="../../img/university_cup/2015final/20150505_0258-min.jpg"><img src="../../img/university_cup/2015final/thumbnails/tn_20150505_0258-min.jpg"></a>
-            <a href="../../img/university_cup/2015final/20150505_0259-min.jpg"><img src="../../img/university_cup/2015final/thumbnails/tn_20150505_0259-min.jpg"></a>
-            <a href="../../img/university_cup/2015final/20150505_0260-min.jpg"><img src="../../img/university_cup/2015final/thumbnails/tn_20150505_0260-min.jpg"></a>
-            <a href="../../img/university_cup/2015final/20150505_0261-min.jpg"><img src="../../img/university_cup/2015final/thumbnails/tn_20150505_0261-min.jpg"></a>
-            <a href="../../img/university_cup/2015final/20150505_0262-min.jpg"><img src="../../img/university_cup/2015final/thumbnails/tn_20150505_0262-min.jpg"></a>
-            <a href="../../img/university_cup/2015final/20150505_0263-min.jpg"><img src="../../img/university_cup/2015final/thumbnails/tn_20150505_0263-min.jpg"></a>
-            <a href="../../img/university_cup/2015final/20150505_0264-min.jpg"><img src="../../img/university_cup/2015final/thumbnails/tn_20150505_0264-min.jpg"></a>
-            <a href="../../img/university_cup/2015final/20150505_0265-min.jpg"><img src="../../img/university_cup/2015final/thumbnails/tn_20150505_0265-min.jpg"></a>
-            <a href="../../img/university_cup/2015final/20150505_0266-min.jpg"><img src="../../img/university_cup/2015final/thumbnails/tn_20150505_0266-min.jpg"></a>
-            <a href="../../img/university_cup/2015final/20150505_0267-min.jpg"><img src="../../img/university_cup/2015final/thumbnails/tn_20150505_0267-min.jpg"></a>
-            <a href="../../img/university_cup/2015final/20150505_0268-min.jpg"><img src="../../img/university_cup/2015final/thumbnails/tn_20150505_0268-min.jpg"></a>
-            <a href="../../img/university_cup/2015final/20150505_0269-min.jpg"><img src="../../img/university_cup/2015final/thumbnails/tn_20150505_0269-min.jpg"></a>
-            <a href="../../img/university_cup/2015final/20150505_0270-min.jpg"><img src="../../img/university_cup/2015final/thumbnails/tn_20150505_0270-min.jpg"></a>
-            <a href="../../img/university_cup/2015final/20150505_0271-min.jpg"><img src="../../img/university_cup/2015final/thumbnails/tn_20150505_0271-min.jpg"></a>
-            <a href="../../img/university_cup/2015final/20150505_0272-min.jpg"><img src="../../img/university_cup/2015final/thumbnails/tn_20150505_0272-min.jpg"></a>
-            <a href="../../img/university_cup/2015final/20150505_0273-min.jpg"><img src="../../img/university_cup/2015final/thumbnails/tn_20150505_0273-min.jpg"></a>
-            <a href="../../img/university_cup/2015final/20150505_0274-min.jpg"><img src="../../img/university_cup/2015final/thumbnails/tn_20150505_0274-min.jpg"></a>
-            <a href="../../img/university_cup/2015final/20150505_0275-min.jpg"><img src="../../img/university_cup/2015final/thumbnails/tn_20150505_0275-min.jpg"></a>
-            <a href="../../img/university_cup/2015final/20150505_0276-min.jpg"><img src="../../img/university_cup/2015final/thumbnails/tn_20150505_0276-min.jpg"></a>
-            <a href="../../img/university_cup/2015final/20150505_0277-min.jpg"><img src="../../img/university_cup/2015final/thumbnails/tn_20150505_0277-min.jpg"></a>
-            <a href="../../img/university_cup/2015final/20150505_0278-min.jpg"><img src="../../img/university_cup/2015final/thumbnails/tn_20150505_0278-min.jpg"></a>
-            <a href="../../img/university_cup/2015final/20150505_0279-min.jpg"><img src="../../img/university_cup/2015final/thumbnails/tn_20150505_0279-min.jpg"></a>
-            <a href="../../img/university_cup/2015final/20150505_0280-min.jpg"><img src="../../img/university_cup/2015final/thumbnails/tn_20150505_0280-min.jpg"></a>
-            <a href="../../img/university_cup/2015final/20150505_0281-min.jpg"><img src="../../img/university_cup/2015final/thumbnails/tn_20150505_0281-min.jpg"></a>
-            <a href="../../img/university_cup/2015final/20150505_0282-min.jpg"><img src="../../img/university_cup/2015final/thumbnails/tn_20150505_0282-min.jpg"></a>
-            <a href="../../img/university_cup/2015final/20150505_0283-min.jpg"><img src="../../img/university_cup/2015final/thumbnails/tn_20150505_0283-min.jpg"></a>
-            <a href="../../img/university_cup/2015final/20150505_0284-min.jpg"><img src="../../img/university_cup/2015final/thumbnails/tn_20150505_0284-min.jpg"></a>
-            <a href="../../img/university_cup/2015final/20150505_0285-min.jpg"><img src="../../img/university_cup/2015final/thumbnails/tn_20150505_0285-min.jpg"></a>
 
 
 

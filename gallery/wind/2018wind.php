@@ -172,14 +172,6 @@ require __DIR__ . '/../../templates/partials/navbar.php';
             <a href="../../img/wind/2018/2018w144.jpg"><img src="../../img/wind/2018/thumbnails/tn_2018w144.jpg"></a>
             <a href="../../img/wind/2018/2018w145.jpg"><img src="../../img/wind/2018/thumbnails/tn_2018w145.jpg"></a>
             <a href="../../img/wind/2018/2018w146.jpg"><img src="../../img/wind/2018/thumbnails/tn_2018w146.jpg"></a>
-            <a href="../../img/wind/2018/2018w147.jpg"><img src="../../img/wind/2018/thumbnails/tn_2018w147.jpg"></a>
-            <a href="../../img/wind/2018/2018w148.jpg"><img src="../../img/wind/2018/thumbnails/tn_2018w148.jpg"></a>
-            <a href="../../img/wind/2018/2018w149.jpg"><img src="../../img/wind/2018/thumbnails/tn_2018w149.jpg"></a>
-            <a href="../../img/wind/2018/2018w150.jpg"><img src="../../img/wind/2018/thumbnails/tn_2018w150.jpg"></a>
-            <a href="../../img/wind/2018/2018w151.jpg"><img src="../../img/wind/2018/thumbnails/tn_2018w151.jpg"></a>
-            <a href="../../img/wind/2018/2018w152.jpg"><img src="../../img/wind/2018/thumbnails/tn_2018w152.jpg"></a>
-            <a href="../../img/wind/2018/2018w153.jpg"><img src="../../img/wind/2018/thumbnails/tn_2018w153.jpg"></a>
-            <a href="../../img/wind/2018/2018w154.jpg"><img src="../../img/wind/2018/thumbnails/tn_2018w154.jpg"></a>
             <a href="../../img/wind/2018/2018w155.jpg"><img src="../../img/wind/2018/thumbnails/tn_2018w155.jpg"></a>
             <a href="../../img/wind/2018/2018w156.jpg"><img src="../../img/wind/2018/thumbnails/tn_2018w156.jpg"></a>
             <a href="../../img/wind/2018/2018w157.jpg"><img src="../../img/wind/2018/thumbnails/tn_2018w157.jpg"></a>

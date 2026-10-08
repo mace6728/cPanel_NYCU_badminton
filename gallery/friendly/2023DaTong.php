@@ -26,7 +26,7 @@ require __DIR__ . '/../../templates/partials/navbar.php';
     </header>
     <div class="content" oncontextmenu="return false;">
         <div class="baguetteBoxOne gallery">
-            <a href="../../img/friendship/2023DaTong/IMG_3041.HEIC"><img src="../../img/friendship/2023DaTong/thumbnails/IMG_3041.HEIC"></a>
+            <a href="../../img/friendship/2023DaTong/IMG_3041.jpg"><img src="../../img/friendship/2023DaTong/IMG_3041.jpg"></a>
             
         </div>
     </div>

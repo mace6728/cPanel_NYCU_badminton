@@ -48,7 +48,6 @@ require __DIR__ . '/../../templates/partials/navbar.php';
             <a href="../../img/university_cup/2015preliminary2/20150318_0020-min.jpg"><img src="../../img/university_cup/2015preliminary2/thumbnails/tn_20150318_0020-min.jpg"></a>
             <a href="../../img/university_cup/2015preliminary2/20150318_0021-min.jpg"><img src="../../img/university_cup/2015preliminary2/thumbnails/tn_20150318_0021-min.jpg"></a>
             <a href="../../img/university_cup/2015preliminary2/20150318_0022-min.jpg"><img src="../../img/university_cup/2015preliminary2/thumbnails/tn_20150318_0022-min.jpg"></a>
-            <a href="../../img/university_cup/2015preliminary2/20150318_0023-min.jpg"><img src="../../img/university_cup/2015preliminary2/thumbnails/tn_20150318_0023-min.jpg"></a>
             <a href="../../img/university_cup/2015preliminary2/20150318_0024-min.jpg"><img src="../../img/university_cup/2015preliminary2/thumbnails/tn_20150318_0024-min.jpg"></a>
             <a href="../../img/university_cup/2015preliminary2/20150318_0025-min.jpg"><img src="../../img/university_cup/2015preliminary2/thumbnails/tn_20150318_0025-min.jpg"></a>
             <a href="../../img/university_cup/2015preliminary2/20150318_0026-min.jpg"><img src="../../img/university_cup/2015preliminary2/thumbnails/tn_20150318_0026-min.jpg"></a>

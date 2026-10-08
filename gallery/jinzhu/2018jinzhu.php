@@ -101,7 +101,7 @@ require __DIR__ . '/../../templates/partials/navbar.php';
             <a href="../../img/jinzhu/2018/2018-73.jpg"><img src="../../img/jinzhu/2018/thumbnails/tn_2018-73.jpg"></a>
             <a href="../../img/jinzhu/2018/2018-74.jpg"><img src="../../img/jinzhu/2018/thumbnails/tn_2018-74.jpg"></a>
             <a href="../../img/jinzhu/2018/2018-75.jpg"><img src="../../img/jinzhu/2018/thumbnails/tn_2018-75.jpg"></a>
-            <a href="../../img/jinzhu/2018/2018-76.jpgG"><img src="../../img/jinzhu/2018/thumbnails/tn_2018-76.jpg"></a>
+            <a href="../../img/jinzhu/2018/2018-76.jpg"><img src="../../img/jinzhu/2018/thumbnails/tn_2018-76.jpg"></a>
             <a href="../../img/jinzhu/2018/2018-77.jpg"><img src="../../img/jinzhu/2018/thumbnails/tn_2018-77.jpg"></a>
             <a href="../../img/jinzhu/2018/2018-78.jpg"><img src="../../img/jinzhu/2018/thumbnails/tn_2018-78.jpg"></a>
             <a href="../../img/jinzhu/2018/2018-79.jpg"><img src="../../img/jinzhu/2018/thumbnails/tn_2018-79.jpg"></a>

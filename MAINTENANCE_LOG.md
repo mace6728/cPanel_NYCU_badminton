@@ -599,3 +599,58 @@ on the server without being in git.
 Verified with `php -l` on all touched files and a repo-wide rescan
 confirming zero remaining broken local asset references outside of
 the untouched, already-commented-out ones.
+
+## 2026-10-08 — Moved the public entry point to `public/`
+
+The deferred half of AGENT.md's restructuring: `public/` is now the
+document root. Moved every root-level page, `admin/`, `api/`, `css/`,
+`js/`, `fonts/`, `img/`, `gallery/`, `tinymce/`, `404/`, and the
+search-engine verification files into `public/`, keeping `config/`,
+`src/`, and `templates/` at the repo root so they're never web-
+reachable. Updated the 247 `require __DIR__ . '/...'` references to
+`templates/`, `config/`, or `src/` across 84 moved files by exactly one
+`../` level each, matching the new depth.
+
+`.cpanel.yml` now runs two rsync passes instead of one: `public/`
+mirrors (with `--delete`) to `public_html` as before; `config/src/
+templates` copy (without `--delete`, so nothing else already in the
+account's home directory gets touched) to `/home/badadmin/` directly,
+as siblings of `public_html` — matching every updated require path.
+This also fully closes the `.env`-deletion risk from the previous
+entry, since `.env` now belongs at the home directory, outside the
+mirrored tree entirely.
+
+Along the way, confirmed `public/admin/.htaccess` already enforces
+HTTP Basic Auth (`AuthUserFile ".../public_html/admin/passwd"`, a
+pre-existing cPanel password-protect-directory setup) — AGENT.md's
+admin-side-security concern was resolved separately already.
+
+Verified the whole thing end-to-end: staged a sandbox mirroring the
+planned server layout (a `public_html` sibling to `config/src/
+templates`) and served it with PHP's built-in server. Root pages,
+every gallery nesting depth, and the `api/event.php` AJAX endpoint all
+correctly resolved `config/db.php` and `templates/partials/*` through
+the new relative paths.
+
+**Operational note for the next deploy**: `.env` (and `config/
+db.local.php`, if still used) must be relocated to `/home/badadmin/
+.env` before relying on a fresh deploy — see README.md.
+
+## 2026-10-08 — Added composer.json
+
+Next deferred item from the restructuring: scaffolding only, no
+behavior change. `composer.json` declares `php >=8.0` (the floor
+needed by `config/db.php`'s `str_contains()` call) plus the `pdo`,
+`pdo_mysql`, and `mbstring` extensions `src/Database.php`/
+`config/db.php` already rely on, and a `classmap` autoload mapping
+over `src/` — chosen over PSR-4 because `Database` and
+`ArticleService` are plain global-namespace classes already, so
+classmap needs no namespace changes to either class or its ~10
+call sites.
+
+Generated `composer.lock` (no external packages — only the PHP/
+extension platform requirements) and confirmed with `composer install`
+that the classmap autoloader resolves both classes correctly. Added
+`/vendor/` to `.gitignore`. Left every existing `require_once
+__DIR__.'/../src/...'` call as-is — swapping them for
+`vendor/autoload.php` would be a behavior change, out of scope here.

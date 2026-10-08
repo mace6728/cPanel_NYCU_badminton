@@ -382,3 +382,65 @@ style/script survived the refactor intact.
 missing the `mbstring` extension that `config/db.php` has always
 required, unrelated to this change; the head/nav rendered correctly
 before that point.
+
+## 2026-10-08 — Fixed the "隊長介紹" nav submenu doing nothing on mobile/narrow screens
+
+Reported: clicking a nav item whose own dropdown contains a further
+nested dropdown (`關於球隊` → `隊長介紹` → `男隊長`/`女隊長`) appeared to
+do nothing.
+
+Root cause, found by driving the live nav with Playwright at both
+desktop and mobile widths and diffing computed styles across pages:
+every page's own CSS has a rule meant to be scoped to
+`.is-fixed .nav>li>ul>li>ul{position:absolute;left:110px;top:180px}`
+(the desktop-only hardcoded coordinates for the third-level dropdown,
+only meant to apply once the sticky-on-scroll `.is-fixed` state is
+active) — but in `css/team.min.css` and `css/coach.min.css` the
+`.is-fixed` prefix was missing, so the absolute positioning applied
+*unconditionally*, overriding the responsive `@media (max-width:914px)`
+rule that otherwise makes the mobile collapsed nav stack normally.
+The submenu was still technically "opening" (class toggled, `display:
+block`), just rendered 110px/180px away from where it should be,
+overlapping unrelated nav items — indistinguishable from "did nothing"
+to a user. Every other page's CSS already had this correctly scoped;
+only the two files were inconsistent.
+
+Confirmed via screenshots at 375px width: `intro_team.php` (uses
+`team.min.css`) and `coach_liao.php`/`coach_wang.php` (`coach.min.css`)
+showed the broken floating submenu; `gallery.php` (`sortGallery.min.css`,
+correctly scoped) showed it properly indented under its parent item.
+
+**Fix:** added the missing `.is-fixed ` prefix to that one selector in
+both files, matching every other page's CSS. Verified both the mobile
+(375px) and desktop (1280px, which was already working) cases via
+Playwright screenshots before and after.
+
+## 2026-10-08 — De-minified the JS the root pages load
+
+Minifying `bootstrap.js`/`blog.js` buys nothing for a low-traffic club
+site (no CDN cost or mobile-data pressure at this scale) and actively
+slowed down diagnosing the bug just above, since `blog.min.js` is
+exactly the file with the nav click handlers. `js/jquery.js` was
+already the unminified build in every page.
+
+- Switched `templates/partials/footer.php` from `js/bootstrap.min.js`
+  to `js/bootstrap.js` — already present in the repo, confirmed
+  byte-equivalent (same Bootstrap v3.3.4, just formatted), so this is
+  a same-behavior swap for all 20 root pages in one place.
+- Rewrote `js/blog.min.js`'s logic as a new, readable `js/blog.js`
+  (no original unminified source existed for this one — it's this
+  site's own ~15-line script, not a vendored library) and pointed all
+  18 root pages that loaded it at the new file instead.
+- Left `js/bootstrap.min.js` and `js/blog.min.js` in place rather than
+  deleting them — confirmed both are still loaded by the out-of-scope
+  `gallery/*.html` pages (dozens of them) and by
+  `tests/legacy/allposts_test.php`, none of which this pass touches.
+- `js/bootstrap4.min.js` was checked and confirmed unused by anything
+  in the repo, root pages included — left alone (not this pass's
+  scope to remove unrelated dead files, though it's a candidate for a
+  future cleanup).
+
+Verified with `php -l` on all touched `.php` files and a Playwright
+pass confirming the nav (including the just-fixed third-level
+dropdown) still works correctly after the swap, at both mobile and
+desktop widths.

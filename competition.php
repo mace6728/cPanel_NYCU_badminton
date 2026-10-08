@@ -534,7 +534,7 @@ require __DIR__ . '/templates/partials/navbar.php';
 <?php
 ob_start();
 ?>
-    <script src="js/blog.min.js"></script>
+    <script src="js/blog.js"></script>
 
     <script>
     //   $(".seeWhole").click(function(){

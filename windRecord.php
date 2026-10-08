@@ -455,6 +455,6 @@ require __DIR__ . '/templates/partials/navbar.php';
     </article>
 
 <?php
-$extraScripts = '    <script src="js/blog.min.js"></script>' . "\n";
+$extraScripts = '    <script src="js/blog.js"></script>' . "\n";
 require __DIR__ . '/templates/partials/footer.php';
 ?>

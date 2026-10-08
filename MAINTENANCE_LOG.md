@@ -444,3 +444,25 @@ Verified with `php -l` on all touched `.php` files and a Playwright
 pass confirming the nav (including the just-fixed third-level
 dropdown) still works correctly after the swap, at both mobile and
 desktop widths.
+
+## 2026-10-08 — index.php's nav dropdowns didn't open at all
+
+Follow-up report after the fix above: the nav still didn't work on
+`index.php` specifically, while every other page was fine.
+
+Cause: unlike the other 19 root pages, `index.php` (and `allposts.php`)
+never loaded `blog.min.js`/`blog.js` in the first place — this predates
+all of this session's changes. Without it, the `.nav>li>a`/`.nav>li>ul>li>a`
+click handlers that toggle `levelOneOpen`/`levelTwoOpen` were never
+bound, so clicking any dropdown trigger on `index.php` did nothing at
+the first level already (`allposts.php` was fine since it already had
+its own `<script src="js/blog.js">` tag alongside its custom inline
+script — `index.php` just never did).
+
+**Fix:** added the missing `<script src="js/blog.js"></script>` tag to
+`index.php`, matching `allposts.php`'s existing pattern. Verified with
+Playwright against a scratch copy with the DB-dependent article-loading
+block stubbed out (this sandbox's PHP lacks `mbstring`, needed by
+`config/db.php` — see above) but the `<head>`/nav/scripts byte-identical
+to the real file: both mobile and desktop third-level dropdowns now
+open correctly.

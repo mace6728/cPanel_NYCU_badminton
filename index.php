@@ -91,6 +91,7 @@ require __DIR__ . '/templates/partials/navbar.php';
 <?php
 ob_start();
 ?>
+    <script src="js/blog.js"></script>
     <script>
     $(document).ready(function(){
         $(".click").click(function(){

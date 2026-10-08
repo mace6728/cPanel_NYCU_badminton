@@ -3,8 +3,13 @@
  * Shared footer + closing scripts/tags. Set $extraScripts (raw HTML) before
  * requiring this file for any page-specific <script> tags that must load
  * after jquery/bootstrap (optional).
+ *
+ * Set $basePath to a relative prefix (e.g. '../' or '../../') for pages nested
+ * below the document root, so the js/ script tags still resolve (optional,
+ * defaults to '' for root-level pages).
  */
 $extraScripts = $extraScripts ?? '';
+$basePath = $basePath ?? '';
 ?>
     <hr>
 
@@ -28,8 +33,8 @@ $extraScripts = $extraScripts ?? '';
         </div>
     </footer>
 
-    <script src="js/jquery.js"></script>
-    <script src="js/bootstrap.js"></script>
+    <script src="<?= $basePath ?>js/jquery.js"></script>
+    <script src="<?= $basePath ?>js/bootstrap.js"></script>
 <?= $extraScripts ?>
 </body>
 

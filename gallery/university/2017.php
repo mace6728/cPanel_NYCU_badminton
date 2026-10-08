@@ -1,0 +1,363 @@
+<?php
+$pageTitle = '2017大運會照片 | 國立交通大學羽球隊 NCTU Badminton';
+$pageDescription = '國立交通大學羽球隊 · 交大羽球隊 · NCTU Badminton · 2017大運會照片';
+$pageCss = 'galDetail.min.css';
+$basePath = '../../';
+$extraHead = '    <link rel="stylesheet" href="../../css/baguetteBox.min.css">
+';
+require __DIR__ . '/../../templates/partials/head.php';
+$activePage = 'gallery';
+require __DIR__ . '/../../templates/partials/navbar.php';
+?>
+
+<header class="intro-header" style="background-image: url('../../img/competiotion_bg.jpg')">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <div class="site-heading">
+                        <h1>2017大專盃</h1>
+                        <hr class="small">
+                        <span class="subheading">NYCU Badminton</span>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="content" oncontextmenu="return false;">
+        <div class="baguetteBoxOne gallery">
+            <a href="../../img/university_cup/2017/2017_university (1).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (1).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (2).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (2).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (3).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (3).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (4).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (4).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (5).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (5).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (6).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (6).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (7).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (7).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (8).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (8).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (9).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (9).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (10).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (10).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (11).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (11).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (12).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (12).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (13).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (13).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (14).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (14).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (15).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (15).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (16).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (16).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (17).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (17).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (18).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (18).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (19).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (19).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (20).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (20).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (21).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (21).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (22).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (22).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (23).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (23).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (24).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (24).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (25).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (25).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (26).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (26).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (27).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (27).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (28).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (28).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (29).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (29).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (30).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (30).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (31).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (31).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (32).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (32).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (33).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (33).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (34).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (34).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (35).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (35).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (36).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (36).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (37).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (37).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (38).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (38).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (39).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (39).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (40).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (40).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (41).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (41).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (42).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (42).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (43).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (43).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (44).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (44).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (45).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (45).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (46).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (46).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (47).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (47).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (48).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (48).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (49).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (49).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (50).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (50).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (51).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (51).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (52).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (52).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (53).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (53).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (54).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (54).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (55).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (55).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (56).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (56).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (57).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (57).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (58).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (58).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (59).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (59).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (60).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (60).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (61).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (61).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (62).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (62).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (63).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (63).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (64).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (64).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (65).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (65).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (66).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (66).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (67).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (67).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (68).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (68).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (69).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (69).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (70).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (70).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (71).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (71).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (72).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (72).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (73).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (73).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (74).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (74).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (75).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (75).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (76).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (76).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (77).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (77).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (78).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (78).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (79).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (79).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (80).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (80).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (81).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (81).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (82).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (82).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (83).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (83).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (84).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (84).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (85).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (85).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (86).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (86).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (87).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (87).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (88).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (88).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (89).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (89).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (90).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (90).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (91).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (91).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (92).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (92).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (93).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (93).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (94).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (94).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (95).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (95).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (96).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (96).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (97).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (97).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (98).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (98).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (99).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (99).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (100).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (100).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (101).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (101).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (102).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (102).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (103).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (103).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (104).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (104).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (105).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (105).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (106).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (106).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (107).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (107).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (108).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (108).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (109).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (109).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (110).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (110).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (111).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (111).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (112).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (112).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (113).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (113).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (114).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (114).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (115).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (115).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (116).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (116).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (117).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (117).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (118).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (118).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (119).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (119).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (120).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (120).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (121).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (121).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (122).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (122).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (123).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (123).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (124).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (124).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (125).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (125).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (126).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (126).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (127).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (127).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (128).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (128).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (129).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (129).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (130).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (130).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (131).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (131).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (132).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (132).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (133).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (133).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (134).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (134).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (135).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (135).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (136).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (136).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (137).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (137).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (138).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (138).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (139).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (139).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (140).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (140).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (141).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (141).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (142).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (142).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (143).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (143).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (144).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (144).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (145).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (145).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (146).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (146).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (147).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (147).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (148).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (148).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (149).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (149).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (150).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (150).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (151).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (151).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (152).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (152).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (153).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (153).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (154).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (154).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (155).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (155).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (156).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (156).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (157).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (157).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (158).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (158).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (159).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (159).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (160).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (160).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (161).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (161).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (162).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (162).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (163).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (163).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (164).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (164).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (165).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (165).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (166).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (166).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (167).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (167).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (168).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (168).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (169).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (169).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (170).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (170).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (171).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (171).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (172).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (172).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (173).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (173).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (174).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (174).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (175).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (175).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (176).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (176).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (177).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (177).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (178).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (178).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (179).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (179).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (180).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (180).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (181).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (181).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (182).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (182).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (183).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (183).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (184).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (184).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (185).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (185).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (186).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (186).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (187).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (187).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (188).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (188).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (189).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (189).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (190).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (190).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (191).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (191).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (192).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (192).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (193).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (193).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (194).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (194).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (195).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (195).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (196).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (196).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (197).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (197).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (198).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (198).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (199).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (199).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (200).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (200).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (201).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (201).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (202).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (202).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (203).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (203).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (204).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (204).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (205).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (205).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (206).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (206).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (207).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (207).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (208).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (208).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (209).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (209).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (210).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (210).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (211).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (211).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (212).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (212).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (213).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (213).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (214).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (214).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (215).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (215).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (216).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (216).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (217).jpg"><img src="../../img/university_cup/2017/thumbnails/2017_university (217).jpg"></a>
+            <a href="../../img/university_cup/2017/2017_university (218).JPG"><img src="../../img/university_cup/2017/thumbnails/2017_university (218).JPG"></a>
+            <a href="../../img/university_cup/2017/2017_university (219).JPG"><img src="../../img/university_cup/2017/thumbnails/2017_university (219).JPG"></a>
+            <a href="../../img/university_cup/2017/2017_university (220).JPG"><img src="../../img/university_cup/2017/thumbnails/2017_university (220).JPG"></a>
+            <a href="../../img/university_cup/2017/2017_university (221).JPG"><img src="../../img/university_cup/2017/thumbnails/2017_university (221).JPG"></a>
+            <a href="../../img/university_cup/2017/2017_university (222).JPG"><img src="../../img/university_cup/2017/thumbnails/2017_university (222).JPG"></a>
+            <a href="../../img/university_cup/2017/2017_university (223).JPG"><img src="../../img/university_cup/2017/thumbnails/2017_university (223).JPG"></a>
+            <a href="../../img/university_cup/2017/2017_university (224).JPG"><img src="../../img/university_cup/2017/thumbnails/2017_university (224).JPG"></a>
+            <a href="../../img/university_cup/2017/2017_university (225).JPG"><img src="../../img/university_cup/2017/thumbnails/2017_university (225).JPG"></a>
+            <a href="../../img/university_cup/2017/2017_university (226).JPG"><img src="../../img/university_cup/2017/thumbnails/2017_university (226).JPG"></a>
+            <a href="../../img/university_cup/2017/2017_university (227).JPG"><img src="../../img/university_cup/2017/thumbnails/2017_university (227).JPG"></a>
+            <a href="../../img/university_cup/2017/2017_university (228).JPG"><img src="../../img/university_cup/2017/thumbnails/2017_university (228).JPG"></a>
+            <a href="../../img/university_cup/2017/2017_university (229).JPG"><img src="../../img/university_cup/2017/thumbnails/2017_university (229).JPG"></a>
+            <a href="../../img/university_cup/2017/2017_university (230).JPG"><img src="../../img/university_cup/2017/thumbnails/2017_university (230).JPG"></a>
+            <a href="../../img/university_cup/2017/2017_university (231).JPG"><img src="../../img/university_cup/2017/thumbnails/2017_university (231).JPG"></a>
+            <a href="../../img/university_cup/2017/2017_university (232).JPG"><img src="../../img/university_cup/2017/thumbnails/2017_university (232).JPG"></a>
+            <a href="../../img/university_cup/2017/2017_university (233).JPG"><img src="../../img/university_cup/2017/thumbnails/2017_university (233).JPG"></a>
+            <a href="../../img/university_cup/2017/2017_university (234).JPG"><img src="../../img/university_cup/2017/thumbnails/2017_university (234).JPG"></a>
+            <a href="../../img/university_cup/2017/2017_university (235).JPG"><img src="../../img/university_cup/2017/thumbnails/2017_university (235).JPG"></a>
+            <a href="../../img/university_cup/2017/2017_university (236).JPG"><img src="../../img/university_cup/2017/thumbnails/2017_university (236).JPG"></a>
+            <a href="../../img/university_cup/2017/2017_university (237).JPG"><img src="../../img/university_cup/2017/thumbnails/2017_university (237).JPG"></a>
+            <a href="../../img/university_cup/2017/2017_university (238).JPG"><img src="../../img/university_cup/2017/thumbnails/2017_university (238).JPG"></a>
+            <a href="../../img/university_cup/2017/2017_university (239).JPG"><img src="../../img/university_cup/2017/thumbnails/2017_university (239).JPG"></a>
+            <a href="../../img/university_cup/2017/2017_university (240).JPG"><img src="../../img/university_cup/2017/thumbnails/2017_university (240).JPG"></a>
+            <a href="../../img/university_cup/2017/2017_university (241).JPG"><img src="../../img/university_cup/2017/thumbnails/2017_university (241).JPG"></a>
+            <a href="../../img/university_cup/2017/2017_university (242).JPG"><img src="../../img/university_cup/2017/thumbnails/2017_university (242).JPG"></a>
+            <a href="../../img/university_cup/2017/2017_university (243).JPG"><img src="../../img/university_cup/2017/thumbnails/2017_university (243).JPG"></a>
+            <a href="../../img/university_cup/2017/2017_university (244).JPG"><img src="../../img/university_cup/2017/thumbnails/2017_university (244).JPG"></a>
+            <a href="../../img/university_cup/2017/2017_university (245).JPG"><img src="../../img/university_cup/2017/thumbnails/2017_university (245).JPG"></a>
+            <a href="../../img/university_cup/2017/2017_university (246).JPG"><img src="../../img/university_cup/2017/thumbnails/2017_university (246).JPG"></a>
+            <a href="../../img/university_cup/2017/2017_university (247).JPG"><img src="../../img/university_cup/2017/thumbnails/2017_university (247).JPG"></a>
+            <a href="../../img/university_cup/2017/2017_university (248).JPG"><img src="../../img/university_cup/2017/thumbnails/2017_university (248).JPG"></a>
+            <a href="../../img/university_cup/2017/2017_university (249).JPG"><img src="../../img/university_cup/2017/thumbnails/2017_university (249).JPG"></a>
+            <a href="../../img/university_cup/2017/2017_university (250).JPG"><img src="../../img/university_cup/2017/thumbnails/2017_university (250).JPG"></a>
+            <a href="../../img/university_cup/2017/2017_university (251).JPG"><img src="../../img/university_cup/2017/thumbnails/2017_university (251).JPG"></a>
+            <a href="../../img/university_cup/2017/2017_university (252).JPG"><img src="../../img/university_cup/2017/thumbnails/2017_university (252).JPG"></a>
+            <a href="../../img/university_cup/2017/2017_university (253).JPG"><img src="../../img/university_cup/2017/thumbnails/2017_university (253).JPG"></a>
+            <a href="../../img/university_cup/2017/2017_university (254).JPG"><img src="../../img/university_cup/2017/thumbnails/2017_university (254).JPG"></a>
+            <a href="../../img/university_cup/2017/2017_university (255).JPG"><img src="../../img/university_cup/2017/thumbnails/2017_university (255).JPG"></a>
+            <a href="../../img/university_cup/2017/2017_university (256).JPG"><img src="../../img/university_cup/2017/thumbnails/2017_university (256).JPG"></a>
+            <a href="../../img/university_cup/2017/2017_university (257).JPG"><img src="../../img/university_cup/2017/thumbnails/2017_university (257).JPG"></a>
+            <a href="../../img/university_cup/2017/2017_university (258).JPG"><img src="../../img/university_cup/2017/thumbnails/2017_university (258).JPG"></a>
+            <a href="../../img/university_cup/2017/2017_university (259).JPG"><img src="../../img/university_cup/2017/thumbnails/2017_university (259).JPG"></a>
+            <a href="../../img/university_cup/2017/2017_university (260).JPG"><img src="../../img/university_cup/2017/thumbnails/2017_university (260).JPG"></a>
+            <a href="../../img/university_cup/2017/2017_university (261).JPG"><img src="../../img/university_cup/2017/thumbnails/2017_university (261).JPG"></a>
+            <a href="../../img/university_cup/2017/2017_university (262).JPG"><img src="../../img/university_cup/2017/thumbnails/2017_university (262).JPG"></a>
+            <a href="../../img/university_cup/2017/2017_university (263).JPG"><img src="../../img/university_cup/2017/thumbnails/2017_university (263).JPG"></a>
+            <a href="../../img/university_cup/2017/2017_university (264).JPG"><img src="../../img/university_cup/2017/thumbnails/2017_university (264).JPG"></a>
+            <a href="../../img/university_cup/2017/2017_university (265).JPG"><img src="../../img/university_cup/2017/thumbnails/2017_university (265).JPG"></a>
+            <a href="../../img/university_cup/2017/2017_university (266).JPG"><img src="../../img/university_cup/2017/thumbnails/2017_university (266).JPG"></a>
+            <a href="../../img/university_cup/2017/2017_university (267).JPG"><img src="../../img/university_cup/2017/thumbnails/2017_university (267).JPG"></a>
+            <a href="../../img/university_cup/2017/2017_university (268).JPG"><img src="../../img/university_cup/2017/thumbnails/2017_university (268).JPG"></a>
+            <a href="../../img/university_cup/2017/2017_university (269).JPG"><img src="../../img/university_cup/2017/thumbnails/2017_university (269).JPG"></a>
+            <a href="../../img/university_cup/2017/2017_university (270).JPG"><img src="../../img/university_cup/2017/thumbnails/2017_university (270).JPG"></a>
+            <a href="../../img/university_cup/2017/2017_university (271).JPG"><img src="../../img/university_cup/2017/thumbnails/2017_university (271).JPG"></a>
+            <a href="../../img/university_cup/2017/2017_university (272).JPG"><img src="../../img/university_cup/2017/thumbnails/2017_university (272).JPG"></a>
+            <a href="../../img/university_cup/2017/2017_university (273).JPG"><img src="../../img/university_cup/2017/thumbnails/2017_university (273).JPG"></a>
+            <a href="../../img/university_cup/2017/2017_university (274).JPG"><img src="../../img/university_cup/2017/thumbnails/2017_university (274).JPG"></a>
+            <a href="../../img/university_cup/2017/2017_university (275).JPG"><img src="../../img/university_cup/2017/thumbnails/2017_university (275).JPG"></a>
+            <a href="../../img/university_cup/2017/2017_university (276).JPG"><img src="../../img/university_cup/2017/thumbnails/2017_university (276).JPG"></a>
+            <a href="../../img/university_cup/2017/2017_university (277).JPG"><img src="../../img/university_cup/2017/thumbnails/2017_university (277).JPG"></a>
+            <a href="../../img/university_cup/2017/2017_university (278).JPG"><img src="../../img/university_cup/2017/thumbnails/2017_university (278).JPG"></a>
+            <a href="../../img/university_cup/2017/2017_university (279).JPG"><img src="../../img/university_cup/2017/thumbnails/2017_university (279).JPG"></a>
+            <a href="../../img/university_cup/2017/2017_university (280).JPG"><img src="../../img/university_cup/2017/thumbnails/2017_university (280).JPG"></a>
+            <a href="../../img/university_cup/2017/2017_university (281).JPG"><img src="../../img/university_cup/2017/thumbnails/2017_university (281).JPG"></a>
+            <a href="../../img/university_cup/2017/2017_university (282).JPG"><img src="../../img/university_cup/2017/thumbnails/2017_university (282).JPG"></a>
+            <a href="../../img/university_cup/2017/2017_university (283).JPG"><img src="../../img/university_cup/2017/thumbnails/2017_university (283).JPG"></a>
+            <a href="../../img/university_cup/2017/2017_university (284).JPG"><img src="../../img/university_cup/2017/thumbnails/2017_university (284).JPG"></a>
+            <a href="../../img/university_cup/2017/2017_university (285).JPG"><img src="../../img/university_cup/2017/thumbnails/2017_university (285).JPG"></a>
+            <a href="../../img/university_cup/2017/2017_university (286).JPG"><img src="../../img/university_cup/2017/thumbnails/2017_university (286).JPG"></a>
+            <a href="../../img/university_cup/2017/2017_university (287).JPG"><img src="../../img/university_cup/2017/thumbnails/2017_university (287).JPG"></a>
+            <a href="../../img/university_cup/2017/2017_university (288).JPG"><img src="../../img/university_cup/2017/thumbnails/2017_university (288).JPG"></a>
+            <a href="../../img/university_cup/2017/2017_university (289).JPG"><img src="../../img/university_cup/2017/thumbnails/2017_university (289).JPG"></a>
+            <a href="../../img/university_cup/2017/2017_university (290).JPG"><img src="../../img/university_cup/2017/thumbnails/2017_university (290).JPG"></a>
+            <a href="../../img/university_cup/2017/2017_university (291).JPG"><img src="../../img/university_cup/2017/thumbnails/2017_university (291).JPG"></a>
+            <a href="../../img/university_cup/2017/2017_university (292).JPG"><img src="../../img/university_cup/2017/thumbnails/2017_university (292).JPG"></a>
+            <a href="../../img/university_cup/2017/2017_university (293).JPG"><img src="../../img/university_cup/2017/thumbnails/2017_university (293).JPG"></a>
+            <a href="../../img/university_cup/2017/2017_university (294).JPG"><img src="../../img/university_cup/2017/thumbnails/2017_university (294).JPG"></a>
+            <a href="../../img/university_cup/2017/2017_university (295).JPG"><img src="../../img/university_cup/2017/thumbnails/2017_university (295).JPG"></a>
+            <a href="../../img/university_cup/2017/2017_university (296).JPG"><img src="../../img/university_cup/2017/thumbnails/2017_university (296).JPG"></a>
+            <a href="../../img/university_cup/2017/2017_university (297).JPG"><img src="../../img/university_cup/2017/thumbnails/2017_university (297).JPG"></a>
+            <a href="../../img/university_cup/2017/2017_university (298).JPG"><img src="../../img/university_cup/2017/thumbnails/2017_university (298).JPG"></a>
+            <a href="../../img/university_cup/2017/2017_university (299).JPG"><img src="../../img/university_cup/2017/thumbnails/2017_university (299).JPG"></a>
+            <a href="../../img/university_cup/2017/2017_university (300).JPG"><img src="../../img/university_cup/2017/thumbnails/2017_university (300).JPG"></a>
+            <a href="../../img/university_cup/2017/2017_university (301).JPG"><img src="../../img/university_cup/2017/thumbnails/2017_university (301).JPG"></a>
+            <a href="../../img/university_cup/2017/2017_university (302).JPG"><img src="../../img/university_cup/2017/thumbnails/2017_university (302).JPG"></a>
+            <a href="../../img/university_cup/2017/2017_university (303).JPG"><img src="../../img/university_cup/2017/thumbnails/2017_university (303).JPG"></a>
+            <a href="../../img/university_cup/2017/2017_university (304).JPG"><img src="../../img/university_cup/2017/thumbnails/2017_university (304).JPG"></a>
+            <a href="../../img/university_cup/2017/2017_university (305).JPG"><img src="../../img/university_cup/2017/thumbnails/2017_university (305).JPG"></a>
+            <a href="../../img/university_cup/2017/2017_university (306).JPG"><img src="../../img/university_cup/2017/thumbnails/2017_university (306).JPG"></a>
+            <a href="../../img/university_cup/2017/2017_university (307).JPG"><img src="../../img/university_cup/2017/thumbnails/2017_university (307).JPG"></a>
+            <a href="../../img/university_cup/2017/2017_university (308).JPG"><img src="../../img/university_cup/2017/thumbnails/2017_university (308).JPG"></a>
+            <a href="../../img/university_cup/2017/2017_university (309).JPG"><img src="../../img/university_cup/2017/thumbnails/2017_university (309).JPG"></a>
+            <a href="../../img/university_cup/2017/2017_university (310).JPG"><img src="../../img/university_cup/2017/thumbnails/2017_university (310).JPG"></a>
+            <a href="../../img/university_cup/2017/2017_university (311).JPG"><img src="../../img/university_cup/2017/thumbnails/2017_university (311).JPG"></a>
+            <a href="../../img/university_cup/2017/2017_university (312).JPG"><img src="../../img/university_cup/2017/thumbnails/2017_university (312).JPG"></a>
+            <a href="../../img/university_cup/2017/2017_university (313).JPG"><img src="../../img/university_cup/2017/thumbnails/2017_university (313).JPG"></a>
+            <a href="../../img/university_cup/2017/2017_university (314).JPG"><img src="../../img/university_cup/2017/thumbnails/2017_university (314).JPG"></a>
+            <a href="../../img/university_cup/2017/2017_university (315).JPG"><img src="../../img/university_cup/2017/thumbnails/2017_university (315).JPG"></a>
+            <a href="../../img/university_cup/2017/2017_university (316).JPG"><img src="../../img/university_cup/2017/thumbnails/2017_university (316).JPG"></a>
+            <a href="../../img/university_cup/2017/2017_university (317).JPG"><img src="../../img/university_cup/2017/thumbnails/2017_university (317).JPG"></a>
+            <a href="../../img/university_cup/2017/2017_university (318).JPG"><img src="../../img/university_cup/2017/thumbnails/2017_university (318).JPG"></a>
+            <a href="../../img/university_cup/2017/2017_university (319).JPG"><img src="../../img/university_cup/2017/thumbnails/2017_university (319).JPG"></a>
+            <a href="../../img/university_cup/2017/2017_university (320).JPG"><img src="../../img/university_cup/2017/thumbnails/2017_university (320).JPG"></a>
+            <a href="../../img/university_cup/2017/2017_university (321).JPG"><img src="../../img/university_cup/2017/thumbnails/2017_university (321).JPG"></a>
+            <a href="../../img/university_cup/2017/2017_university (322).JPG"><img src="../../img/university_cup/2017/thumbnails/2017_university (322).JPG"></a>
+            <a href="../../img/university_cup/2017/2017_university (323).JPG"><img src="../../img/university_cup/2017/thumbnails/2017_university (323).JPG"></a>
+            <a href="../../img/university_cup/2017/2017_university (324).JPG"><img src="../../img/university_cup/2017/thumbnails/2017_university (324).JPG"></a>
+                    </div>
+    </div>
+
+<?php
+$extraScripts = '    <script src="../../js/baguetteBox.min.js"></script>
+    <script>
+        baguetteBox.run(\'.gallery\');
+    </script>
+';
+require __DIR__ . '/../../templates/partials/footer.php';
+?>

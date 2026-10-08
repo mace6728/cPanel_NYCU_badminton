@@ -466,3 +466,71 @@ block stubbed out (this sandbox's PHP lacks `mbstring`, needed by
 `config/db.php` — see above) but the `<head>`/nav/scripts byte-identical
 to the real file: both mobile and desktop third-level dropdowns now
 open correctly.
+
+## 2026-10-08 — Migrated gallery/*.html (56 files) onto the shared partials
+
+Continuing AGENT.md's deferred "separate, larger batch": the 13
+top-level `gallery/*.html` listing pages and 43 one-level-deeper
+`gallery/<event>/<file>.html` detail pages, left untouched by the
+root-page pass above.
+
+Scoping this turned up a real bug the root-page pass introduced as a
+side effect: every one of these 56 pages' nav menus still linked to
+the root pages by their old `.html` path (`../intro_team.html`,
+`../competition.html`, etc.), all of which have 404'd since those were
+renamed to `.php`. Moving gallery pages onto the shared navbar partial
+fixes this everywhere in one pass.
+
+- Added an optional `$basePath` parameter (default `''`, so the 20
+  existing root pages are unaffected) to `templates/partials/{head,
+  navbar,footer}.php`, prefixing the `css/`/`js/` asset paths and the
+  navbar's root-page links — the only change needed to make the same
+  three partials work for pages one or two directories deep.
+- Converted the 13 listing pages (`git mv .html → .php`) onto
+  `$basePath = '../'`, `$pageCss` = `sortGallery.min.css` (11 pages)
+  or `friendly.min.css` (`friendly.php`/`special.php`, a pre-existing
+  CSS-only fork), plus `$extraScripts` loading `js/blog.js`. Updated
+  each page's own links into its subdirectory (e.g. `wind.php`'s
+  `wind/2013wind.html` → `.php`) and `gallery.php`'s 12 outbound links.
+- Converted the 43 detail subpages onto `$basePath = '../../'`,
+  `$pageCss = 'galDetail.min.css'`, `$extraHead` adding
+  `baguetteBox.min.css`, and `$extraScripts` adding
+  `baguetteBox.min.js` + the one byte-identical
+  `baguetteBox.run('.gallery');` init call every subpage already had.
+- `gallery/2016meichu.html` was physically at listing-tier depth but
+  used `galDetail.min.css` and `../../`-depth paths throughout — a
+  pre-existing bug, since from that location `../../` points *above*
+  the webroot, breaking its own CSS/JS/images/nav. Converted it with
+  the detail-subpage recipe but at its real depth (`$basePath = '../'`,
+  and rewrote its body's stray `../../` image paths to `../`), fixing
+  it rather than preserving the breakage.
+- `gallery/fengyuan/2013fengyuan.html` had a stale, structurally
+  different nav (flat links, old labels, a dead `leader.html` target)
+  — standardized onto the same shared nav as every other page.
+- Deleted `gallery/meichu/2023.html` (0 bytes, no content).
+- Updated the 39 now-stale `gallery/...html` `<loc>` entries in
+  `sitemap.xml` to `.php` (left the one unrelated, already-stale
+  `leader.html` entry alone — out of scope here, same as the sitemap
+  domain left stale in the root-page pass).
+- Converting onto the shared partials also silently fixed several
+  smaller pre-existing inconsistencies for free: `wind.html`'s
+  `href="ttps://..."` typo (missing leading `h`, ×2), the old stale
+  `zh-tw.facebook.com` footer link on every one of these 56 pages
+  (now matches the current `www.facebook.com/p/...` link), and minor
+  copyright-text/CDN-protocol variants across a handful of files.
+
+Used a one-off Python script (not committed) to do the mechanical
+head/nav/footer boilerplate swap across all 56 files, since the two
+tiers are each internally ~100% uniform; spot-checked its output
+against every noted one-off before applying it.
+
+Verified every converted file with `php -l`, then ran the whole site
+through PHP's built-in server: all 55 converted pages (56 minus the
+deleted empty one) return 200, old `.html` URLs now 404, exactly one
+`href="#"` per page (now also disabling gallery pages' own "活動照片"
+self-link, via `$activePage = 'gallery'`, which they'd never done
+before), and nav links from gallery pages into root pages now resolve
+instead of 404ing. Playwright screenshots at mobile (375px) and
+desktop (1280px) widths on one listing page and one detail page
+confirm the nav, header image, and image grid/lightbox all render
+correctly.

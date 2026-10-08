@@ -8,10 +8,13 @@
  *   $extraHead       - raw HTML to inject just before </head> for page-specific <style>/<script> (optional)
  *   $bootstrapCss    - bootstrap stylesheet filename under css/; defaults to 'bootstrap.min.css'
  *                      (intro_member.php historically uses 'bootstrap4.min.css')
+ *   $basePath        - relative prefix to css/ for pages nested below the document root,
+ *                      e.g. '../' or '../../' (optional, defaults to '' for root-level pages)
  */
 $pageKeywords = $pageKeywords ?? null;
 $extraHead = $extraHead ?? '';
 $bootstrapCss = $bootstrapCss ?? 'bootstrap.min.css';
+$basePath = $basePath ?? '';
 ?>
 <!DOCTYPE html>
 <html lang="zh-tw">
@@ -29,8 +32,8 @@ $bootstrapCss = $bootstrapCss ?? 'bootstrap.min.css';
 
     <title><?= $pageTitle ?></title>
 
-    <link rel="stylesheet" href="css/<?= $bootstrapCss ?>">
-    <link rel="stylesheet" href="css/<?= $pageCss ?>">
+    <link rel="stylesheet" href="<?= $basePath ?>css/<?= $bootstrapCss ?>">
+    <link rel="stylesheet" href="<?= $basePath ?>css/<?= $pageCss ?>">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
 <?= $extraHead ?>
 </head>

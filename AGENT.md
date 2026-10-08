@@ -58,7 +58,7 @@ project/
 - `config/db.php` centralizes database configuration; keep sensitive values in environment variables, not in code or a committed `.env`.
 - `src/Database.php` is responsible for creating the PDO connection.
 - `src/Services/ArticleService.php` centralizes reading, creating, updating, and deleting articles.
-- `src/Helpers/` holds input handling and response utilities shared across pages, not page-specific business logic.
+- `src/Helpers/` holds input handling and response utilities shared across pages, not page-specific business logic. **Done**: `sanitize.php` (POST field reads, the rich-text base64 decode, the time-or-now fallback) and `response.php` (JSON/HTML headers, success/fail/error output) now back `public/admin/{articleToDB,articleUpdate,deleteArticle,edit_heading,edit_date,edit_text}.php` and `public/api/event.php` — see MAINTENANCE_LOG.md. Deliberately introduces no new escaping/validation that wasn't already there.
 
 ### Admin-Side Security
 
@@ -74,3 +74,7 @@ The site now uses the `config/`/`src/`/`templates/`/`public/` layout above. `pub
 4. Public entry point moved to `public/`, with `config/`/`src/`/`templates/` deployed outside the web root instead of alongside it.
 
 **Operational note for the next deploy**: `.env` (and `config/db.local.php`, if still used) must live at `/home/badadmin/.env` (the account home directory), not inside `public_html` — this changed with step 4. Confirm it's been placed there before relying on a fresh deploy.
+
+## Remaining from the original suggested tree
+
+`composer.json` (done), `src/Helpers/` (done), and `tests/` (done — `tests/Unit/` with PHPUnit, alongside the pre-existing, unrelated `tests/legacy/`) are all in place now. Still not present, and not currently planned: `config/app.php`, `templates/pages/` (the site doesn't use a page/view split — each `public/*.php` page is still self-contained), and `public/assets/` (css/js/fonts/img stayed directly under `public/` rather than nested, to keep existing asset URLs unchanged).

@@ -1,15 +1,16 @@
-<?php    
-    header("Content-Type:text/html;charset=utf-8");
-    $select_op=$_POST['select_op'];
+<?php
+require_once __DIR__ . '/../../src/Helpers/sanitize.php';
+require_once __DIR__ . '/../../src/Helpers/response.php';
 
-    if($select_op != ""){
+send_html_header();
+$select_op = post_nonempty_string('select_op');
 
-        require_once __DIR__ . '/../../config/db.php';
-        require_once __DIR__ . '/../../src/Services/ArticleService.php';
-        $articleService = new ArticleService($db);
+if ($select_op !== null) {
+    require_once __DIR__ . '/../../config/db.php';
+    require_once __DIR__ . '/../../src/Services/ArticleService.php';
+    $articleService = new ArticleService($db);
 
-        $row_result = $articleService->getByTimer($select_op);
+    $row_result = $articleService->getByTimer($select_op);
 
-        echo $row_result ? $row_result['heading'] : '';
-    }
-?>
+    echo $row_result ? $row_result['heading'] : '';
+}

@@ -1,15 +1,14 @@
 <?php
-	require_once __DIR__ . '/../../config/db.php';
-	require_once __DIR__ . '/../../src/Services/ArticleService.php';
-	$articleService = new ArticleService($db);
+require_once __DIR__ . '/../../src/Helpers/sanitize.php';
+require_once __DIR__ . '/../../src/Helpers/response.php';
+require_once __DIR__ . '/../../config/db.php';
+require_once __DIR__ . '/../../src/Services/ArticleService.php';
+$articleService = new ArticleService($db);
 
-	$timer = $_POST['timer'];
+$timer = post_or_default('timer');
 
-	if($articleService->delete($timer)){
-    	echo "success";
-    	return true;
-    }else{
-    	echo "fail";
-    	return false;
-    }
-?>
+if ($articleService->delete($timer)) {
+    respond_success();
+} else {
+    respond_failure();
+}

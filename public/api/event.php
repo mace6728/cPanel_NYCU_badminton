@@ -1,7 +1,9 @@
 <?php
 require_once('DB.php');
 require_once __DIR__ . '/../../src/Services/ArticleService.php';
-header('Content-Type: application/json; charset=utf-8');
+require_once __DIR__ . '/../../src/Helpers/response.php';
+
+send_json_header();
 
 $articleService = new ArticleService($db);
 

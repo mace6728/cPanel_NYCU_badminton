@@ -1,4 +1,8 @@
 deployment:
   tasks:
     - export DEPLOYPATH=/home/badadmin/public_html/
-    - /usr/bin/rsync -rt --delete --chmod=Du=rwx,Dg=rx,Do=rx,Fu=rw,Fg=r,Fo=r --exclude='.well-known' --exclude='config/db.local.php' --exclude='.env' ./ $DEPLOYPATH
+    - export APPPATH=/home/badadmin/
+    - /usr/bin/rsync -rt --delete --chmod=Du=rwx,Dg=rx,Do=rx,Fu=rw,Fg=r,Fo=r --exclude='.well-known' public/ $DEPLOYPATH
+    - /usr/bin/rsync -rt --chmod=Du=rwx,Dg=rx,Do=rx,Fu=rw,Fg=r,Fo=r --exclude='db.local.php' config/ ${APPPATH}config/
+    - /usr/bin/rsync -rt --chmod=Du=rwx,Dg=rx,Do=rx,Fu=rw,Fg=r,Fo=r src/ ${APPPATH}src/
+    - /usr/bin/rsync -rt --chmod=Du=rwx,Dg=rx,Do=rx,Fu=rw,Fg=r,Fo=r templates/ ${APPPATH}templates/

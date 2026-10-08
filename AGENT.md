@@ -62,20 +62,15 @@ project/
 
 ### Admin-Side Security
 
-After removing site login authentication, the admin pages and write endpoints under `public/admin/` could become callable by anyone. If article management features are still needed, access restrictions (IP allowlist, HTTP Basic Authentication, etc.) must be set up via cPanel/Apache before deployment; otherwise the admin write features should be disabled or removed. Don't assume the admin side is protected just because the login page has been disabled.
+After removing site login authentication, the admin pages and write endpoints under `public/admin/` could become callable by anyone. **Resolved**: `public/admin/.htaccess` already enforces HTTP Basic Authentication (`AuthUserFile "/home/badadmin/.htpasswds/public_html/admin/passwd"`, set up via cPanel's password-protect-directory feature) — don't remove this without setting up an equivalent restriction first.
 
-## Incremental cPanel Migration
+## cPanel Migration — complete
 
-The site currently uses the project root as its public root. The `public/` layout above is the eventual cleanup target, not something to move all pages and assets into at once — still migrate in batches, confirming each batch works before the next.
+The site now uses the `config/`/`src/`/`templates/`/`public/` layout above. `public/` is the document root (deployed to `/home/badadmin/public_html/`); `config/`, `src/`, and `templates/` deploy separately to `/home/badadmin/` (siblings of `public_html`, not web-reachable) — see README.md's Deployment Notes and MAINTENANCE_LOG.md for the full history of how this happened in stages:
 
-Public paths at the root (the 20-odd top-level pages) may now change, since old `.html` URLs are allowed to stop resolving (confirmed: no redirect needed for the retired `.html` paths — see the root-page `templates/partials/` pass in MAINTENANCE_LOG.md). This is narrower than moving to `public/`: it only covers renaming root-level pages from `.html` to `.php` so they can use `<?php require ?>` partials, not relocating the document root. The `gallery/*.html` subpages are a separate, larger batch — still deferred, still `.html`, still linked with relative `../` paths, untouched by the root-page pass.
+1. Root-level pages renamed `.html` → `.php` to use `<?php require ?>` partials (old `.html` URLs confirmed safe to stop resolving — no redirect needed).
+2. `gallery/*.html` (56 files) migrated onto the same shared partials.
+3. Deployment pipeline audited end to end (the `.env`-deletion risk, and dead image references, both fixed).
+4. Public entry point moved to `public/`, with `config/`/`src/`/`templates/` deployed outside the web root instead of alongside it.
 
-The first phase adopted the following logical layering:
-
-```text
-config/
-src/
-templates/
-```
-
-`templates/partials/head.php`, `navbar.php`, and `footer.php` now hold the shared chrome for the root-level pages (see MAINTENANCE_LOG.md). Before moving the public entry point to `public/`, still confirm asset paths and the deployment process end to end — that part of the migration remains deferred.
+**Operational note for the next deploy**: `.env` (and `config/db.local.php`, if still used) must live at `/home/badadmin/.env` (the account home directory), not inside `public_html` — this changed with step 4. Confirm it's been placed there before relying on a fresh deploy.

@@ -309,3 +309,76 @@ own, so `.env` wasn't actually usable before this without a loader.
 Verified the parser against the real `.env` file directly (not just
 `php -l`) — confirms the password's special characters (`%`, `!`)
 round-trip correctly through `putenv()`/`getenv()`.
+
+## 2026-10-07 — Extracted templates/partials/{head,navbar,footer}.php for the root pages
+
+Continuing AGENT.md's layering phase: the 20 root-level pages (18
+previously `.html`, plus `index.php`/`allposts.php`) all copy-pasted
+the same ~100-line `<head>`/navbar boilerplate and the same footer —
+confirmed via survey that none of them used PHP includes anywhere, it
+was pure duplication. `admin/administrator.php` is a different theme
+entirely (Material Design Lite, no public nav/footer) and was left
+alone; `gallery/*.html` subpages are a separate, larger batch, still
+deferred and still `.html`.
+
+Doing this required deciding how `<?php require ?>` partials could
+work on pages that were `.html`. Updated AGENT.md's phasing to drop
+the "don't touch public paths yet" restriction for this one case:
+root pages are renamed `.html` → `.php`, and old `.html` URLs are
+allowed to 404 (no redirect layer — confirmed acceptable).
+
+- Added `templates/partials/head.php` (doctype through `<body>`,
+  parameterized by `$pageTitle`/`$pageDescription`/`$pageCss`/
+  `$pageKeywords`/`$extraHead`/`$bootstrapCss`), `navbar.php`
+  (parameterized by `$activePage`, which page's own nav link renders
+  as `href="#"` instead of a live link — matching the pre-existing
+  behavior of disabling the self-link), and `footer.php` (footer +
+  closing scripts/tags, parameterized by `$extraScripts`).
+- Converted all 18 root `.html` pages to `.php` (`git mv` + rewired
+  head/nav/footer to the partials), and switched `index.php` and
+  `allposts.php` (already `.php`) onto the same partials.
+- `intro_member.php` needed `$bootstrapCss = 'bootstrap4.min.css'` —
+  it was the one page using `bootstrap4.min.css` instead of
+  `bootstrap.min.css`; the partial supports this as an override.
+- `competition.php` and `normalCompetition.php` keep their
+  page-specific `<style>` block and inline `.seeWhole` toggle
+  `<script>` via `$extraHead`/`$extraScripts` (captured with
+  `ob_start()`/`ob_get_clean()`). `allposts.php` and `index.php` keep
+  their own inline `<script>` blocks the same way.
+- Deleted the root-level `university_cup.html` — confirmed orphaned:
+  not linked from any nav or page, not in `sitemap.xml`, and its own
+  asset links used `../img/...`/`../css/...` (relative paths that
+  would point *above* the webroot from the actual root, i.e. already
+  broken). The real, linked gallery page is `gallery/university_cup.html`.
+- Unifying the footer fixed two pre-existing inconsistencies without
+  extra effort: the stale `zh-tw.facebook.com` link on `index.php`/
+  `allposts.php`/`JinZhuRecord.php` now matches the newer
+  `www.facebook.com/p/...` link every other page used, and
+  `JinZhuRecord.php`'s footer (previously minified with a broken empty
+  `<li></li>` where the Facebook link should have been, plus a stray
+  unbalanced `</div>` before `</body>`) now renders the same footer as
+  every other page.
+- Fixed a malformed `<meta name="keywords" ...>` tag in `index.php`
+  that was missing its closing `>` (merged into the next meta tag) —
+  carried over as `$pageKeywords` on `head.php`.
+- Updated `sitemap.xml`'s `<loc>` entries for the 17 renamed pages it
+  referenced (`al_President.php` wasn't listed there to begin with).
+  Left the sitemap's domain (`badminton.nctu.edu.tw`, already stale
+  pre-existing) untouched — out of scope here.
+- Found and fixed one stray cross-link the nav-only search missed:
+  `index.php`'s body content linked `al_announcement.html` directly
+  (not through the nav) — updated to `al_announcement.php`.
+
+Verified every touched file with `php -l`, then ran the whole site
+through PHP's built-in server: all 18 converted pages return 200 with
+no warnings/errors, exactly one `href="#"` each (confirming the
+active-page nav-disabling logic works), the right page-specific CSS
+loads (including `intro_member.php`'s `bootstrap4.min.css`), and old
+`.html` URLs now 404 as expected (no redirect was set up). Also
+confirmed `competition.php`'s/`normalCompetition.php`'s inline
+style/script survived the refactor intact.
+`index.php`/`allposts.php` hit a fatal error in local testing
+(`mb_internal_encoding()` undefined) — that's the local sandbox's PHP
+missing the `mbstring` extension that `config/db.php` has always
+required, unrelated to this change; the head/nav rendered correctly
+before that point.

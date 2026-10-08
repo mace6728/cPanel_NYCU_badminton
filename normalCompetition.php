@@ -1,18 +1,9 @@
-<!DOCTYPE html>
-<html lang="zh-tw">
-
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="國立交通大學羽球隊 · 交大羽球隊 · NCTU Badminton · 一般組比賽戰績 · competition achievements of nctu badminton">
-    <meta name="author" content="國立交通大學羽球隊 交大羽球隊 NCTU Badminton">
-
-    <title>一般組比賽戰績 | 國立陽明交通大學羽球隊 NYCU Badminton</title>
-
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/competition.min.css">
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+<?php
+$pageTitle = '一般組比賽戰績 | 國立陽明交通大學羽球隊 NYCU Badminton';
+$pageDescription = '國立交通大學羽球隊 · 交大羽球隊 · NCTU Badminton · 一般組比賽戰績 · competition achievements of nctu badminton';
+$pageCss = 'competition.min.css';
+ob_start();
+?>
     <style>
       .normal-card{
         box-shadow: 0 2px 4px 0 rgba(0,0,0,.2),0 6px 20px 0 rgba(0,0,0,.19)!important;
@@ -86,90 +77,12 @@
         padding:5px 0;
       }
     </style>
-</head>
-
-<body>
-
-    <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
-        <div class="container-fluid">
-            <div class="navbar-header page-scroll">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="https://badminton.club.nycu.edu.tw">陽明交大羽球隊</a>
-            </div>
-
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <a href="https://badminton.club.nycu.edu.tw">最新消息</a>
-                    </li>
-                    <!--.nav>li-->
-                    <li>
-                        <a role="button">關於球隊<span class="caret"></span></a>
-                        <!--.nav>li>ul-->
-                        <ul>
-                            <li><a href="intro_team.html">球隊簡介<span class="upCaret"></span></a></li>
-                            <li><a href="coach_liao.html" class="coach">廖威彰教練<span class="upCaret"></span></a></li>
-                            <li><a href="coach_wang.html" class="coach">王志全教練<span class="upCaret"></span></a></li>
-                            <!--.nav>li>ul>li-->
-                            <li>
-                              <a role="button">隊長介紹<span class="rightCaret"></span></a>
-                              <!--.nav>li>ul>li>ul-->
-                              <ul class="nav collapse">
-                                <!--.nav>li>ul>li>ul>li-->
-                                <li><a href="maleLeader.html">男隊長<span class="leftCaret"></span></a></li>
-                                <li><a href="femaleLeader.html">女隊長<span class="leftCaret"></span></a></li>
-                              </ul>
-                            </li>
-                            <li><a href="intro_member.html">球員介紹<span class="upCaret"></span></a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a role="button">比賽戰績<span class="caret"></span></a>
-                        <ul>
-                            <li><a href="competition.html">公開組<span class="upCaret"></span></a></li>
-                            <li><a href="#">一般組<span class="upCaret"></span></a></li>
-                        </ul>
-                    </li>
-                    <li>
-                      <a role="button">勁竹盃<span class="caret"></span></a>
-                      <ul>
-                        <li><a href="JinZhu.html">簡介<span class="upCaret"></span></a></li>
-                        <li><a href="JinZhuRecord.html">歷年成績<span class="upCaret"></span></a></li>
-                      </ul>
-                    </li>
-                    <li>
-                      <a role="button">風城盃<span class="caret"></span></a>
-                      <ul>
-                        <li><a href="wind.html">簡介<span class="upCaret"></span></a></li>
-                        <li><a href="windRecord.html">歷年成績<span class="upCaret"></span></a></li>
-                      </ul>
-                    </li>
-                    <li>
-                        <a href="extraordinary.html">名人堂</a>
-                    </li>
-                    <li>
-                        <a role="button">校友會<span class="caret"></span></a>
-                        <ul>
-                            <li><a href="al_announcement.html">公告<span class="upCaret"></span></a></li>
-                            <li><a href="al_architecture.html">組織架構<span class="upCaret"></span></a></li>
-                            <li><a href="al_President.html">歷屆會長<span class="upCaret"></span></a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="gallery.html">活動照片</a>
-                    </li>
-                    <li>
-                        <a href="contact.html">聯絡資訊</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+<?php
+$extraHead = ob_get_clean();
+require __DIR__ . '/templates/partials/head.php';
+$activePage = 'normalCompetition';
+require __DIR__ . '/templates/partials/navbar.php';
+?>
 
     <header class="intro-header" style="background-image: url('img/competiotion_bg.jpg')">
         <div class="container">
@@ -1077,52 +990,18 @@
           <div class="clearfix hidden-md hidden-sm hidden-xs"></div>
         </div>
     </div>
-    <hr>
-    <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                    <ul class="list-inline text-center">
-                        <li>
-                            <a href="https://www.facebook.com/p/%E4%BA%A4%E9%80%9A%E5%A4%A7%E5%AD%B8%E7%BE%BD%E7%90%83%E9%9A%8A-NCTU_Badminton-100054456520532/?locale=zh_TW">
-                                <span class="fa-stack fa-lg">
-                                    <i class="fa fa-circle fa-stack-2x" aria-hidden="true"></i>
-                                    <i class="fa fa-facebook fa-stack-1x fa-inverse" aria-hidden="true"></i>
-                                </span>
-                            </a>
-                        </li>
-                    </ul>
-                    <p class="copyright text-muted">NYCU Badminton 2022</p>
-                </div>
-            </div>
-        </div>
-    </footer>
-    <script src="js/jquery.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+<?php
+ob_start();
+?>
     <script src="js/blog.min.js"></script>
     <script>
-      $(".seeWhole").click(function(){
-        // $(this).parent().toggleClass("open");
-        $(this).toggleClass("open");
-        // $(this).prev().toggle(500);
-        $(this).prev().toggleClass("open", 0.5);
-        // $(this).prev().toggle('slow', function() {
-        //     console.log($(this))
-        //     $(this).toggleClass('open');
-        // });
-        // $(this).prev().parent().prev().toggleClass("open");
+      $(".seeWhole").click(function () {
+        var $toggle = $(this);
+        $toggle.toggleClass("open");
+        $toggle.prev(".wholeList").toggleClass("open");
       });
     </script>
-
-</body>
-<!--
-95 大運會男乙組 第一名
-95 大運會女乙組 第一名
-94 大運會男乙組 第一名
-94 大運會女乙組 第一名
-92 大運會男乙組 第三名
-92 大運會女乙組 第一名
-91 大專盃女乙組 第二名
-90 大專盃女乙組 第二名
--->
-</html>
+<?php
+$extraScripts = ob_get_clean();
+require __DIR__ . '/templates/partials/footer.php';
+?>

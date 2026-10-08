@@ -66,9 +66,11 @@ After removing site login authentication, the admin pages and write endpoints un
 
 ## Incremental cPanel Migration
 
-The site currently uses the project root as its public root, and existing URLs depend on the original file paths. So the `public/` layout above is the cleanup target, not something to move all pages and assets into at once. First clean up the database connection and article logic, then plan compatibility through the cPanel document root or URL rewrites, and migrate in batches while confirming old URLs still work.
+The site currently uses the project root as its public root. The `public/` layout above is the eventual cleanup target, not something to move all pages and assets into at once — still migrate in batches, confirming each batch works before the next.
 
-The first phase can adopt the following logical layering without immediately changing the public paths:
+Public paths at the root (the 20-odd top-level pages) may now change, since old `.html` URLs are allowed to stop resolving (confirmed: no redirect needed for the retired `.html` paths — see the root-page `templates/partials/` pass in MAINTENANCE_LOG.md). This is narrower than moving to `public/`: it only covers renaming root-level pages from `.html` to `.php` so they can use `<?php require ?>` partials, not relocating the document root. The `gallery/*.html` subpages are a separate, larger batch — still deferred, still `.html`, still linked with relative `../` paths, untouched by the root-page pass.
+
+The first phase adopted the following logical layering:
 
 ```text
 config/
@@ -76,4 +78,4 @@ src/
 templates/
 ```
 
-The header, footer, and navbar shared across pages can be gradually extracted into `templates/partials/`; only after confirming URL rewrites, asset paths, and the deployment process should moving the public entry point to `public/` be considered.
+`templates/partials/head.php`, `navbar.php`, and `footer.php` now hold the shared chrome for the root-level pages (see MAINTENANCE_LOG.md). Before moving the public entry point to `public/`, still confirm asset paths and the deployment process end to end — that part of the migration remains deferred.

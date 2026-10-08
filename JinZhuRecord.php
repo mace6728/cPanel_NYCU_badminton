@@ -1,67 +1,11 @@
-<!DOCTYPE html>
-<html lang="zh-tw">
-<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="國立交通大學羽球隊 · 交大羽球隊 · NCTU Badminton · 勁竹盃羽球賽"><meta name="author" content="國立交通大學羽球隊 交大羽球隊 NCTU Badminton">
-	<title>勁竹盃歷年成績 | 國立陽明交通大學羽球隊 NYCU Badminton</title>
-	<link href="css/bootstrap.min.css" rel="stylesheet" />
-	<link href="css/JinZhu.min.css" rel="stylesheet" />
-	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" />
-</head>
-<body>
-<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
-<div class="container-fluid">
-<div class="navbar-header page-scroll"><button class="navbar-toggle" data-target="#bs-example-navbar-collapse-1" data-toggle="collapse" type="button"><span class="sr-only">Toggle navigation</span></button><a class="navbar-brand" href="https://badminton.club.nycu.edu.tw">陽明交大羽球隊</a></div>
-
-<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-<ul class="nav navbar-nav navbar-right">
-	<li><a href="https://badminton.club.nycu.edu.tw">最新消息</a></li>
-	<!--.nav>li-->
-	<li><a role="button">關於球隊</a> <!--.nav>li>ul-->
-	<ul>
-		<li><a href="intro_team.html">球隊簡介</a></li>
-		<li><a class="coach" href="coach_liao.html">廖威彰教練</a></li>
-		<li><a class="coach" href="coach_wang.html">王志全教練</a></li>
-		<!--.nav>li>ul>li-->
-		<li><a role="button">隊長介紹</a> <!--.nav>li>ul>li>ul-->
-		<ul class="nav collapse"><!--.nav>li>ul>li>ul>li-->
-			<li><a href="maleLeader.html">男隊長</a></li>
-			<li><a href="femaleLeader.html">女隊長</a></li>
-		</ul>
-		</li>
-		<li><a href="intro_member.html">球員介紹</a></li>
-	</ul>
-	</li>
-	<li><a role="button">比賽戰績</a>
-	<ul>
-		<li><a href="competition.html">公開組</a></li>
-		<li><a href="normalCompetition.html">一般組</a></li>
-	</ul>
-	</li>
-	<li><a role="button">勁竹盃</a>
-	<ul>
-		<li><a href="JinZhu.html">簡介</a></li>
-		<li><a href="#">歷年成績</a></li>
-	</ul>
-	</li>
-	<li><a role="button">風城盃</a>
-	<ul>
-		<li><a href="wind.html">簡介</a></li>
-		<li><a href="windRecord.html">歷年成績</a></li>
-	</ul>
-	</li>
-	<li><a href="extraordinary.html">名人堂</a></li>
-	<li><a role="button">校友會</a>
-	<ul>
-		<li><a href="al_announcement.html">公告</a></li>
-		<li><a href="al_architecture.html">組織架構</a></li>
-		<li><a href="al_President.html">歷屆會長</a></li>
-	</ul>
-	</li>
-	<li><a href="gallery.html">活動照片</a></li>
-	<li><a href="contact.html">聯絡資訊</a></li>
-</ul>
-</div>
-</div>
-</nav>
+<?php
+$pageTitle = '勁竹盃歷年成績 | 國立陽明交通大學羽球隊 NYCU Badminton';
+$pageDescription = '國立交通大學羽球隊 · 交大羽球隊 · NCTU Badminton · 勁竹盃羽球賽';
+$pageCss = 'JinZhu.min.css';
+require __DIR__ . '/templates/partials/head.php';
+$activePage = 'JinZhuRecord';
+require __DIR__ . '/templates/partials/navbar.php';
+?>
 
 <header class="intro-header" style="background-image: url('img/index.jpg')">
 <div class="container">
@@ -457,20 +401,7 @@
 </div>
 </div>
 
-<hr />
-<footer>
-<div class="container">
-<div class="row">
-<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-<ul class="list-inline text-center">
-	<li></li>
-</ul>
-
-<p class="copyright text-muted">NYCU Badminton 2022</p>
-</div>
-</div>
-</div>
-</footer>
-<script src="js/jquery.js"></script><script src="js/bootstrap.min.js"></script><script src="js/blog.min.js"></script></div>
-</body>
-</html>
+<?php
+$extraScripts = '<script src="js/blog.min.js"></script>' . "\n";
+require __DIR__ . '/templates/partials/footer.php';
+?>

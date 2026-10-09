@@ -1,6 +1,14 @@
 <?php
 class ArticleService
 {
+    // Public pages (index.php, allposts.php) match on these exact strings.
+    public const CATEGORIES = [
+        '一般消息' => 'newest',
+        '比賽成果' => 'gameResult',
+        '競賽資訊' => 'competition',
+        '球隊活動' => 'activity',
+    ];
+
     private PDO $db;
 
     public function __construct(PDO $db)
@@ -71,5 +79,17 @@ class ArticleService
         $sth = $this->db->prepare('DELETE FROM `article` WHERE `timer` = ?');
 
         return $sth->execute([$timer]);
+    }
+
+    // `timer` is the legacy primary key: a YmdHis timestamp. Bump it if two
+    // articles are created within the same second.
+    public function newTimer(): string
+    {
+        $timer = date('YmdHis');
+        while ($this->getByTimer($timer) !== null) {
+            $timer = (string) ((int) $timer + 1);
+        }
+
+        return $timer;
     }
 }

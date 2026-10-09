@@ -654,3 +654,26 @@ that the classmap autoloader resolves both classes correctly. Added
 `/vendor/` to `.gitignore`. Left every existing `require_once
 __DIR__.'/../src/...'` call as-is — swapping them for
 `vendor/autoload.php` would be a behavior change, out of scope here.
+
+## 2026-10-08 — Admin CMS UI/UX refactor
+
+- Rewrote `admin/administrator.php` as one server-rendered page: article list
+  (search + category filter, edit/delete per row) and a single editor view
+  for new/edit. Dropped Material Design Lite (1.0.4 from a Google bucket),
+  jQuery, the three per-field XHR endpoints, the base64 content hack, and the
+  hidden-tab switching.
+- Removed `admin/articleToDB.php`, `articleUpdate.php`, `deleteArticle.php`,
+  `edit_date.php`, `edit_heading.php`, `edit_text.php`, `css/administrator.min.css`
+  (nothing else referenced them). All writes now POST to `administrator.php`
+  and redirect back with a flash message.
+- Added CSRF tokens (Basic Auth credentials are auto-resent by the browser, so
+  forged cross-site POSTs were previously authenticated), server-side
+  validation (category whitelist, non-empty title/body, real date),
+  `display_errors` off, and escaped all output in the admin.
+- **`tinyMCE.init` was never called** in the old page, so the editor was
+  almost certainly not loading; it is now initialised in `admin/admin.js`.
+- `ArticleService`: added `CATEGORIES` and `newTimer()` (avoids a primary-key
+  collision when two articles are created in the same second).
+- New `src/Helpers/admin.php` (escape/CSRF/flash helpers).
+- Verified with `php -S` against SQLite: create, validate, edit, delete, CSRF
+  rejection. TinyMCE rendering was **not** checked in a real browser.

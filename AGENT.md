@@ -20,10 +20,9 @@ project/
 │   ├── contact.php
 │   ├── gallery.php
 │   ├── admin/
-│   │   ├── administrator.php
-│   │   ├── articleToDB.php
-│   │   ├── articleUpdate.php
-│   │   └── deleteArticle.php
+│   │   ├── administrator.php   (list + editor + save/delete handlers)
+│   │   ├── admin.css
+│   │   └── admin.js
 │   └── assets/
 │       ├── css/
 │       ├── js/

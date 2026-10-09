@@ -14,7 +14,15 @@
             "src/"
         ]
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/Unit/"
+        }
+    },
     "config": {
         "optimize-autoloader": true
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^13.4"
     }
 }

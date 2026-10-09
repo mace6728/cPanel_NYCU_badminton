@@ -677,3 +677,52 @@ __DIR__.'/../src/...'` call as-is — swapping them for
 - New `src/Helpers/admin.php` (escape/CSRF/flash helpers).
 - Verified with `php -S` against SQLite: create, validate, edit, delete, CSRF
   rejection. TinyMCE rendering was **not** checked in a real browser.
+
+## 2026-10-08 — Extracted src/Helpers/; added tests/Unit with PHPUnit
+
+The last two deferred items from the restructuring, done together since
+writing real tests was the most direct way to verify the extraction
+didn't change behavior.
+
+**`src/Helpers/sanitize.php` and `response.php`**: a research pass
+across `public/admin/*.php` and `public/api/event.php` found genuine
+byte-identical or near-identical duplication — `$_POST[...] ?? default`
+field reads, `base64_decode()` of rich-text content, a `!empty($_POST[
+'time']) ? ... : date(...)` fallback, and the `$select_op != ""` guard,
+all repeated across `articleToDB.php`, `articleUpdate.php`,
+`deleteArticle.php`, and the three `edit_*.php` field-lookup endpoints;
+plus duplicated `header('Content-Type: ...')` lines and `echo
+"success"/"fail"`/`http_response_code()` + message patterns. Extracted
+these into named functions and rewired all 7 files plus `api/event.php`
+to call them.
+
+Deliberately did *not* add new escaping/validation — none existed
+before (confirmed via grep: no `htmlspecialchars`/`filter_var` on any
+`$_POST`/`$_GET` value anywhere in these files), and `content` holds
+TinyMCE-authored HTML that `htmlspecialchars` would corrupt. The two
+subtly-different existing guards — `$select_op != ""` vs. `empty($timer)`
+— were kept as two distinct helper functions rather than merged into
+one, since `empty()` and `!= ""` disagree on the string `"0"`.
+`articleUpdate.php`'s `"Error: "` vs. `articleToDB.php`'s `"Logic
+Error: "` catch-block prefix was kept as a parameter rather than
+unified, to avoid changing either endpoint's actual output text.
+
+**`tests/Unit/`** (PHPUnit, added via `composer require --dev
+phpunit/phpunit`, PSR-4-autoloaded via `autoload-dev` in
+`composer.json`, config in `phpunit.xml` scoped to `tests/Unit` only —
+`tests/legacy/` is untouched, same dead files as before): `ArticleServiceTest`
+exercises every method against a real in-memory SQLite PDO connection
+(its SQL turned out fully SQLite-portable — backtick identifiers,
+positional `?` params, no MySQL-only syntax); `SanitizeHelpersTest` and
+`ResponseHelpersTest` cover the new helpers directly, except
+`send_html_header()`/`send_json_header()` (thin `header()` wrappers —
+untestable under PHPUnit's CLI SAPI without extra tooling, excluded by
+convention). 22 tests, 34 assertions, all passing.
+
+Also ran a full manual integration smoke test — a sandboxed
+`public_html` against a SQLite-backed stub `config/db.php` under PHP's
+built-in server — POSTing through every refactored endpoint
+(create → edit_heading/date/text lookups → update → delete →
+`api/event.php`) and confirming output byte-for-byte matches the
+pre-refactor behavior, including the exact error-prefix and empty-
+guard cases.

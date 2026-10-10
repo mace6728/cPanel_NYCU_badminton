@@ -34,35 +34,7 @@ require __DIR__ . '/../templates/partials/navbar.php';
                         require_once __DIR__ . '/../src/Services/ArticleService.php';
                         $articleService = new ArticleService($db);
                         foreach ($articleService->getLatest(5) as $row) {
-                            if ($row['category']=="一般消息"){
-                                echo '<div class="link">
-                                        <div class="click">
-                                            <div class="first"><span class="category_newest">'.$row['category'].'</span><span class="date">'.$row['date'].'</span></div>'.$row['heading'].'<i class="fa fa-chevron-down"></i>
-                                        </div>
-                                        <div class="menu">'.$row['content'].'</div>
-                                      </div>';
-                            }else if($row['category']=="比賽成果"){
-                                echo '<div class="link">
-                                        <div class="click">
-                                            <div class="first"><span class="category_gameResult">'.$row['category'].'</span><span class="date">'.$row['date'].'</span></div>'.$row['heading'].'<i class="fa fa-chevron-down"></i>
-                                        </div>
-                                        <div class="menu">'.$row['content'].'</div>
-                                      </div>';
-                            }else if($row['category']=="競賽資訊"){
-                                echo '<div class="link">
-                                        <div class="click">
-                                            <div class="first"><span class="category_competition">'.$row['category'].'</span><span class="date">'.$row['date'].'</span></div>'.$row['heading'].'<i class="fa fa-chevron-down"></i>
-                                        </div>
-                                        <div class="menu">'.$row['content'].'</div>
-                                      </div>';
-                            }else{//team activity
-                                echo '<div class="link">
-                                        <div class="click">
-                                            <div class="first"><span class="category_activity">'.$row['category'].'</span><span class="date">'.$row['date'].'</span></div>'.$row['heading'].'<i class="fa fa-chevron-down"></i>
-                                        </div>
-                                        <div class="menu">'.$row['content'].'</div>
-                                      </div>';
-                            }
+                            require __DIR__ . '/../templates/partials/article_item.php';
                         }
                     ?>
                 </div>

@@ -71,7 +71,7 @@ h1 small { font-size: 14px; font-weight: 400; color: var(--muted); margin-left: 
 .chip { padding: 4px 14px; font: inherit; font-size: 14px; border: 1px solid var(--border); border-radius: 999px; background: var(--surface); cursor: pointer; }
 .chip.is-active { background: var(--primary); border-color: var(--primary); color: #fff; }
 
-input[type=text], input[type=date], input[type=search] {
+input[type=text], input[type=date], input[type=search], select {
     width: 100%;
     padding: 9px 12px;
     font: inherit;
@@ -134,3 +134,5 @@ table.list { width: 100%; border-collapse: collapse; }
     .list th:nth-child(1), .list td:nth-child(1) { display: none; }
     .row .field:not(.grow) { flex: 1 1 100%; }
 }
+
+.tag-draft { display: inline-block; margin-left: 6px; padding: 0 8px; font-size: 12px; border: 1px solid var(--border); border-radius: 999px; color: var(--muted); }

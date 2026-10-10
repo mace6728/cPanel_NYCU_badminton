@@ -12,71 +12,95 @@ final class ArticleServiceTest extends TestCase
 
     protected function setUp(): void
     {
+        // SQLite stand-in for the MySQL schema in database/schema.sql.
         $pdo = new PDO('sqlite::memory:');
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+        $pdo->exec('CREATE TABLE category (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL UNIQUE, slug TEXT NOT NULL UNIQUE)');
+        $pdo->exec("INSERT INTO category (id, name, slug) VALUES (1, '一般消息', 'newest'), (2, '比賽成果', 'gameResult')");
         $pdo->exec(
-            'CREATE TABLE article (
-                category TEXT,
-                heading TEXT,
-                content TEXT,
-                date TEXT,
-                timer TEXT PRIMARY KEY
-            )'
+            "CREATE TABLE article (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                category_id INTEGER NOT NULL REFERENCES category(id),
+                heading TEXT NOT NULL,
+                content TEXT NOT NULL,
+                date TEXT NOT NULL,
+                status TEXT NOT NULL DEFAULT 'published',
+                created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+            )"
         );
 
         $this->service = new ArticleService($pdo);
     }
 
-    public function testCreateAndGetByTimer(): void
+    public function testCreateReturnsIdAndGetByIdJoinsCategory(): void
     {
-        $created = $this->service->create('公告', '標題', '內容', '2026-01-01 00:00:00', '1');
+        $id = $this->service->create(2, '標題', '內容', '2026-01-01');
 
-        $this->assertTrue($created);
-
-        $row = $this->service->getByTimer('1');
+        $row = $this->service->getById($id);
         $this->assertNotNull($row);
         $this->assertSame('標題', $row['heading']);
+        $this->assertSame('比賽成果', $row['category']);
+        $this->assertSame('gameResult', $row['category_slug']);
+        $this->assertSame('published', $row['status']);
     }
 
-    public function testGetByTimerReturnsNullWhenMissing(): void
+    public function testGetByIdReturnsNullWhenMissing(): void
     {
-        $this->assertNull($this->service->getByTimer('does-not-exist'));
+        $this->assertNull($this->service->getById(999));
+    }
+
+    public function testGetCategories(): void
+    {
+        $this->assertSame(['一般消息', '比賽成果'], array_column($this->service->getCategories(), 'name'));
     }
 
     public function testUpdate(): void
     {
-        $this->service->create('公告', '原標題', '原內容', '2026-01-01 00:00:00', '2');
-        $this->service->update('2', '公告', '新標題', '新內容', '2026-02-02 00:00:00');
+        $id = $this->service->create(1, '原標題', '原內容', '2026-01-01');
+        $this->service->update($id, 2, '新標題', '新內容', '2026-02-02', 'draft');
 
-        $row = $this->service->getByTimer('2');
+        $row = $this->service->getById($id);
         $this->assertSame('新標題', $row['heading']);
-        $this->assertSame('2026-02-02 00:00:00', $row['date']);
+        $this->assertSame('2026-02-02', $row['date']);
+        $this->assertSame('比賽成果', $row['category']);
+        $this->assertSame('draft', $row['status']);
     }
 
     public function testDelete(): void
     {
-        $this->service->create('公告', '標題', '內容', '2026-01-01 00:00:00', '3');
-        $this->service->delete('3');
+        $id = $this->service->create(1, '標題', '內容', '2026-01-01');
+        $this->service->delete($id);
 
-        $this->assertNull($this->service->getByTimer('3'));
+        $this->assertNull($this->service->getById($id));
     }
 
-    public function testGetAllOrderedByDateDescending(): void
+    public function testGetAllOrderedByDateThenIdDescending(): void
     {
-        $this->service->create('公告', 'A', '內容', '2026-01-01 00:00:00', '1');
-        $this->service->create('公告', 'B', '內容', '2026-03-01 00:00:00', '2');
+        $this->service->create(1, 'A', '內容', '2026-01-01');
+        $this->service->create(1, 'B', '內容', '2026-03-01');
+        $this->service->create(1, 'C', '內容', '2026-03-01');
 
-        $rows = $this->service->getAll();
+        $this->assertSame(['C', 'B', 'A'], array_column($this->service->getAll(), 'heading'));
+    }
 
-        $this->assertSame('B', $rows[0]['heading']);
-        $this->assertSame('A', $rows[1]['heading']);
+    public function testPublicListingsHideDrafts(): void
+    {
+        $this->service->create(1, 'Live', '內容', '2026-01-01');
+        $this->service->create(1, 'Hidden', '內容', '2026-01-02', 'draft');
+
+        $this->assertSame(['Live'], array_column($this->service->getAll(), 'heading'));
+        $this->assertSame(['Live'], array_column($this->service->getLatest(5), 'heading'));
+        $this->assertSame(['Live'], array_column($this->service->getByCategory('newest'), 'heading'));
+        $this->assertSame(['Hidden', 'Live'], array_column($this->service->getAll(false), 'heading'));
     }
 
     public function testGetLatestRespectsLimit(): void
     {
-        $this->service->create('公告', 'A', '內容', '2026-01-01 00:00:00', '1');
-        $this->service->create('公告', 'B', '內容', '2026-02-01 00:00:00', '2');
-        $this->service->create('公告', 'C', '內容', '2026-03-01 00:00:00', '3');
+        $this->service->create(1, 'A', '內容', '2026-01-01');
+        $this->service->create(1, 'B', '內容', '2026-02-01');
+        $this->service->create(1, 'C', '內容', '2026-03-01');
 
         $rows = $this->service->getLatest(2);
 
@@ -84,25 +108,14 @@ final class ArticleServiceTest extends TestCase
         $this->assertSame('C', $rows[0]['heading']);
     }
 
-    public function testGetByCategory(): void
+    public function testGetByCategoryFiltersBySlug(): void
     {
-        $this->service->create('公告', 'A', '內容', '2026-01-01 00:00:00', '1');
-        $this->service->create('賽事', 'B', '內容', '2026-01-02 00:00:00', '2');
+        $this->service->create(1, 'A', '內容', '2026-01-01');
+        $this->service->create(2, 'B', '內容', '2026-01-02');
 
-        $rows = $this->service->getByCategory('賽事');
+        $rows = $this->service->getByCategory('gameResult');
 
         $this->assertCount(1, $rows);
         $this->assertSame('B', $rows[0]['heading']);
-    }
-
-    public function testGetAllOrderedByTimer(): void
-    {
-        $this->service->create('公告', 'A', '內容', '2026-01-01 00:00:00', '2');
-        $this->service->create('公告', 'B', '內容', '2026-01-01 00:00:00', '1');
-
-        $rows = $this->service->getAllOrderedByTimer();
-
-        $this->assertSame('A', $rows[0]['heading']);
-        $this->assertSame('B', $rows[1]['heading']);
     }
 }

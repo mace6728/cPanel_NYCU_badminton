@@ -726,3 +726,31 @@ built-in server — POSTing through every refactored endpoint
 `api/event.php`) and confirming output byte-for-byte matches the
 pre-refactor behavior, including the exact error-prefix and empty-
 guard cases.
+
+## 2026-10-10 — Normalized the `article` schema
+
+New schema in `database/schema.sql`; upgrade script in
+`database/migrations/2026-10-10_normalize_article_schema.sql`.
+
+- `category CHAR(4)` (only worked because every name is 4 characters, and the
+  names were hardcoded in PHP) -> `category` lookup table + `article.category_id`
+  foreign key. `slug` is the CSS suffix (`category_newest` ...).
+- `timer BIGINT AUTO_INCREMENT` (filled by hand with a `YmdHis` timestamp) ->
+  plain `id`. Existing values are kept, so old IDs stay valid.
+- `heading` 50 -> 255; `content` LONGTEXT -> MEDIUMTEXT; `date` now NOT NULL;
+  utf8 -> utf8mb4 (emoji no longer fail to save).
+- Added `status` (draft/published), `created_at`, `updated_at`, and an index
+  on `(category_id, date)`. Public pages and `api/event.php` only show
+  published articles; the admin lists drafts too and has a status picker.
+- `ArticleService` now returns rows joined with the category and takes
+  category IDs; `getByTimer`/`getAllOrderedByTimer`/`newTimer`/`CATEGORIES`
+  are gone. Listings order by `date DESC, id DESC`.
+- `index.php` and `allposts.php` repeated the same 20-line item markup 6
+  times; replaced with `templates/partials/article_item.php`. Headings are
+  now HTML-escaped there (they were echoed raw before).
+- Tests: `ArticleServiceTest` rewritten for the new schema (23 tests pass); the
+  admin, public pages and API were exercised end to end against SQLite.
+- **Not tested against real MySQL** (none available in the dev environment):
+  take a backup and run the migration step by step, checking the `SELECT`s.
+- **Deploy order:** run the migration, then deploy right away; the old code
+  breaks once the migration runs and the new code needs it.

@@ -7,9 +7,11 @@ send_json_header();
 
 $articleService = new ArticleService($db);
 
-if(isset($_GET['id']) && !empty($_GET['id'])) {
-    $row = $articleService->getByTimer($_GET['id']);
-    if ($row !== null) {
+$id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
+if ($id) {
+    $row = $articleService->getById($id);
+    // Drafts are admin-only.
+    if ($row !== null && $row['status'] === 'published') {
         echo json_encode($row);
     }
 }

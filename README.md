@@ -5,6 +5,7 @@ This project is a traditional PHP website deployed via cPanel. `public/` is the 
 ## Directory Layout
 
 - `config/`, `src/`, `templates/`: database config, the `ArticleService`/`Database` classes, and the shared head/navbar/footer partials. Not deployed to the web root — see Deployment Notes.
+- `database/`: `schema.sql` (fresh install) and `migrations/` (upgrade an existing database; read the header of each file before running). Not deployed.
 - `public/`: the document root. Public pages, PHP entry points, the 404 page, sitemap, and search-engine verification files all live here, at the same paths they've always had.
   - `public/admin/`: site administration features.
   - `public/api/`: API endpoints called from the browser.

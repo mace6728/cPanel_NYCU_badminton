@@ -5,7 +5,7 @@
  *
  *   administrator.php            list of articles
  *   administrator.php?new=1      editor, blank
- *   administrator.php?edit=ID    editor for an existing article (ID = `timer`)
+ *   administrator.php?edit=ID    editor for an existing article
  *   POST action=save|delete      write handlers; redirect back with a flash message
  */
 require_once __DIR__ . '/../../config/db.php';
@@ -16,7 +16,7 @@ ini_set('display_errors', '0');
 header('Cache-Control: no-store');
 
 $articles = new ArticleService($db);
-$categories = ArticleService::CATEGORIES;
+$categories = array_column($articles->getCategories(), null, 'id'); // id => [id, name, slug]
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $back = 'administrator.php';
@@ -27,26 +27,33 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         $action = $_POST['action'] ?? '';
-        $timer = trim($_POST['timer'] ?? '');
+        $id = (int) ($_POST['id'] ?? 0);
 
         if ($action === 'delete') {
-            if ($timer === '' || $articles->getByTimer($timer) === null) {
+            if ($id < 1 || $articles->getById($id) === null) {
                 throw new RuntimeException('找不到要刪除的文章。');
             }
-            $articles->delete($timer);
+            $articles->delete($id);
             flash_set('success', '文章已刪除。');
         } elseif ($action === 'save') {
-            $category = $_POST['category'] ?? '';
+            $categoryId = (int) ($_POST['category_id'] ?? 0);
+            $status = $_POST['status'] ?? '';
             $heading = trim($_POST['heading'] ?? '');
             $content = $_POST['content'] ?? '';
             $date = trim($_POST['date'] ?? '') ?: date('Y-m-d');
-            $back = $timer !== '' ? 'administrator.php?edit=' . urlencode($timer) : 'administrator.php?new=1';
+            $back = $id > 0 ? 'administrator.php?edit=' . $id : 'administrator.php?new=1';
 
-            if (!isset($categories[$category])) {
+            if (!isset($categories[$categoryId])) {
                 throw new RuntimeException('請選擇有效的類別。');
+            }
+            if (!in_array($status, ArticleService::STATUSES, true)) {
+                throw new RuntimeException('請選擇有效的狀態。');
             }
             if ($heading === '') {
                 throw new RuntimeException('標題不能為空。');
+            }
+            if (mb_strlen($heading) > 255) {
+                throw new RuntimeException('標題不能超過 255 個字。');
             }
             // Allow media-only posts, reject genuinely empty bodies.
             if (trim(strip_tags($content, '<img><iframe><video>')) === '') {
@@ -56,15 +63,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 throw new RuntimeException('日期格式需為 yyyy-mm-dd。');
             }
 
-            if ($timer === '') {
-                $timer = $articles->newTimer();
-                $articles->create($category, $heading, $content, $date, $timer);
-                flash_set('success', '文章已發表。');
+            if ($id === 0) {
+                $articles->create($categoryId, $heading, $content, $date, $status);
+                flash_set('success', $status === 'draft' ? '草稿已儲存。' : '文章已發表。');
             } else {
-                if ($articles->getByTimer($timer) === null) {
+                if ($articles->getById($id) === null) {
                     throw new RuntimeException('找不到要修改的文章。');
                 }
-                $articles->update($timer, $category, $heading, $content, $date);
+                $articles->update($id, $categoryId, $heading, $content, $date, $status);
                 flash_set('success', '文章已更新。');
             }
             $back = 'administrator.php';
@@ -91,17 +97,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 $flash = flash_take();
 $csrf = csrf_token();
 $editing = isset($_GET['new']) || isset($_GET['edit']);
-$article = ['timer' => '', 'category' => array_key_first($categories), 'heading' => '', 'content' => '', 'date' => date('Y-m-d')];
+$article = ['id' => 0, 'category_id' => array_key_first($categories), 'heading' => '', 'content' => '', 'date' => date('Y-m-d'), 'status' => 'published'];
 
 if ($editing) {
     if (isset($_GET['edit'])) {
-        $found = $articles->getByTimer((string) $_GET['edit']);
+        $found = $articles->getById((int) $_GET['edit']);
         if ($found === null) {
             flash_set('error', '找不到這篇文章。');
             header('Location: administrator.php', true, 303);
             exit;
         }
         $article = array_merge($article, $found);
+        $article['id'] = (int) $article['id'];
         $article['date'] = substr((string) $article['date'], 0, 10);
     }
     // After a failed save, restore what the user typed instead of losing it.
@@ -112,7 +119,7 @@ if ($editing) {
     }
 } else {
     unset($_SESSION['draft']);
-    $rows = $articles->getAll();
+    $rows = $articles->getAll(false);
 }
 ?>
 <!DOCTYPE html>
@@ -145,8 +152,8 @@ if ($editing) {
             <input type="search" id="search" placeholder="搜尋標題…" aria-label="搜尋標題">
             <div class="chips" id="chips">
                 <button type="button" class="chip is-active" data-cat="">全部</button>
-                <?php foreach ($categories as $name => $slug): ?>
-                    <button type="button" class="chip" data-cat="<?= h($name) ?>"><?= h($name) ?></button>
+                <?php foreach ($categories as $cat): ?>
+                    <button type="button" class="chip" data-cat="<?= h($cat['name']) ?>"><?= h($cat['name']) ?></button>
                 <?php endforeach; ?>
             </div>
         </div>
@@ -161,14 +168,14 @@ if ($editing) {
                     <?php foreach ($rows as $row): ?>
                         <tr data-cat="<?= h($row['category']) ?>" data-title="<?= h(mb_strtolower($row['heading'])) ?>">
                             <td class="nowrap"><?= h(substr((string) $row['date'], 0, 10)) ?></td>
-                            <td><span class="badge badge-<?= h($categories[$row['category']] ?? 'newest') ?>"><?= h($row['category']) ?></span></td>
-                            <td><a href="administrator.php?edit=<?= h((string) $row['timer']) ?>"><?= h($row['heading']) ?></a></td>
+                            <td><span class="badge badge-<?= h($row['category_slug']) ?>"><?= h($row['category']) ?></span></td>
+                            <td><a href="administrator.php?edit=<?= (int) $row['id'] ?>"><?= h($row['heading']) ?></a><?= $row['status'] === 'draft' ? ' <span class="tag-draft">草稿</span>' : '' ?></td>
                             <td class="col-actions">
-                                <a class="btn btn-small" href="administrator.php?edit=<?= h((string) $row['timer']) ?>">編輯</a>
+                                <a class="btn btn-small" href="administrator.php?edit=<?= (int) $row['id'] ?>">編輯</a>
                                 <form method="post" class="inline" data-confirm="確定要刪除「<?= h($row['heading']) ?>」嗎？此操作無法復原。">
                                     <input type="hidden" name="csrf" value="<?= h($csrf) ?>">
                                     <input type="hidden" name="action" value="delete">
-                                    <input type="hidden" name="timer" value="<?= h((string) $row['timer']) ?>">
+                                    <input type="hidden" name="id" value="<?= (int) $row['id'] ?>">
                                     <button class="btn btn-small btn-danger">刪除</button>
                                 </form>
                             </td>
@@ -182,22 +189,22 @@ if ($editing) {
 
     <?php else: ?>
         <div class="page-head">
-            <h1><?= $article['timer'] === '' ? '發表新文章' : '編輯文章' ?></h1>
+            <h1><?= $article['id'] === 0 ? '發表新文章' : '編輯文章' ?></h1>
             <a class="btn" href="administrator.php">← 返回列表</a>
         </div>
 
         <form method="post" class="card editor" id="editor-form">
             <input type="hidden" name="csrf" value="<?= h($csrf) ?>">
             <input type="hidden" name="action" value="save">
-            <input type="hidden" name="timer" value="<?= h((string) $article['timer']) ?>">
+            <input type="hidden" name="id" value="<?= (int) $article['id'] ?>">
 
             <fieldset class="field">
                 <legend>類別</legend>
                 <div class="segmented">
-                    <?php foreach ($categories as $name => $slug): ?>
+                    <?php foreach ($categories as $cat): ?>
                         <label>
-                            <input type="radio" name="category" value="<?= h($name) ?>" <?= $article['category'] === $name ? 'checked' : '' ?>>
-                            <span><?= h($name) ?></span>
+                            <input type="radio" name="category_id" value="<?= (int) $cat['id'] ?>" <?= (int) $article['category_id'] === (int) $cat['id'] ? 'checked' : '' ?>>
+                            <span><?= h($cat['name']) ?></span>
                         </label>
                     <?php endforeach; ?>
                 </div>
@@ -206,11 +213,18 @@ if ($editing) {
             <div class="row">
                 <div class="field grow">
                     <label for="heading">標題</label>
-                    <input type="text" id="heading" name="heading" value="<?= h($article['heading']) ?>" required autofocus>
+                    <input type="text" id="heading" name="heading" value="<?= h($article['heading']) ?>" maxlength="255" required autofocus>
                 </div>
                 <div class="field">
                     <label for="date">日期</label>
                     <input type="date" id="date" name="date" value="<?= h($article['date']) ?>" required>
+                </div>
+                <div class="field">
+                    <label for="status">狀態</label>
+                    <select id="status" name="status">
+                        <option value="published" <?= $article['status'] === 'published' ? 'selected' : '' ?>>公開</option>
+                        <option value="draft" <?= $article['status'] === 'draft' ? 'selected' : '' ?>>草稿（不公開）</option>
+                    </select>
                 </div>
             </div>
 
@@ -220,16 +234,16 @@ if ($editing) {
             </div>
 
             <div class="actions">
-                <button class="btn btn-primary" type="submit"><?= $article['timer'] === '' ? '發表' : '儲存變更' ?></button>
+                <button class="btn btn-primary" type="submit">儲存</button>
                 <a class="btn" href="administrator.php">取消</a>
             </div>
         </form>
 
-        <?php if ($article['timer'] !== ''): ?>
+        <?php if ($article['id'] !== 0): ?>
             <form method="post" class="danger-zone" data-confirm="確定要刪除這篇文章嗎？此操作無法復原。">
                 <input type="hidden" name="csrf" value="<?= h($csrf) ?>">
                 <input type="hidden" name="action" value="delete">
-                <input type="hidden" name="timer" value="<?= h((string) $article['timer']) ?>">
+                <input type="hidden" name="id" value="<?= (int) $article['id'] ?>">
                 <span>刪除這篇文章</span>
                 <button class="btn btn-danger">刪除</button>
             </form>

@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     try {
         if (!csrf_valid($_POST['csrf'] ?? null)) {
-            throw new RuntimeException('頁面已過期，請重新整理後再試一次。');
+            throw new RuntimeException('頁面已過期，請重新整理後再試一次');
         }
 
         $action = $_POST['action'] ?? '';
@@ -31,10 +31,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if ($action === 'delete') {
             if ($timer === '' || $articles->getByTimer($timer) === null) {
-                throw new RuntimeException('找不到要刪除的文章。');
+                throw new RuntimeException('找不到要刪除的文章');
             }
             $articles->delete($timer);
-            flash_set('success', '文章已刪除。');
+            flash_set('success', '文章已刪除');
         } elseif ($action === 'save') {
             $category = $_POST['category'] ?? '';
             $heading = trim($_POST['heading'] ?? '');
@@ -43,33 +43,33 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $back = $timer !== '' ? 'administrator.php?edit=' . urlencode($timer) : 'administrator.php?new=1';
 
             if (!isset($categories[$category])) {
-                throw new RuntimeException('請選擇有效的類別。');
+                throw new RuntimeException('請選擇有效的類別');
             }
             if ($heading === '') {
-                throw new RuntimeException('標題不能為空。');
+                throw new RuntimeException('標題不能為空');
             }
             // Allow media-only posts, reject genuinely empty bodies.
             if (trim(strip_tags($content, '<img><iframe><video>')) === '') {
-                throw new RuntimeException('內文不能為空。');
+                throw new RuntimeException('內文不能為空');
             }
             if (!preg_match('/^\d{4}-\d{2}-\d{2}$/', $date) || !checkdate((int) substr($date, 5, 2), (int) substr($date, 8, 2), (int) substr($date, 0, 4))) {
-                throw new RuntimeException('日期格式需為 yyyy-mm-dd。');
+                throw new RuntimeException('日期格式需為 yyyy-mm-dd');
             }
 
             if ($timer === '') {
                 $timer = $articles->newTimer();
                 $articles->create($category, $heading, $content, $date, $timer);
-                flash_set('success', '文章已發表。');
+                flash_set('success', '文章已發表');
             } else {
                 if ($articles->getByTimer($timer) === null) {
-                    throw new RuntimeException('找不到要修改的文章。');
+                    throw new RuntimeException('找不到要修改的文章');
                 }
                 $articles->update($timer, $category, $heading, $content, $date);
-                flash_set('success', '文章已更新。');
+                flash_set('success', '文章已更新');
             }
             $back = 'administrator.php';
         } else {
-            throw new RuntimeException('未知的操作。');
+            throw new RuntimeException('未知的操作');
         }
     } catch (RuntimeException $e) {
         flash_set('error', $e->getMessage());
@@ -78,7 +78,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     } catch (PDOException $e) {
         error_log('admin DB error: ' . $e->getMessage());
-        flash_set('error', '資料庫錯誤，請稍後再試。');
+        flash_set('error', '資料庫錯誤，請稍後再試');
         if (($_POST['action'] ?? '') === 'save') {
             $_SESSION['draft'] = $_POST;
         }
@@ -97,7 +97,7 @@ if ($editing) {
     if (isset($_GET['edit'])) {
         $found = $articles->getByTimer((string) $_GET['edit']);
         if ($found === null) {
-            flash_set('error', '找不到這篇文章。');
+            flash_set('error', '找不到這篇文章');
             header('Location: administrator.php', true, 303);
             exit;
         }
@@ -152,7 +152,7 @@ if ($editing) {
         </div>
 
         <?php if (!$rows): ?>
-            <p class="empty">還沒有任何文章。<a href="administrator.php?new=1">發表第一篇</a></p>
+            <p class="empty">還沒有任何文章<a href="administrator.php?new=1">發表第一篇</a></p>
         <?php else: ?>
             <div class="table-wrap">
                 <table class="list">
@@ -165,7 +165,7 @@ if ($editing) {
                             <td><a href="administrator.php?edit=<?= h((string) $row['timer']) ?>"><?= h($row['heading']) ?></a></td>
                             <td class="col-actions">
                                 <a class="btn btn-small" href="administrator.php?edit=<?= h((string) $row['timer']) ?>">編輯</a>
-                                <form method="post" class="inline" data-confirm="確定要刪除「<?= h($row['heading']) ?>」嗎？此操作無法復原。">
+                                <form method="post" class="inline" data-confirm="確定要刪除「<?= h($row['heading']) ?>」嗎？此操作無法復原">
                                     <input type="hidden" name="csrf" value="<?= h($csrf) ?>">
                                     <input type="hidden" name="action" value="delete">
                                     <input type="hidden" name="timer" value="<?= h((string) $row['timer']) ?>">
@@ -177,7 +177,7 @@ if ($editing) {
                     </tbody>
                 </table>
             </div>
-            <p class="empty" id="no-match" hidden>沒有符合的文章。</p>
+            <p class="empty" id="no-match" hidden>沒有符合的文章</p>
         <?php endif; ?>
 
     <?php else: ?>
@@ -226,7 +226,7 @@ if ($editing) {
         </form>
 
         <?php if ($article['timer'] !== ''): ?>
-            <form method="post" class="danger-zone" data-confirm="確定要刪除這篇文章嗎？此操作無法復原。">
+            <form method="post" class="danger-zone" data-confirm="確定要刪除這篇文章嗎？此操作無法復原">
                 <input type="hidden" name="csrf" value="<?= h($csrf) ?>">
                 <input type="hidden" name="action" value="delete">
                 <input type="hidden" name="timer" value="<?= h((string) $article['timer']) ?>">

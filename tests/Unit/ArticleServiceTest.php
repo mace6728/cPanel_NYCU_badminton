@@ -25,7 +25,6 @@ final class ArticleServiceTest extends TestCase
                 heading TEXT NOT NULL,
                 content TEXT NOT NULL,
                 date TEXT NOT NULL,
-                status TEXT NOT NULL DEFAULT 'published',
                 created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
                 updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
             )"
@@ -43,7 +42,6 @@ final class ArticleServiceTest extends TestCase
         $this->assertSame('標題', $row['heading']);
         $this->assertSame('比賽成果', $row['category']);
         $this->assertSame('gameResult', $row['category_slug']);
-        $this->assertSame('published', $row['status']);
     }
 
     public function testGetByIdReturnsNullWhenMissing(): void
@@ -59,13 +57,12 @@ final class ArticleServiceTest extends TestCase
     public function testUpdate(): void
     {
         $id = $this->service->create(1, '原標題', '原內容', '2026-01-01');
-        $this->service->update($id, 2, '新標題', '新內容', '2026-02-02', 'draft');
+        $this->service->update($id, 2, '新標題', '新內容', '2026-02-02');
 
         $row = $this->service->getById($id);
         $this->assertSame('新標題', $row['heading']);
         $this->assertSame('2026-02-02', $row['date']);
         $this->assertSame('比賽成果', $row['category']);
-        $this->assertSame('draft', $row['status']);
     }
 
     public function testDelete(): void
@@ -83,17 +80,6 @@ final class ArticleServiceTest extends TestCase
         $this->service->create(1, 'C', '內容', '2026-03-01');
 
         $this->assertSame(['C', 'B', 'A'], array_column($this->service->getAll(), 'heading'));
-    }
-
-    public function testPublicListingsHideDrafts(): void
-    {
-        $this->service->create(1, 'Live', '內容', '2026-01-01');
-        $this->service->create(1, 'Hidden', '內容', '2026-01-02', 'draft');
-
-        $this->assertSame(['Live'], array_column($this->service->getAll(), 'heading'));
-        $this->assertSame(['Live'], array_column($this->service->getLatest(5), 'heading'));
-        $this->assertSame(['Live'], array_column($this->service->getByCategory('newest'), 'heading'));
-        $this->assertSame(['Hidden', 'Live'], array_column($this->service->getAll(false), 'heading'));
     }
 
     public function testGetLatestRespectsLimit(): void

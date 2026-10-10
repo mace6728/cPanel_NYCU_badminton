@@ -37,7 +37,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             flash_set('success', '文章已刪除');
         } elseif ($action === 'save') {
             $categoryId = (int) ($_POST['category_id'] ?? 0);
-            $status = $_POST['status'] ?? '';
             $heading = trim($_POST['heading'] ?? '');
             $content = $_POST['content'] ?? '';
             $date = trim($_POST['date'] ?? '') ?: date('Y-m-d');
@@ -45,9 +44,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             if (!isset($categories[$categoryId])) {
                 throw new RuntimeException('請選擇有效的類別');
-            }
-            if (!in_array($status, ArticleService::STATUSES, true)) {
-                throw new RuntimeException('請選擇有效的狀態');
             }
             if ($heading === '') {
                 throw new RuntimeException('標題不能為空');
@@ -64,13 +60,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
 
             if ($id === 0) {
-                $articles->create($categoryId, $heading, $content, $date, $status);
-                flash_set('success', $status === 'draft' ? '草稿已儲存' : '文章已發表');
+                $articles->create($categoryId, $heading, $content, $date);
+                flash_set('success', '文章已發表');
             } else {
                 if ($articles->getById($id) === null) {
                     throw new RuntimeException('找不到要修改的文章');
                 }
-                $articles->update($id, $categoryId, $heading, $content, $date, $status);
+                $articles->update($id, $categoryId, $heading, $content, $date);
                 flash_set('success', '文章已更新');
             }
             $back = 'administrator.php';
@@ -97,7 +93,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 $flash = flash_take();
 $csrf = csrf_token();
 $editing = isset($_GET['new']) || isset($_GET['edit']);
-$article = ['id' => 0, 'category_id' => array_key_first($categories), 'heading' => '', 'content' => '', 'date' => date('Y-m-d'), 'status' => 'published'];
+$article = ['id' => 0, 'category_id' => array_key_first($categories), 'heading' => '', 'content' => '', 'date' => date('Y-m-d')];
 
 if ($editing) {
     if (isset($_GET['edit'])) {
@@ -119,7 +115,7 @@ if ($editing) {
     }
 } else {
     unset($_SESSION['draft']);
-    $rows = $articles->getAll(false);
+    $rows = $articles->getAll();
 }
 ?>
 <!DOCTYPE html>
@@ -169,7 +165,7 @@ if ($editing) {
                         <tr data-cat="<?= h($row['category']) ?>" data-title="<?= h(mb_strtolower($row['heading'])) ?>">
                             <td class="nowrap"><?= h(substr((string) $row['date'], 0, 10)) ?></td>
                             <td><span class="badge badge-<?= h($row['category_slug']) ?>"><?= h($row['category']) ?></span></td>
-                            <td><a href="administrator.php?edit=<?= (int) $row['id'] ?>"><?= h($row['heading']) ?></a><?= $row['status'] === 'draft' ? ' <span class="tag-draft">草稿</span>' : '' ?></td>
+                            <td><a href="administrator.php?edit=<?= (int) $row['id'] ?>"><?= h($row['heading']) ?></a></td>
                             <td class="col-actions">
                                 <a class="btn btn-small" href="administrator.php?edit=<?= (int) $row['id'] ?>">編輯</a>
                                 <form method="post" class="inline" data-confirm="確定要刪除「<?= h($row['heading']) ?>」嗎？此操作無法復原">
@@ -218,13 +214,6 @@ if ($editing) {
                 <div class="field">
                     <label for="date">日期</label>
                     <input type="date" id="date" name="date" value="<?= h($article['date']) ?>" required>
-                </div>
-                <div class="field">
-                    <label for="status">狀態</label>
-                    <select id="status" name="status">
-                        <option value="published" <?= $article['status'] === 'published' ? 'selected' : '' ?>>公開</option>
-                        <option value="draft" <?= $article['status'] === 'draft' ? 'selected' : '' ?>>草稿（不公開）</option>
-                    </select>
                 </div>
             </div>
 

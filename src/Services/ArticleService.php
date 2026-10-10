@@ -2,14 +2,12 @@
 /**
  * Articles live in `article`, joined to `category` for display. Rows come back
  * with `category` (display name) and `category_slug` (CSS/URL key) alongside
- * the article's own columns. Public listings only see published articles.
+ * the article's own columns.
  */
 class ArticleService
 {
-    public const STATUSES = ['draft', 'published'];
-
     private const SELECT = 'SELECT a.`id`, a.`category_id`, c.`name` AS `category`, c.`slug` AS `category_slug`,
-            a.`heading`, a.`content`, a.`date`, a.`status`, a.`created_at`, a.`updated_at`
+            a.`heading`, a.`content`, a.`date`, a.`created_at`, a.`updated_at`
         FROM `article` a
         JOIN `category` c ON c.`id` = a.`category_id`';
 
@@ -28,17 +26,14 @@ class ArticleService
         return $this->db->query('SELECT `id`, `name`, `slug` FROM `category` ORDER BY `id`')->fetchAll();
     }
 
-    /** Public listing by default; pass false in the admin to include drafts. */
-    public function getAll(bool $publishedOnly = true): array
+    public function getAll(): array
     {
-        $where = $publishedOnly ? " WHERE a.`status` = 'published'" : '';
-
-        return $this->db->query(self::SELECT . $where . self::ORDER)->fetchAll();
+        return $this->db->query(self::SELECT . self::ORDER)->fetchAll();
     }
 
     public function getLatest(int $limit): array
     {
-        $sth = $this->db->prepare(self::SELECT . " WHERE a.`status` = 'published'" . self::ORDER . ' LIMIT ?');
+        $sth = $this->db->prepare(self::SELECT . self::ORDER . ' LIMIT ?');
         $sth->bindValue(1, $limit, PDO::PARAM_INT);
         $sth->execute();
 
@@ -47,7 +42,7 @@ class ArticleService
 
     public function getByCategory(string $slug): array
     {
-        $sth = $this->db->prepare(self::SELECT . " WHERE c.`slug` = ? AND a.`status` = 'published'" . self::ORDER);
+        $sth = $this->db->prepare(self::SELECT . ' WHERE c.`slug` = ?' . self::ORDER);
         $sth->execute([$slug]);
 
         return $sth->fetchAll();
@@ -63,24 +58,24 @@ class ArticleService
     }
 
     /** @return int the new article's id */
-    public function create(int $categoryId, string $heading, string $content, string $date, string $status = 'published'): int
+    public function create(int $categoryId, string $heading, string $content, string $date): int
     {
         $sth = $this->db->prepare(
-            'INSERT INTO `article` (`category_id`, `heading`, `content`, `date`, `status`) VALUES (?, ?, ?, ?, ?)'
+            'INSERT INTO `article` (`category_id`, `heading`, `content`, `date`) VALUES (?, ?, ?, ?)'
         );
-        $sth->execute([$categoryId, $heading, $content, $date, $status]);
+        $sth->execute([$categoryId, $heading, $content, $date]);
 
         return (int) $this->db->lastInsertId();
     }
 
-    public function update(int $id, int $categoryId, string $heading, string $content, string $date, string $status): bool
+    public function update(int $id, int $categoryId, string $heading, string $content, string $date): bool
     {
         $sth = $this->db->prepare(
-            'UPDATE `article` SET `category_id` = ?, `heading` = ?, `content` = ?, `date` = ?, `status` = ?,
+            'UPDATE `article` SET `category_id` = ?, `heading` = ?, `content` = ?, `date` = ?,
                 `updated_at` = CURRENT_TIMESTAMP WHERE `id` = ?'
         );
 
-        return $sth->execute([$categoryId, $heading, $content, $date, $status, $id]);
+        return $sth->execute([$categoryId, $heading, $content, $date, $id]);
     }
 
     public function delete(int $id): bool

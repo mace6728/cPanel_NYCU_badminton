@@ -135,4 +135,3 @@ table.list { width: 100%; border-collapse: collapse; }
     .row .field:not(.grow) { flex: 1 1 100%; }
 }
 
-.tag-draft { display: inline-block; margin-left: 6px; padding: 0 8px; font-size: 12px; border: 1px solid var(--border); border-radius: 999px; color: var(--muted); }

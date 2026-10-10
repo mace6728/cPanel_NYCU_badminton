@@ -10,8 +10,7 @@ $articleService = new ArticleService($db);
 $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
 if ($id) {
     $row = $articleService->getById($id);
-    // Drafts are admin-only.
-    if ($row !== null && $row['status'] === 'published') {
+    if ($row !== null) {
         echo json_encode($row);
     }
 }

@@ -23,7 +23,6 @@ CREATE TABLE `article` (
   `heading`     VARCHAR(255) NOT NULL,
   `content`     MEDIUMTEXT NOT NULL,
   `date`        DATE NOT NULL,
-  `status`      ENUM('draft','published') NOT NULL DEFAULT 'published',
   `created_at`  DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at`  DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),

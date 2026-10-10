@@ -765,3 +765,13 @@ and the earlier log entries already referred to but that was never committed.
 README/AGENT.md updated. **Check on the server** that
 `/home/badadmin/config/db.local.php` exists with `$dbPassword` set; `.env`
 alone no longer works.
+
+## 2026-10-10 — Removed the draft/published `status` feature
+
+Dropped the `status` column and everything built on it: the status picker and
+draft tag in the admin, the published-only filters in `ArticleService` and
+`api/event.php`, `ArticleService::STATUSES`, the draft test, and the column
+in `database/schema.sql`. `getAll()` no longer takes a flag. Every article is
+public again. Production needs `database/migrations/2026-10-10_drop_article_status.sql`
+(deploy the code first, then run it). (The unrelated `$_SESSION['draft']`,
+which restores your text after a failed save, stays.)

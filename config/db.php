@@ -10,21 +10,6 @@ require_once __DIR__ . '/../src/Database.php';
 
 mb_internal_encoding('UTF-8');
 
-$envFile = __DIR__ . '/../.env';
-if (is_file($envFile)) {
-    foreach (file($envFile, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES) as $line) {
-        $line = trim($line);
-        if ($line === '' || $line[0] === '#' || !str_contains($line, '=')) {
-            continue;
-        }
-        [$key, $value] = explode('=', $line, 2);
-        $key = trim($key);
-        if ($key !== '' && getenv($key) === false) {
-            putenv($key . '=' . trim($value));
-        }
-    }
-}
-
 $dbServer   = getenv('DB_SERVER')   ?: 'localhost';
 $dbName     = getenv('DB_NAME')     ?: 'badadmin_users';
 $dbUser     = getenv('DB_USER')     ?: 'badadmin_admin';

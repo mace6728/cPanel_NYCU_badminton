@@ -1,0 +1,11 @@
+<?php
+// Copy to config/db.local.php on the server and fill in the real password.
+// db.local.php is gitignored and excluded from the deploy rsync, so it
+// survives deploys. On cPanel it belongs at /home/badadmin/config/db.local.php
+// (NOT inside public_html).
+//
+// Only $dbPassword is required; set the others to override the defaults in db.php.
+$dbPassword = 'replace-with-rotated-password';
+// $dbServer = 'localhost';
+// $dbName   = 'badadmin_users';
+// $dbUser   = 'badadmin_admin';

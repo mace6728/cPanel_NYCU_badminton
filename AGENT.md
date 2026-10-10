@@ -37,7 +37,6 @@ project/
 │       ├── home.php
 │       └── articles.php
 ├── tests/
-├── .env.example
 ├── composer.json
 └── README.md
 ```
@@ -54,7 +53,7 @@ project/
 
 ### Keeping Article and Database Responsibilities
 
-- `config/db.php` centralizes database configuration; keep sensitive values in environment variables, not in code or a committed `.env`.
+- `config/db.php` centralizes database configuration; keep sensitive values out of the repo: real environment variables if the host has them, otherwise the gitignored `config/db.local.php` (template: `config/db.local.php.example`). There is no `.env` loader.
 - `src/Database.php` is responsible for creating the PDO connection.
 - `src/Services/ArticleService.php` centralizes reading, creating, updating, and deleting articles.
 - `src/Helpers/` holds input handling and response utilities shared across pages, not page-specific business logic. **Done**: `sanitize.php` (POST field reads, the rich-text base64 decode, the time-or-now fallback) and `response.php` (JSON/HTML headers, success/fail/error output) now back `public/admin/{articleToDB,articleUpdate,deleteArticle,edit_heading,edit_date,edit_text}.php` and `public/api/event.php` — see MAINTENANCE_LOG.md. Deliberately introduces no new escaping/validation that wasn't already there.
@@ -72,7 +71,7 @@ The site now uses the `config/`/`src/`/`templates/`/`public/` layout above. `pub
 3. Deployment pipeline audited end to end (the `.env`-deletion risk, and dead image references, both fixed).
 4. Public entry point moved to `public/`, with `config/`/`src/`/`templates/` deployed outside the web root instead of alongside it.
 
-**Operational note for the next deploy**: `.env` (and `config/db.local.php`, if still used) must live at `/home/badadmin/.env` (the account home directory), not inside `public_html` — this changed with step 4. Confirm it's been placed there before relying on a fresh deploy.
+**Operational note for the next deploy**: `config/db.local.php` must exist at `/home/badadmin/config/db.local.php` (the account home directory, not inside `public_html`); it's excluded from the deploy rsync so it persists. Confirm it's there before relying on a fresh deploy.
 
 ## Remaining from the original suggested tree
 

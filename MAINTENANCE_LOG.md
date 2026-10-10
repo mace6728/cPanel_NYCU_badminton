@@ -754,3 +754,14 @@ New schema in `database/schema.sql`; upgrade script in
   take a backup and run the migration step by step, checking the `SELECT`s.
 - **Deploy order:** run the migration, then deploy right away; the old code
   breaks once the migration runs and the new code needs it.
+
+## 2026-10-10 — Removed `.env` support; `config/db.local.php` is the credentials file
+
+cPanel doesn't load `.env` files for PHP, so the hand-written parser in
+`config/db.php` was a workaround, not a platform feature. Removed it (and
+`.env.example`). Priority is now: real environment variables -> `config/db.local.php`.
+Added the `config/db.local.php.example` template that `db.php`'s error message
+and the earlier log entries already referred to but that was never committed.
+README/AGENT.md updated. **Check on the server** that
+`/home/badadmin/config/db.local.php` exists with `$dbPassword` set; `.env`
+alone no longer works.

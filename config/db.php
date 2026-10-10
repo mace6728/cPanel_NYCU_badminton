@@ -2,10 +2,9 @@
 // Central database connection. Every page that needs the DB should
 // `require` this file instead of hardcoding credentials.
 //
-// Credentials come from, in order of priority: real environment
-// variables set by the host, a gitignored .env file (see .env.example)
-// for hosts that don't support setting real env vars, or a gitignored
-// config/db.local.php as a last resort.
+// Credentials come from real environment variables if the host sets them
+// (cPanel's PHP doesn't load .env files), otherwise from a gitignored
+// config/db.local.php; see config/db.local.php.example.
 require_once __DIR__ . '/../src/Database.php';
 
 mb_internal_encoding('UTF-8');
@@ -22,7 +21,7 @@ if ($dbPassword === null && is_file($localConfig)) {
 
 if (empty($dbPassword)) {
     http_response_code(500);
-    exit('Database configuration missing: set DB_PASSWORD (and optionally DB_SERVER/DB_NAME/DB_USER) as environment variables, or copy config/db.local.php.example to config/db.local.php.');
+    exit('Database configuration missing: set DB_PASSWORD (and optionally DB_SERVER/DB_NAME/DB_USER) as environment variables, or copy config/db.local.php.example to config/db.local.php (on cPanel: /home/badadmin/config/db.local.php).');
 }
 
 $db = Database::connect($dbServer, $dbName, $dbUser, $dbPassword);

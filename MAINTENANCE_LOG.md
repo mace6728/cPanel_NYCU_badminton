@@ -810,6 +810,32 @@ Scanner report items, and what was done in the repo:
   and dev files (~4.7 MB, ~330 files) from `public/`; the deploy's
   `rsync --delete` removes them from the server.
 
+**Reading the PDF (scan of 2026-09-11) against the repo.** The scan hit the
+site as it was *before* the 2026-10-06..08 cleanup. Most flagged URLs no longer
+exist in the repo: `register.html`, `whoYouAre.php`, `mail/contact_me.php`,
+`js/login.min.js`, and the old static `.html` pages (`coach_liao.html`, ...;
+now `.php` on shared partials). The deploy's `rsync --delete` removes them from
+the server, so after the next deploy these should disappear on a rescan:
+the PHPSESSID cookie findings (SameSite / Secure / HttpOnly — all from
+`whoYouAre.php`), password-autocomplete (3), body-parameters-in-query (2),
+the cacheable-SSL-page finding, the 34 SRI hits (maxcdn link in every old page),
+and the Bootstrap 3.3.4 / jQuery 2.1.1 CVEs (served from `/js/bootstrap.min.js`
+and the home page). Also deleted the unreferenced `js/login.min.js` and
+`js/register.min.js`. Directory URLs without an index (css/, img/, js/,
+gallery/, mail/) now return 404 instead of 403.
+
+**Findings that belong to the hosting layer, not this repo:**
+
+- `TS018f1e80...` cookie (SameSite): set by the university's front end
+  (F5-style), with Secure/HttpOnly already; only its operators can add SameSite.
+- Everything on port 2083 (`cpsession`, `session_locale`, `/resetpass`,
+  `/unprotected/loader.html`, missing HSTS/nosniff/CSP/Referrer-Policy there):
+  that is cPanel's own login service, not the website.
+- `/cgi-bin/`, `/cpanel/`, `/controlpanel/`, `/mailman/`: cPanel proxy paths.
+- The front end already sends HSTS (`max-age=157680000`) and `X-Frame-Options:
+  SAMEORIGIN` twice, so `.htaccess` does not set X-Frame-Options and uses the
+  same HSTS value.
+
 **Not fixable from this repo — TLS findings (ROBOT, SHA-1, no forward secrecy):**
 set in WHM → Apache Configuration → Global Configuration:
 

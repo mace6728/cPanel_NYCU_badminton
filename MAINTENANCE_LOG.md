@@ -775,3 +775,50 @@ in `database/schema.sql`. `getAll()` no longer takes a flag. Every article is
 public again. Production needs `database/migrations/2026-10-10_drop_article_status.sql`
 (deploy the code first, then run it). (The unrelated `$_SESSION['draft']`,
 which restores your text after a failed save, stays.)
+
+## 2026-10-20 — Security scan remediation (high/medium findings)
+
+Scanner report items, and what was done in the repo:
+
+- **Links to nonexistent domains (high):** `sitemap.xml` (60 URLs) and
+  `404/style.css` pointed at the retired `badminton.nctu.edu.tw`; now
+  `badminton.club.nycu.edu.tw`. Removed the dead `html5shiv.googlecode.com`
+  shim and the `saved from` comment from `404.shtml`.
+- **Vulnerable components (7 CVEs):** jQuery 2.1.1 → 3.7.1 (CVE-2020-11022),
+  Bootstrap 3.3.4/3.3.6 → 3.4.1 (CVE-2016-10735, 2018-14040/14042/20676/20677,
+  2019-8331), including `.min` variants and the CSS. Both fetched from cdnjs
+  and jsDelivr and byte-compared. Deleted unused `js/bootstrap4.min.js`
+  (alpha.4). `404.shtml` now uses the local jQuery instead of cdnjs 1.9.1.
+- **Missing SRI (34):** Font Awesome moved from maxcdn (4.1.0) to a
+  self-hosted 4.7.0 (`css/font-awesome.min.css`, `fonts/fontawesome-webfont.*`).
+  Dropped Modernizr (unused), the Google Fonts link on the 404 page, and
+  `404/analytics.js` (Universal Analytics, shut down in 2024, no property id).
+- **`target="_blank"` links (3):** none in templates; they come from article
+  HTML stored in the database. `harden_external_links()` (`src/Helpers/html.php`)
+  adds `rel="noopener noreferrer"` at render time in `article_item.php`.
+- **Cookie flags (SameSite / Secure / HttpOnly / persistent):** `public/.htaccess`
+  adds any missing HttpOnly/Secure/SameSite to every `Set-Cookie`;
+  `public/.user.ini` sets the PHP session defaults; `admin_session()` also
+  detects `X-Forwarded-Proto`, uses strict mode and a non-persistent cookie.
+  The repo's public pages set no cookies, so the flagged ones were probably
+  from old live code or the analytics script; recheck after deploy.
+- **Headers (low):** HSTS (1 year, no includeSubDomains/preload), CSP,
+  `X-Content-Type-Options`, `X-Frame-Options`, `Referrer-Policy` in
+  `public/.htaccess`; stricter CSP for `/admin/`. Public CSP still allows
+  `'unsafe-inline'` scripts because pages have inline `<script>` blocks.
+- **Hidden directories (low):** removed TinyMCE `tests/`, `tools/`, `classes/`
+  and dev files (~4.7 MB, ~330 files) from `public/`; the deploy's
+  `rsync --delete` removes them from the server.
+
+**Not fixable from this repo — TLS findings (ROBOT, SHA-1, no forward secrecy):**
+set in WHM → Apache Configuration → Global Configuration:
+
+    SSLProtocol          TLSv1.2 TLSv1.3   (i.e. "all -SSLv3 -TLSv1 -TLSv1.1")
+    SSLCipherSuite       ECDHE+AESGCM:ECDHE+CHACHA20:!aNULL:!MD5:!RC4:!3DES:!SHA1
+    SSLHonorCipherOrder  Off
+
+then rebuild the Apache config. This removes RSA key exchange (ROBOT), SHA-1
+suites, and non-forward-secret suites.
+
+**Follow-ups:** TinyMCE 4.3.11 (admin only) is outdated; moving inline scripts
+to files would let the public CSP drop `'unsafe-inline'`.

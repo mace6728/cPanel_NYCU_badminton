@@ -9,10 +9,17 @@ function h(?string $value): string
 function admin_session(): void
 {
     if (session_status() === PHP_SESSION_NONE) {
+        // Behind a proxy/CDN, HTTPS may only show up in X-Forwarded-Proto.
+        $https = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off')
+            || strtolower($_SERVER['HTTP_X_FORWARDED_PROTO'] ?? '') === 'https';
+
         session_start([
-            'cookie_httponly' => true,
-            'cookie_samesite' => 'Strict',
-            'cookie_secure'   => !empty($_SERVER['HTTPS']),
+            'cookie_httponly'  => true,
+            'cookie_samesite'  => 'Strict',
+            'cookie_secure'    => $https,
+            'cookie_lifetime'  => 0, // session cookie only, never persisted to disk
+            'use_strict_mode'  => true,
+            'use_only_cookies' => true,
         ]);
     }
 }

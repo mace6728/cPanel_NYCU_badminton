@@ -34,7 +34,7 @@ $basePath = $basePath ?? '';
 
     <link rel="stylesheet" href="<?= $basePath ?>css/<?= $bootstrapCss ?>">
     <link rel="stylesheet" href="<?= $basePath ?>css/<?= $pageCss ?>">
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="<?= $basePath ?>css/font-awesome.min.css">
 <?= $extraHead ?>
 </head>
 

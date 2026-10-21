@@ -848,3 +848,35 @@ suites, and non-forward-secret suites.
 
 **Follow-ups:** TinyMCE 4.3.11 (admin only) is outdated; moving inline scripts
 to files would let the public CSP drop `'unsafe-inline'`.
+
+## 2026-10-21 — Photo albums driven by folders
+
+The 56 hand-written gallery pages (one `<a><img></a>` line per photo, original
+and thumbnail path typed twice) are now one-line stubs. `config/albums.php`
+holds the album list, `GalleryService` lists each album's photos from its folder,
+and `templates/gallery/` renders the three page types. Details in the README
+("Photo Albums"); `bin/gallery.php` has `check`, `thumbs` and `stubs`.
+
+Verified by rendering every page from the old and new code and comparing: all
+13 card pages and 40 of 43 album pages list exactly the same photos in the same
+order. Deliberate differences: `university/2014preliminary` showed a wrong
+thumbnail for photo 0118 (named 0119's); three album pages had no
+"NYCU Badminton" subheading; album banners use the wider column so long titles
+don't wrap; page `<title>`/description now follow one pattern (several said
+the wrong year or "NCTU"; `2018jinzhu.php` said 2017). Alt text on cards is now
+the card's own title (the 2023 勁竹盃 card said "2018").
+
+Things the old pages hid or got wrong, left as they were (decide separately):
+
+- 144 photos sit in album folders but were never listed (e.g. 2015 final
+  `0232`–`0284`, 2018 meichu `.JPG` files). They stay hidden through `exclude`.
+- `jinzhu/2023jinzhu` shows the 2016 photos (`img/jinzhu/2016`); there is no
+  2023 folder. Its card cover is a 2018 photo.
+- `friendship/2023DaTong/IMG_3041.jpg` is an iPhone HEIC file named `.jpg`;
+  most browsers cannot display it, and `bin/gallery.php thumbs` can't read it.
+- 10 photos were commented out of the old pages and their files deleted
+  (`cmu/2013` ×8, `DrPro/2014`, `university/2014preliminary`); nothing to do.
+
+Photos stay in git for now. Because `.cpanel.yml` mirrors `public/` with
+`--delete`, a photo uploaded straight to the server (File Manager) and not
+committed is removed by the next deploy.

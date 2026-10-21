@@ -10,11 +10,24 @@ This project is a traditional PHP website deployed via cPanel. `public/` is the 
   - `public/admin/`: site administration features.
   - `public/api/`: API endpoints called from the browser.
   - `public/css/`, `public/js/`, `public/fonts/`: frontend styles, JavaScript, and fonts.
-  - `public/img/`, `public/gallery/`: site images and gallery content.
+  - `public/img/`: site images, including the photos of every album (one folder per album).
+  - `public/gallery/`: one-line page files for the photo albums; see Photo Albums below.
   - `public/404/`: assets and scripts for the custom error page.
   - `public/tinymce/`: TinyMCE editor files bundled with the project.
+- `bin/`: command-line maintenance tools (`bin/gallery.php`). Not deployed.
 - `tests/legacy/`: old test and demo pages not referenced by the live site; outside `public/`, so not deployed to the web root at all.
 - `cgi-bin/`, `less/`, `mail/`: existing special-purpose or tooling directories, not deployed.
+
+## Photo Albums
+
+Albums are driven by the folders on disk. `config/albums.php` lists the categories and albums (title, cover, folder); the photos are simply the image files in the album's folder, shown in natural filename order (`2.jpg` before `10.jpg`). Nothing lists individual photos, so a photo can't be forgotten or mistyped.
+
+- **Add photos to an album:** copy them into its folder under `public/img/`. Run `php bin/gallery.php thumbs` to create thumbnails for them (needs PHP's GD extension; run it on your own machine and commit the result). Photos without a thumbnail still work; the page loads the full image.
+- **Hide a photo:** add its file name to the album's `exclude` list in `config/albums.php`. The 144 photos that were already sitting in album folders but never shown on the old pages are all listed there, so nothing new went public; delete a name from the list (or the file) to decide.
+- **Add an album:** add an entry to its category in `config/albums.php`, then run `php bin/gallery.php stubs` to create its one-line page file. A whole new category also needs a card cover and a `gallery/<slug>.php` stub (same command).
+- **Check your work:** `php bin/gallery.php check`, or `vendor/bin/phpunit` (the registry test fails on a missing folder, cover or page file, a stale `exclude` name, or a page file with no registry entry).
+
+Page files under `public/gallery/` are identical one-line stubs that load `templates/gallery/page.php`; which page to show comes from the file's own name, never from the request.
 
 ## Deployment Notes
 

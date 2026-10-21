@@ -880,3 +880,13 @@ Things the old pages hid or got wrong, left as they were (decide separately):
 Photos stay in git for now. Because `.cpanel.yml` mirrors `public/` with
 `--delete`, a photo uploaded straight to the server (File Manager) and not
 committed is removed by the next deploy.
+
+### Follow-up decisions (same day)
+
+- The 144 unlisted photos were published: every `exclude` list was removed, so
+  all images in an album folder are shown (now 4,174 photos in 41 albums).
+  They all had thumbnails already.
+- Deleted the `jinzhu/2023jinzhu` album (it showed the 2016 photos; its card
+  and page file are gone, the 2016 photos stay for the real 2016 album) and the
+  `friendly/2023DaTong` album together with its only photo, the HEIC
+  `IMG_3041.jpg`, which left it empty. Their old URLs now return 404.

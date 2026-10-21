@@ -23,7 +23,7 @@ This project is a traditional PHP website deployed via cPanel. `public/` is the 
 Albums are driven by the folders on disk. `config/albums.php` lists the categories and albums (title, cover, folder); the photos are simply the image files in the album's folder, shown in natural filename order (`2.jpg` before `10.jpg`). Nothing lists individual photos, so a photo can't be forgotten or mistyped.
 
 - **Add photos to an album:** copy them into its folder under `public/img/`. Run `php bin/gallery.php thumbs` to create thumbnails for them (needs PHP's GD extension; run it on your own machine and commit the result). Photos without a thumbnail still work; the page loads the full image.
-- **Hide a photo:** add its file name to the album's `exclude` list in `config/albums.php`. The 144 photos that were already sitting in album folders but never shown on the old pages are all listed there, so nothing new went public; delete a name from the list (or the file) to decide.
+- **Hide a photo:** add its file name to the album's `exclude` list in `config/albums.php` (an optional key; no album uses it right now). Without it, every image in the folder is shown, so delete the file or exclude it if it shouldn't be public.
 - **Add an album:** add an entry to its category in `config/albums.php`, then run `php bin/gallery.php stubs` to create its one-line page file. A whole new category also needs a card cover and a `gallery/<slug>.php` stub (same command).
 - **Check your work:** `php bin/gallery.php check`, or `vendor/bin/phpunit` (the registry test fails on a missing folder, cover or page file, a stale `exclude` name, or a page file with no registry entry).
 

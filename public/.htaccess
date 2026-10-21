@@ -13,6 +13,12 @@ RewriteCond %{REQUEST_URI} !^/\.well-known/cpanel-dcv/[0-9a-zA-Z_-]+$
 RewriteCond %{REQUEST_URI} !^/\.well-known/pki-validation/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
 RewriteRule ^(.*)$ https://%{SERVER_NAME}%{REQUEST_URI} [R=301,L]
 
+# Old static pages were converted to PHP (coach_liao.html -> coach_liao.php).
+# Send stale .html links (old articles, bookmarks, search results) to the new
+# page with a permanent redirect, but only when the .php page exists.
+RewriteCond %{DOCUMENT_ROOT}/$1.php -f
+RewriteRule ^(.+)\.html$ /$1.php [R=301,L]
+
 # Directories with no index file answer 404 instead of 403, so the scanner (and
 # anyone else) can't use the difference to discover css/, img/, js/, gallery/...
 # The root and /admin (Basic Auth answers first) are excluded.
